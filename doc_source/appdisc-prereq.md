@@ -1,10 +1,10 @@
 # Prerequisites<a name="appdisc-prereq"></a>
 
-Before using using the Application Discovery Service, confirm that your on\-premises servers and your network environment meet the following requirements\. 
+Before using the Application Discovery Service, confirm that your on\-premises servers and your network environment meet the following requirements\. 
 
 ## Supported Operating Systems<a name="supported-os"></a>
 
-The Application Discovery agent supports the following operating systems and system versions\.
+The Application Discovery agent supports the following operating systems and system versions\.<a name="linux_beta"></a>
 
 ## Linux<a name="linux_beta"></a>
 
@@ -16,7 +16,7 @@ The Application Discovery agent supports the following operating systems and sys
 
 + CentOS 5\.11, 6\.9, 7\.3
 
-+ SUSE 11 SP4, 12 SP2
++ SUSE 11 SP4, 12 SP2<a name="windows_beta"></a>
 
 ## Windows<a name="windows_beta"></a>
 

@@ -30,7 +30,7 @@ Before starting the installation, complete the following tasks\.
 Complete the following procedure on Linux\.
 
 **Note**  
-If you are using a noncurrent Linux version, see [Requirements on Older Linux Platforms](#old_linux)\.
+If you are using a noncurrent Linux version, see [Requirements on Older Linux Platforms](#old_linux)\.<a name="linux_steps"></a>
 
 **To install AWS Application Discovery Agent in your data center**
 
@@ -129,7 +129,7 @@ If you encounter problems while installing or using the Application Discovery Ag
 
 ## Agent Installation on Windows<a name="install_on_windows"></a>
 
-Complete the following procedure on Windows\.
+Complete the following procedure on Windows\.<a name="windows_steps"></a>
 
 **To install AWS Application Discovery Agent in your data center**
 

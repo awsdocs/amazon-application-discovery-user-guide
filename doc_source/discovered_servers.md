@@ -4,19 +4,19 @@ The **Servers** page provides system configuration and performance data about ea
 
 On this page, you can: 
 
-+ View and search server information
++ [View and search server information](#view_servers)
 
-+ Tag multiple servers
++ [Tag multiple servers](#tag_servers)
 
-+ Tag a single server
++ [Tag a single server](#tag_single_server)
 
-+ Remove tags from multiple servers
++ [Remove tags from multiple servers](#remove_multiple_tags)
 
-+ Remove tags from a single server
++ [Remove tags from a single server](#remove_single_tag)
 
-+ Export data about a server
++ [Export data about a server](#export_server_data)
 
-The following procedures describe how to carry out typical server\-related management tasks\.
+The following procedures describe how to carry out typical server\-related management tasks\.<a name="view_servers"></a>
 
 **To view and search server information**
 
@@ -90,7 +90,7 @@ The following procedures describe how to carry out typical server\-related manag
 
 1. In the table, choose a **Server ID** link to display details about that server\. This opens a details page with basic system information, system performance, and the status of recent export jobs\. Under the server name at the top of the page, the console displays applications and tags associated with the server\. Choose **Actions** to see the actions that can be performed on the server, including **Group as application**, **Add tag**, **Remove server from application**, **Remove tag**, and **Export server details**\.
 
-Tags are user\-defined key/value pairs that can store meta\-information about servers\. Application discovery tags are similar to AWS tags, but the two types of tag cannot be used interchangeably\. You can add or remove tags on up to 10 servers at a time on the **Servers** page\. On server details pages, you can add or remove tags only for the selected server\. Up to five tags can be added or removed from a server or servers in a single operation\.
+Tags are user\-defined key/value pairs that can store meta\-information about servers\. Application discovery tags are similar to AWS tags, but the two types of tag cannot be used interchangeably\. You can add or remove tags on up to 10 servers at a time on the **Servers** page\. On server details pages, you can add or remove tags only for the selected server\. Up to five tags can be added or removed from a server or servers in a single operation\.<a name="tag_servers"></a>
 
 **To tag multiple servers**
 
@@ -106,7 +106,7 @@ Tags are user\-defined key/value pairs that can store meta\-information about se
 
 1. Open the **Server ID** link of a newly tagged server\. On the details page, note that the **Tags** list near the top of the page displays the new tag keys\. 
 
-1. Choose the tag key names\. The **Tags** window opens with a table containing all of the tag key/value pairs for the selected server\.
+1. Choose the tag key names\. The **Tags** window opens with a table containing all of the tag key/value pairs for the selected server\.<a name="tag_single_server"></a>
 
 **To tag a single server**
 
@@ -120,7 +120,7 @@ Tags are user\-defined key/value pairs that can store meta\-information about se
 
 1. To add additional tags to the selected server, choose **Additional tag** and repeat the previous step\.
 
-1. Choose **Save**\. On the details page, note that the **Tags** list near the top of the page displays the new tag keys\.
+1. Choose **Save**\. On the details page, note that the **Tags** list near the top of the page displays the new tag keys\.<a name="remove_multiple_tags"></a>
 
 **To remove tags from multiple servers**
 
@@ -134,7 +134,7 @@ Tags are user\-defined key/value pairs that can store meta\-information about se
 
 1. To remove additional tags from the selected servers, choose **Additional tag** and repeat the previous step\.
 
-1. Choose **Remove** to delete the tags from the selected servers\. Note that table entries for the selected servers no longer display keys for removed tags\. 
+1. Choose **Remove** to delete the tags from the selected servers\. Note that table entries for the selected servers no longer display keys for removed tags\. <a name="remove_single_tag"></a>
 
 **To remove tags from a single server**
 
@@ -146,7 +146,7 @@ Tags are user\-defined key/value pairs that can store meta\-information about se
 
 1. To remove additional tags from the selected server, choose **Additional tag** and repeat the previous step\.
 
-1. Choose **Save**\. On the details page, note that the **Tags** list near the top of the page no longer displays keys for removed tags\.
+1. Choose **Save**\. On the details page, note that the **Tags** list near the top of the page no longer displays keys for removed tags\.<a name="export_server_data"></a>
 
 **To export data about a server**
 
@@ -172,7 +172,7 @@ Application Discovery Service supports up to five concurrent exports of server d
 
    To request a new export, choose **Export server details**\.
 
-1. In the **Export server details** window, provide the starting date and time and ending date and time in the format indicated\. Note that the time period cannot be greater than 72 hours, and it cannot be in the future\. 
+1. In the **Export server details** window, the “From date/time” field will be pre\-populated with the current date and time and data will be generated for the next 72 hours\.
 
 1. Choose **Export** to start the job\. The initial status will be **In\-progress**; to update the status, click the refresh icon in the **Exports** section heading\.
 

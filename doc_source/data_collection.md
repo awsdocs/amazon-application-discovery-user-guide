@@ -2,11 +2,11 @@
 
 The **Data collection** page displays a tab for each type of data collection tool supported, currently **Agents** \([application discovery agents](http://docs.aws.amazon.com/application-discovery/latest/userguide/appdisc-components.html#awsagent)\) and **Connectors** \([agentless discovery connectors](http://docs.aws.amazon.com/application-discovery/latest/userguide/appdisc-components.html#appdisc-agentless)\)\. On this page, you can:
 
-+ View and search data collection tools
++ [View and search data collection tools](#view_tools)
 
-+ Start data collection for both agents and connectors
++ [Start data collection for both agents and connectors](#start_data_collection)
 
-+ Stop data collection
++ [Stop data collection](#stop_data_collection)
 
 **Note**  
 You must explicitly start data collection for discovery to begin\.
@@ -39,7 +39,7 @@ The table of available tools provides the following information about each:
 
 + **Last health ping time**
 
-The following procedures demonstrate how to carry out typical data\-related management tasks\. Though these examples focus on discovery agents, the steps for agentless discovery connectors are nearly identical\.
+The following procedures demonstrate how to carry out typical data\-related management tasks\. Though these examples focus on discovery agents, the steps for agentless discovery connectors are nearly identical\.<a name="view_tools"></a>
 
 **To view and filter data collection tools**
 
@@ -79,7 +79,7 @@ The following procedures demonstrate how to carry out typical data\-related mana
 
    + **SHUTDOWN**
 
-The table now displays only the entries that match your filter criterion\. You can also define multiple filters, delete filters, and bypass the filter menus by typing into the filter bar directly\. For more information about agent health status and collection status, see [Querying Discovered Configuration Items](http://docs.aws.amazon.com/application-discovery/latest/APIReference/discovery-api-queries.html) in the *Application Discovery Service API Reference*\.
+The table now displays only the entries that match your filter criterion\. You can also define multiple filters, delete filters, and bypass the filter menus by typing into the filter bar directly\. For more information about agent health status and collection status, see [Querying Discovered Configuration Items](http://docs.aws.amazon.com/application-discovery/latest/APIReference/discovery-api-queries.html) in the *Application Discovery Service API Reference*\.<a name="start_data_collection"></a>
 
 **To start data collection for both agents and connectors**
 
@@ -87,7 +87,7 @@ The table now displays only the entries that match your filter criterion\. You c
 
 1. In the table, select the check box associated with each of the agents to start\.
 
-1. Choose **Start data collection**\. In the **Collection status** field, note that the status of each of your selected collection tools changes to either **START\_SCHEDULED** or **STARTED**\. The next time each of your selected collection tools contacts AWS, it collects and sends data to Application Discovery Service\. 
+1. Choose **Start data collection**\. In the **Collection status** field, note that the status of each of your selected collection tools changes to either **START\_SCHEDULED** or **STARTED**\. The next time each of your selected collection tools contacts AWS, it collects and sends data to Application Discovery Service\. <a name="stop_data_collection"></a>
 
 **To stop data collection**
 

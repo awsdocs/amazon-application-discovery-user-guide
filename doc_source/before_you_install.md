@@ -41,7 +41,15 @@ Each of the Application Discovery Service managed policies is shown here so that
         {
             "Effect": "Allow",
             "Action": [
+                "mgh:*",
                 “discovery:*"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:GetRole"
             ],
             "Resource": "*"
         }
