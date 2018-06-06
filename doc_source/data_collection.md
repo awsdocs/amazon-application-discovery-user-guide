@@ -1,98 +1,43 @@
-# Data collection<a name="data_collection"></a>
+# Data Collection Tools<a name="data_collection"></a>
 
-The **Data collection** page displays a tab for each type of data collection tool supported, currently **Agents** \([application discovery agents](http://docs.aws.amazon.com/application-discovery/latest/userguide/appdisc-components.html#awsagent)\) and **Connectors** \([agentless discovery connectors](http://docs.aws.amazon.com/application-discovery/latest/userguide/appdisc-components.html#appdisc-agentless)\)\. On this page, you can:
+The Discovery Connector and Discovery Agent are the data collection tools that Application Discovery Service uses to help you discover your existing infrastructure\. You can download and deploy discovery connectors and discovery agents as explained in [AWS Agentless Discovery Connector](discovery-connector.md) and [ AWS Application Discovery Agent](discovery-agent.md)\.
 
-+ [View and search data collection tools](#view_tools)
+These data collection tools store their data in the Application Discovery Service's repository, providing details about each server and the processes running on them\. When either of these tools is deployed, you can start, stop, and view the collected data from the Migration Hub console\.
 
-+ [Start data collection for both agents and connectors](#start_data_collection)
+**Topics**
++ [Starting and Stopping Data Collectors](#start-stop-data_collection)
++ [Viewing and Sorting Data Collectors](#sort-data-collectors)
 
-+ [Stop data collection](#stop_data_collection)
+## Starting and Stopping Data Collectors<a name="start-stop-data_collection"></a>
 
-**Note**  
-You must explicitly start data collection for discovery to begin\.
+Whether you deployed a Discovery Connector or a Discovery Agent, you can start or stop their data collection process on the **Data Collectors** page of the Migration Hub console\.
 
-The table of available tools provides the following information about each:
+**To start or stop data collection tools**
 
-+ **Agent ID** or **Connector ID**
+1. In the navigation pane, choose **Data Collectors**\.
 
-+ **Hostname**
+1. Choose either the **Connectors** or **Agents** tab\.
 
-+ **Collection status**
+1. Select the check box of the collection tool you want to start or stop\.
 
-  The supported states can be understood as follows: 
+1. Choose **Start data collection** or **Stop data collection**\.
 
-  +  **STARTED**—The collection tool has started collecting and sending data to Discovery service\. 
+## Viewing and Sorting Data Collectors<a name="sort-data-collectors"></a>
 
-  +  **START\_SCHEDULED**—The data collection has been scheduled to be started\. The next time collection tool contacts AWS, it will start sending data to the Discovery Service and the collection status will change to **STARTED**\. 
+If you deployed many data collectors, you can sort the Discovery Connectors or Discovery Agents that are returned to the **Data Collectors** page of the console\. You can do this by applying filters in the search bar\. You can search and filter on most of the criteria specified in the **Data Collectors** list\.
 
-  +  **STOPPED**—The collection tool has stopped sending data to the Discovery service\.
+The following table shows the search criteria that you can use, including operators, values, and a definition of the values\.
 
-  +  **STOP\_SCHEDULED**—The data collection has been scheduled to be stopped\. The next time collection tool contacts AWS, it will stop sending data to the Discovery service and the Collection status will change to **STOPPED**\.
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/application-discovery/latest/userguide/data_collection.html)
 
-+ **Health**
+**To sort data collectors by applying search filters**
 
-+ **IP address**
+1. In the navigation pane, choose **Data Collectors**\.
 
-+ **Version** \(of the collection tool\)
+1. Choose either the **Connectors** or **Agents** tab\.
 
-+ **Registered time** \(when the collection tool was created\)
+1. Click inside the search bar and choose a search criterion from the list\.
 
-+ **Last health ping time**
+1. Choose an operator from the next list\.
 
-The following procedures demonstrate how to carry out typical data\-related management tasks\. Though these examples focus on discovery agents, the steps for agentless discovery connectors are nearly identical\.<a name="view_tools"></a>
-
-**To view and filter data collection tools**
-
-1. In the navigation menu, choose **Data collection**\.
-
-1. Choose **Agents** to view a table of installed application discovery agents\. Each entry provides detailed information about an agent, such as its ID and host name\. 
-
-1. To filter the display, choose the menu\-driven filter bar, and select one of the available fields in the resulting menu:
-
-   + **Collection status**
-
-   + **Health**
-
-   + **Host name**
-
-   + **IP address**
-
-   + **Agent ID**
-
-1. Select one of the available operators:
-
-   + **==**
-
-   + **\!=**
-
-1. Select a field value\. These vary based on the filter selected earlier\. For **Health**, you see a menu with the following possible values: 
-
-   + **HEALTHY**
-
-   + **RUNNING**
-
-   + **UNHEALTHY**
-
-   + **UNKNOWN**
-
-   + **BLACKLISTED**
-
-   + **SHUTDOWN**
-
-The table now displays only the entries that match your filter criterion\. You can also define multiple filters, delete filters, and bypass the filter menus by typing into the filter bar directly\. For more information about agent health status and collection status, see [Querying Discovered Configuration Items](http://docs.aws.amazon.com/application-discovery/latest/APIReference/discovery-api-queries.html) in the *Application Discovery Service API Reference*\.<a name="start_data_collection"></a>
-
-**To start data collection for both agents and connectors**
-
-1. In the navigation menu, choose **Data collection**, **Agents**\.
-
-1. In the table, select the check box associated with each of the agents to start\.
-
-1. Choose **Start data collection**\. In the **Collection status** field, note that the status of each of your selected collection tools changes to either **START\_SCHEDULED** or **STARTED**\. The next time each of your selected collection tools contacts AWS, it collects and sends data to Application Discovery Service\. <a name="stop_data_collection"></a>
-
-**To stop data collection**
-
-1. In the navigation menu, choose **Data collection**, **Agents**\.
-
-1. In the table, select the check box associated with each of the agents to stop\.
-
-1. Choose **Stop data collection**\. In the **Collection status** field, note that the status of each of your selected collection tools is now either **STOP\_SCHEDULED** or **STOPPED**\. The next time each of your selected collections tools contacts AWS, it stops sending discovery data to Application Discovery Service\. The status of each selected collection tool changes to **STOPPED** after data collection has halted\.
+1. Choose a value from the last list\.

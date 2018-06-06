@@ -1,55 +1,25 @@
 # Applications<a name="applications"></a>
 
-The **Applications** page lists your applications and allows you to view the servers that compose them\. Each table entry represents an application and displays the application ID, application name, description, number of member servers, and creation time\. You can search applications, create applications, and delete applications\. On the details page for each application, you can add and remove servers\.
+Some of your discovered servers might need to be migrated together to remain functional\. In this case, you can logically define and group discovered servers into applications\. 
 
-On this page, you can: 
+As part of the grouping process, you can search, filter, and add tags\.
 
-+ [View and search applications](#view_apps)
+**To group servers into a new or existing application**
 
-+ [Create an application](#create_app)
+1. In the navigation pane, choose **Servers**\.
 
-+ [Delete one or more applications](#delete_app)
+1. In the servers list, select each server that you want to group into a new or existing application\.
 
-+ [Delete one or more servers from an application](#delete_servers_from_app)<a name="view_apps"></a>
+   To help choose servers for your group, you can search and filter on any criteria that you specify in the server list\. Click inside the search bar and choose an item from the list, choose an operator from the next list, and then type in your criteria\.
 
-**To view and search applications**
+1. Optional: For each selected server, choose **Add tag**, type a value for **Key**, and then optionally type a value for **Value**\.
 
-1. In the navigation menu, choose **Applications**\.
+1. Choose **Group as application** to create your application, or add to an existing one\. 
 
-1. In the table, for **Application ID**, select an application with a non\-zero number of member servers\. A details page with a list of all the member servers displays\.
+1. In the **Group as application** dialog box, choose **Group as a new application** or **Add to an existing application**\.
 
-1. On the details page of the selected application, choose the **Server ID** of a member server\. From the details page for that server, you can perform management operations for the selected server described in [Servers](discovered_servers.md), including deleting it from the application\. To delete servers in bulk from an application, see [To delete one or more servers from an application](#delete_servers_from_app) below\.
+   1. If you chose **Group as a new application**, type a name for **Application name**\. Optionally, you can type a description for **Application description**\.
 
-The table now displays only the entries that match your filter criterion\. You can also define multiple filters, delete filters, and bypass the filter menus by typing into the filter bar directly\.<a name="create_app"></a>
+   1. If you chose **Add to an existing application**, select the name of the application to add to in the list\.
 
-**To create an application**
-
-1. In the navigation menu, choose **Applications**\.
-
-1. Choose **Create new application**\.
-
-1. In the** Create new application** window, provide values for **Application name** and \(optionally\) **Application description**\. 
-
-1. When done, choose **Create**\. Note that the newly created application is listed in the table\.<a name="delete_app"></a>
-
-**To delete one or more applications**
-
-1. In the navigation menu, choose **Applications**\.
-
-1. In the table of applications, select the check boxes of applications to delete\.
-
-1. Choose **Delete applications**\.
-
-1. In the **Delete application** window, choose **Delete**\. Note that entries for deleted applications have been removed from the table\.<a name="delete_servers_from_app"></a>
-
-**To delete one or more servers from an application**
-
-1. In the navigation menu, choose **Applications**\.
-
-1. In the table, for **Application ID**, select an application with a non\-zero number of member servers\. A details page with a list of all the member servers displays\.
-
-1. On the details page of the selected application, select the check boxes of servers to delete from the application\.
-
-1. When done, choose **Remove server from application**\.
-
-1. In the **Remove server from applications** window, when you are sure you want to proceed, choose **Remove**\. Note that entries for deleted servers have been removed from the table\.
+1. Choose **Save**\. 
