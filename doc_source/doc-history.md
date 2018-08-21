@@ -2,13 +2,14 @@
 
 The following table describes the important changes to the documentation since the last release of Application Discovery Service\.
 
-**Latest documentation update:** May 25, 2018
+**Latest documentation update:** August 09, 2018
 
 
 ****  
 
 | Change | Description | Date | 
 | --- | --- | --- | 
+| New Feature | Updated docs to support Data Exploration in Amazon Athena and added Troubleshooting chapter\. | August 09, 2018 | 
 | Major revision | Rewrites to usage & output details; entire document restructured\. | May 25, 2018 | 
 | Discovery Agent 2\.0 | A new and improved Application Discovery agent was released\. | October 19, 2017 | 
 | Console | The AWS Management Console was added\. | December 19, 2016 | 

@@ -7,5 +7,5 @@ In this section, you can find how to manage and monitor your Discovery Connector
 **Topics**
 + [Main Dashboard](dashboard.md)
 + [Data Collection Tools](data_collection.md)
-+ [View & Export Server Data](discovered_servers.md)
++ [View, Export, and Explore Server Data](discovered_servers.md)
 + [Applications](applications.md)
