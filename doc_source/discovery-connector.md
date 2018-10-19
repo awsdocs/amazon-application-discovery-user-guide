@@ -104,9 +104,9 @@ Beginning with this section and those that follow on this page, you will be inst
 
    ```
    $ md5sum AWSDiscoveryConnector.ova
-   MD5 (AWSDiscoveryConnector.ova) = a5590986af27d8eabadf604cb1dbc13b
+   MD5 (AWSDiscoveryConnector.ova) = 60e8dd3fb9842fa561a9f6f05e620c60 
    $ sha256sum AWSDiscoveryConnector.ova
-   SHA256(AWSDiscoveryConnector.ova)= 7cebe800a57aee863cab225abefdb454deeca998ef1defa00331a6c40d74d969
+   SHA256(AWSDiscoveryConnector.ova)= 9646dc9cc0f5cb5f4cc1bb6d770b0247cffe09cbb7289d7a6d4a80ea1cc54f65
    ```
 
    Verify that the checksum value returned from the command you ran is equal to the respective value displayed in the example above\.
@@ -280,7 +280,7 @@ To start the Discovery Connector data collection process from the AWS CLI, the A
 
 **To install the AWS CLI and start data collection**
 
-1. Install the AWS CLI for your operating system \(Linux, macOS, or Windows\)\. See the [AWS Command Line Interface User Guide](http://docs.aws.amazon.com/cli/latest/userguide/) for instructions\.
+1. Install the AWS CLI for your operating system \(Linux, macOS, or Windows\)\. See the [AWS Command Line Interface User Guide](https://docs.aws.amazon.com/cli/latest/userguide/) for instructions\.
 
 1. Open the Command prompt \(Windows\) or Terminal \(Linux or macOS\)\.
 

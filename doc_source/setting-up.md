@@ -15,25 +15,25 @@ When you sign up for Amazon Web Services \(AWS\), you are charged only for the s
 
 1. Open [https://aws\.amazon\.com/](https://aws.amazon.com/), and then choose **Create an AWS Account**\.
 **Note**  
-This might be unavailable in your browser if you previously signed into the AWS Management Console\. In that case, choose **Sign in to a different account**, and then choose **Create a new AWS account**\.
+If you previously signed in to the AWS Management Console using AWS account root user credentials, choose **Sign in to a different account**\. If you previously signed in to the console using IAM credentials, choose **Sign\-in using root account credentials**\. Then choose **Create a new AWS account**\.
 
 1. Follow the online instructions\.
 
-   Part of the sign\-up procedure involves receiving a phone call and entering a PIN using the phone keypad\.
+   Part of the sign\-up procedure involves receiving a phone call and entering a verification code using the phone keypad\.
 
 Note your AWS account number, because you'll need it for the next task\.
 
 ## Step 2: Create an IAM User<a name="setting-up-iam"></a>
 
-Services such as AWS Application Discovery Service require that you provide credentials when you access them\. This way the service can determine whether you have permissions to access its resources\. We recommend that you don't use the AWS account root user credentials to make requests\. Instead, create an AWS Identity and Access Management \(IAM\) user, and grant that user full access\. We refer to these users as having administrator\-level credentials\. You can use the administrator\-level credentials to interact with AWS and perform tasks such as create an AWS S3 bucket, create additional IAM users, and grant permissions\. For more information, see [Root Account Credentials vs\. IAM User Credentials](http://docs.aws.amazon.com/general/latest/gr/root-vs-iam.html) in the *AWS General Reference* and [IAM Best Practices](http://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\. 
+Services such as AWS Application Discovery Service require that you provide credentials when you access them\. This way the service can determine whether you have permissions to access its resources\. We recommend that you don't use the AWS account root user credentials to make requests\. Instead, create an AWS Identity and Access Management \(IAM\) user, and grant that user full access\. We refer to these users as having administrator\-level credentials\. You can use the administrator\-level credentials to interact with AWS and perform tasks such as create an AWS S3 bucket, create additional IAM users, and grant permissions\. For more information, see [Root Account Credentials vs\. IAM User Credentials](https://docs.aws.amazon.com/general/latest/gr/root-vs-iam.html) in the *AWS General Reference* and [IAM Best Practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\. 
 
 If you signed up for AWS but have not created an IAM user for yourself, you can create one using the IAM console\.
 
 **To create an IAM user for yourself and add the user to an Administrators group**
 
-1. Use your AWS account email address and password to sign in as the *[AWS account root user](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html)* to the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
+1. Use your AWS account email address and password to sign in as the *[AWS account root user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html)* to the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 **Note**  
-We strongly recommend that you adhere to the best practice of using the **Administrator** IAM user below and securely lock away the root user credentials\. Sign in as the root user only to perform a few [account and service management tasks](http://docs.aws.amazon.com/general/latest/gr/aws_tasks-that-require-root.html)\.
+We strongly recommend that you adhere to the best practice of using the **Administrator** IAM user below and securely lock away the root user credentials\. Sign in as the root user only to perform a few [account and service management tasks](https://docs.aws.amazon.com/general/latest/gr/aws_tasks-that-require-root.html)\.
 
 1. In the navigation pane of the console, choose **Users**, and then choose **Add user**\.
 
@@ -57,7 +57,7 @@ We strongly recommend that you adhere to the best practice of using the **Admini
 
 1. Choose **Next: Review** to see the list of group memberships to be added to the new user\. When you are ready to proceed, choose **Create user**\.
 
-You can use this same process to create more groups and users, and to give your users access to your AWS account resources\. To learn about using policies to restrict users' permissions to specific AWS resources, go to [Access Management](http://docs.aws.amazon.com/IAM/latest/UserGuide/access.html) and [Example Policies](http://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_examples.html)\.
+You can use this same process to create more groups and users, and to give your users access to your AWS account resources\. To learn about using policies to restrict users' permissions to specific AWS resources, go to [Access Management](https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html) and [Example Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_examples.html)\.
 
 **Note**  
 An administrator account will by default inherit all the policies required for accessing Application Discovery Service\.
@@ -81,7 +81,7 @@ To verify the sign\-in link for IAM users for your account, open the IAM console
 
 ## Step 3: Provide Application Discovery Service Access to Non\-Administrator Users by Attaching Policies<a name="setting-up-user-policy"></a>
 
-Application Discovery Service uses the IAM\-managed policies listed here to control access to the service or components of the service\. An administrator account will by default inherit all the policies required for accessing Application Discovery Service\. If your account is a non\-administrative account, in order to access Application Discovery Service, you need to request your administrator to add the below policies to your account\. For information about how to attach these managed policies to an IAM user account, see [Working with Managed Policies](http://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-using.html) in the *IAM User Guide\.*
+Application Discovery Service uses the IAM\-managed policies listed here to control access to the service or components of the service\. An administrator account will by default inherit all the policies required for accessing Application Discovery Service\. If your account is a non\-administrative account, in order to access Application Discovery Service, you need to request your administrator to add the below policies to your account\. For information about how to attach these managed policies to an IAM user account, see [Working with Managed Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-using.html) in the *IAM User Guide\.*
 
 **AWSApplicationDiscoveryServiceFullAccess**  
 Grants the IAM user account access to the Application Discovery Service and Migration Hub APIs\. With this policy, the user can configure Application Discovery Service, start and stop agents, start and stop agentless discovery, and query data from the AWS Discovery Service database\. 
@@ -358,13 +358,13 @@ Each of the Application Discovery Service managed policies is shown here so that
 
 ## Understanding and Using Service\-Linked Roles for Application Discovery Service<a name="using-service-linked-roles"></a>
 
-AWS Application Discovery Service uses AWS Identity and Access Management \(IAM\)[ service\-linked roles](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html#iam-term-service-linked-role)\. A service\-linked role is a unique type of IAM role that is linked directly to Application Discovery Service\. Service\-linked roles are predefined by Application Discovery Service and include all the permissions that the service requires to call other AWS services on your behalf\. 
+AWS Application Discovery Service uses AWS Identity and Access Management \(IAM\)[ service\-linked roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html#iam-term-service-linked-role)\. A service\-linked role is a unique type of IAM role that is linked directly to Application Discovery Service\. Service\-linked roles are predefined by Application Discovery Service and include all the permissions that the service requires to call other AWS services on your behalf\. 
 
 A service\-linked role makes setting up Application Discovery Service easier because you don’t have to manually add the necessary permissions\. Application Discovery Service defines the permissions of its service\-linked roles, and unless defined otherwise, only Application Discovery Service can assume its roles\. The defined permissions include the trust policy and the permissions policy, and that permissions policy cannot be attached to any other IAM entity\.
 
 You can delete a service\-linked role only after first deleting their related resources\. This protects your Application Discovery Service resources because you can't inadvertently remove permission to access the resources\.
 
-For information about other services that support service\-linked roles, see [AWS Services That Work with IAM](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-services-that-work-with-iam.html) and look for the services that have **Yes **in the **Service\-Linked Role** column\. Choose a **Yes** with a link to view the service\-linked role documentation for that service\.
+For information about other services that support service\-linked roles, see [AWS Services That Work with IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-services-that-work-with-iam.html) and look for the services that have **Yes **in the **Service\-Linked Role** column\. Choose a **Yes** with a link to view the service\-linked role documentation for that service\.
 
 ### Service\-Linked Role Permissions for Application Discovery Service<a name="service-linked-role-permissions"></a>
 
@@ -484,14 +484,14 @@ This is the full policy showing which resources the above actions apply to:
 }
 ```
 
-You must configure permissions to allow an IAM entity \(such as a user, group, or role\) to create, edit, or delete a service\-linked role\. For more information, see [Service\-Linked Role Permissions](http://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html#service-linked-role-permissions) in the *IAM User Guide*\.
+You must configure permissions to allow an IAM entity \(such as a user, group, or role\) to create, edit, or delete a service\-linked role\. For more information, see [Service\-Linked Role Permissions](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html#service-linked-role-permissions) in the *IAM User Guide*\.
 
 ### Creating a Service\-Linked Role for Application Discovery Service<a name="create-service-linked-role"></a>
 
 You don't need to manually create a service\-linked role\. The AWSServiceRoleForApplicationDiscoveryServiceContinuousExport service\-linked role is automatically created when Continuous Export is implicitly turned on by a\) confirming options in the dialog box presented from the Data Collectors page after you choose “Start data collection”, or click the slider labeled, “Data exploration in Athena”, or b\) when you call the StartContinuousExport API using the AWS CLI\.  
 
 **Important**  
-This service\-linked role can appear in your account if you completed an action in another service that uses the features supported by this role\.  To learn more, see [A New Role Appeared in My IAM Account](http://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_roles.html#troubleshoot_roles_new-role-appeared)\.
+This service\-linked role can appear in your account if you completed an action in another service that uses the features supported by this role\.  To learn more, see [A New Role Appeared in My IAM Account](https://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_roles.html#troubleshoot_roles_new-role-appeared)\.
 
 #### Creating the Service\-Linked Role from the Migration Hub Console<a name="create-service-linked-role-service-console"></a>
 
@@ -515,7 +515,7 @@ This service\-linked role is automatically created when you start Continuous Exp
 
 **To create the service\-linked role \(CLI\) by starting Continuous Export from the AWS CLI**
 
-1. Install the AWS CLI for your operating system \(Linux, macOS, or Windows\)\. See the [AWS Command Line Interface User Guide](http://docs.aws.amazon.com/cli/latest/userguide/) for instructions\.
+1. Install the AWS CLI for your operating system \(Linux, macOS, or Windows\)\. See the [AWS Command Line Interface User Guide](https://docs.aws.amazon.com/cli/latest/userguide/) for instructions\.
 
 1. Open the Command prompt \(Windows\) or Terminal \(Linux or macOS\)\.
 
@@ -533,7 +533,7 @@ This service\-linked role is automatically created when you start Continuous Exp
    aws discovery start-continuous-export
    ```
 
-You can also use the IAM console to create a service\-linked role with the **Discovery Service \- Continuous Export** use case\. In the IAM CLI or the IAM API, create a service\-linked role with the `continuousexport.discovery.amazonaws.com` service name\. For more information, see [Creating a Service\-Linked Role](http://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html#create-service-linked-role) in the *IAM User Guide*\. If you delete this service\-linked role, you can use this same process to create the role again\.
+You can also use the IAM console to create a service\-linked role with the **Discovery Service \- Continuous Export** use case\. In the IAM CLI or the IAM API, create a service\-linked role with the `continuousexport.discovery.amazonaws.com` service name\. For more information, see [Creating a Service\-Linked Role](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html#create-service-linked-role) in the *IAM User Guide*\. If you delete this service\-linked role, you can use this same process to create the role again\.
 
 ### Deleting a Service\-Linked Role for Application Discovery Service<a name="delete-service-linked-role"></a>
 
@@ -556,7 +556,7 @@ If the Application Discovery Service service is using the role when you try to d
 
 **To delete Application Discovery Service resources used by the AWSServiceRoleForApplicationDiscoveryServiceContinuousExport service\-linked role from the AWS CLI**
 
-1. Install the AWS CLI for your operating system \(Linux, macOS, or Windows\)\. See the [AWS Command Line Interface User Guide](http://docs.aws.amazon.com/cli/latest/userguide/) for instructions\.
+1. Install the AWS CLI for your operating system \(Linux, macOS, or Windows\)\. See the [AWS Command Line Interface User Guide](https://docs.aws.amazon.com/cli/latest/userguide/) for instructions\.
 
 1. Open the Command prompt \(Windows\) or Terminal \(Linux or macOS\)\.
 
@@ -588,7 +588,7 @@ If the Application Discovery Service service is using the role when you try to d
 
 #### Manually Delete the Service\-Linked Role<a name="slr-manual-delete"></a>
 
-You can delete the AWSServiceRoleForApplicationDiscoveryServiceContinuousExport service\-linked role by using the IAM console, the IAM CLI, or the IAM API\. If you no longer need to use the Discovery Service \- Continuous Export features that require this service\-linked role, we recommend that you delete that role\. That way you don’t have an unused entity that is not actively monitored or maintained\. For more information, see [Deleting a Service\-Linked Role](http://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html#delete-service-linked-role) in the *IAM User Guide*\.
+You can delete the AWSServiceRoleForApplicationDiscoveryServiceContinuousExport service\-linked role by using the IAM console, the IAM CLI, or the IAM API\. If you no longer need to use the Discovery Service \- Continuous Export features that require this service\-linked role, we recommend that you delete that role\. That way you don’t have an unused entity that is not actively monitored or maintained\. For more information, see [Deleting a Service\-Linked Role](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html#delete-service-linked-role) in the *IAM User Guide*\.
 
 **Note**  
 You must first clean up your service\-linked role before you can delete it\. See [Cleaning Up the Service\-Linked Role](#service-linked-role-review-before-delete)\.

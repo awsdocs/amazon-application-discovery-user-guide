@@ -35,7 +35,7 @@ Data Exploration in Amazon Athena is enabled by Continuous Export explicitly bei
 
 **To install the AWS CLI and enable Data Exploration in Amazon Athena**
 
-1. Install the AWS CLI for your operating system \(Linux, macOS, or Windows\)\. See the [AWS Command Line Interface User Guide](http://docs.aws.amazon.com/cli/latest/userguide/) for instructions\.
+1. Install the AWS CLI for your operating system \(Linux, macOS, or Windows\)\. See the [AWS Command Line Interface User Guide](https://docs.aws.amazon.com/cli/latest/userguide/) for instructions\.
 
 1. Open the Command prompt \(Windows\) or Terminal \(Linux or macOS\)\.
 

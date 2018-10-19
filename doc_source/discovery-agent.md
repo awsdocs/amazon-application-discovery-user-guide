@@ -121,10 +121,18 @@ If you are using a non\-current Linux version, see [Requirements on Older Linux 
 
       1. In the **Discovery Agent** box, choose **Download agent**, then choose **Linux** in the resultant list box\. Your download begins immediately\.
 
-1. Verify the cryptographic signature of the installation package as shown following\.
+1. Verify the cryptographic signature of the installation package with the following three commands:
 
    ```
-   curl -o ./agent.sig https://s3-us-west-2.amazonaws.com/aws-discovery-agent.us-west-2/linux/latest/aws-discovery-agent.tar.gz.sigcurl -o ./discovery.gpg https://s3-us-west-2.amazonaws.com/aws-discovery-agent.us-west-2/linux/latest/discovery.gpggpg --no-default-keyring --keyring ./discovery.gpg --verify agent.sig aws-discovery-agent.tar.gz
+   curl -o ./agent.sig https://s3-us-west-2.amazonaws.com/aws-discovery-agent.us-west-2/linux/latest/aws-discovery-agent.tar.gz.sig
+   ```
+
+   ```
+   curl -o ./discovery.gpg https://s3-us-west-2.amazonaws.com/aws-discovery-agent.us-west-2/linux/latest/discovery.gpg
+   ```
+
+   ```
+   gpg --no-default-keyring --keyring ./discovery.gpg --verify agent.sig aws-discovery-agent.tar.gz
    ```
 
    The agent public key \(`discovery.gpg`\) fingerprint is `7638 F24C 6717 F97C 4F1B 3BC0 5133 255E 4DF4 2DA2`\.
@@ -394,7 +402,7 @@ To start the Discovery Agent data collection process from the AWS CLI the AWS CL
 
 **To install the AWS CLI and start data collection**
 
-1. If you have not already done so, install the AWS CLI appropriate to your OS type \(Windows or Mac/Linux\)\. See the [AWS Command Line Interface User Guide](http://docs.aws.amazon.com/cli/latest/userguide/) for instructions\.
+1. If you have not already done so, install the AWS CLI appropriate to your OS type \(Windows or Mac/Linux\)\. See the [AWS Command Line Interface User Guide](https://docs.aws.amazon.com/cli/latest/userguide/) for instructions\.
 
 1. Open the Command prompt \(Windows\) or Terminal \(MAC/Linux\)\.
 

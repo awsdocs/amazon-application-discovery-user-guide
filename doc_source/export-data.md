@@ -1,6 +1,6 @@
 # Export Collected Data<a name="export-data"></a>
 
-After starting the data collection process of your Discovery Connector or Discovery Agent, you can export thier collected data  about your servers and VMs\. This data can be exported either by interacting with the console or by making API calls through the AWS CLI depending on which discovery tool you used to collect data\.
+After starting the data collection process of your Discovery Connector or Discovery Agent, you can export their collected data  about your servers and VMs\. This data can be exported either by interacting with the console or by making API calls through the AWS CLI depending on which discovery tool you used to collect data\.
 + **Discovery Agent**, you can export the collected data either from the console or from the AWS CLI\.
 + **Discovery Connector**, you can only export the collected data from the AWS CLI\.
 
@@ -12,7 +12,7 @@ Collected data from all the Discovery Connectors and Discovery Agents running on
 
 **To install the AWS CLI and export collected data**
 
-1. If you have not already done so, install the AWS CLI appropriate to your OS type \(Windows or Mac/Linux\)\. See the [AWS Command Line Interface User Guide](http://docs.aws.amazon.com/cli/latest/userguide/) for instructions\.
+1. If you have not already done so, install the AWS CLI appropriate to your OS type \(Windows or Mac/Linux\)\. See the [AWS Command Line Interface User Guide](https://docs.aws.amazon.com/cli/latest/userguide/) for instructions\.
 
 1. Open the Command prompt \(Windows\) or Terminal \(MAC/Linux\)\.
 
