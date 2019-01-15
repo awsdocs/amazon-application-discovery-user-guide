@@ -13,7 +13,7 @@ If you have virtual machines \(VMs\) that are running in the VMware vCenter envi
 
 The Discovery Connector captures system performance information and resource utilization for each VM running in the vCenter, regardless of what operating system is in use\. However, it cannot “look inside” each of the VMs, and as such, cannot figure out what processes are running on each VM nor what network connections exist\. Therefore, if you need this level of detail and want to take a closer look at some of your existing VMs in order to assist in planning your migration, you can install the Discovery Agent on an as\-needed basis\.
 
-Also, for VMs hosted on VMware, you can use both the Discovery Connector and Discovery Agent to perform  discovery simultaneously\. For details regarding the exact types of data each discovery tool will collect, see [Data Collected by the Discovery Connector](discovery-connector.md#agentless-data-collected) and [Data Collected by the Discovery Agent](discovery-agent.md#agent-data-collected)\. A quick view comparison table of the Discovery Connector the Discovery Agent is provided below\.
+Also, for VMs hosted on VMware, you can use both the Discovery Connector and Discovery Agent to perform  discovery simultaneously\. For details regarding the exact types of data each discovery tool will collect, see [Data Collected by the Discovery Connector](discovery-connector.md#agentless-data-collected) and [Data Collected by the Discovery Agent](discovery-agent.md#agent-data-collected)\. A quick view comparison table of the Discovery Connector and the Discovery Agent is provided below\.
 
 
 ****  
