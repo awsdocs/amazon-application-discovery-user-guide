@@ -38,7 +38,7 @@ Following, you can find an inventory of the information collected by the Discove
 | destinationIp\* | IP address of device to which packet is being sent | 
 | destinationPort\* | Port number to which the data/request is to be sent | 
 | family\* | Protocol of routing family | 
-| freeRAM \(MB\)  | Free RAM expressed in MB | 
+| freeRAM \(MB\)  | Free RAM and cached RAM that can be made immediately available to applications, measured in MB | 
 | gateway\* | Node address of network | 
 | hostName | Name of host data was collected on | 
 | hypervisor | Type of hypervisor | 

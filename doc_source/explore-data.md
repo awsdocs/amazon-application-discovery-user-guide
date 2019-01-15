@@ -58,18 +58,18 @@ Your agents are now running in "continuous export" mode which will enable you to
 
 ## Working with Discovered Data in Amazon Athena<a name="working-with-data-athena"></a>
 
- Once you have enabled Data Exploration in Amazon Athena, you can begin exploring and working with current, detailed data discovered by your agents in Amazon Athena\. You can query this data directly in Athena to do such things as generate spreadsheets, run a cost analysis, port the query to a visualization program to diagram network dependencies, and more\.
+ After you enable Data Exploration in Amazon Athena, you can work with current, detailed data that is discovered\. Query this data directly in Athena to generate spreadsheets, run a cost analysis, or port the query to a visualization program, and do more\.
 
-In this section the following topics will be covered providing instructions on the various ways you can work with your data in Amazon Athena to assess and plan for migrating your local environment to AWS:
+The following topics provide instructions on the ways you can work with your data in Amazon Athena\. This helps you assess and plan to migrate your local environment to AWS\.
 
 **Topics**
 + [Explore Data Directly in Amazon Athena](#explore-direct-in-ate)
-+ [Predefinied Queries to use in Athena](#predefined-queries)
++ [Predefined Queries to use in Athena](#predefined-queries)
 + [Visualize Amazon Athena Data](#port-query-to-visualization)
 
 ### Explore Data Directly in Amazon Athena<a name="explore-direct-in-ate"></a>
 
-These instructions will guide you to all of your agent data directly in the Athena console\. If you don’t have any data in Athena or have not enabled Data Exploration in Amazon Athena, you will be prompted by a dialog box to enable Data Exploration in Amazon Athena as explained [here](#ce-prep-agents)\.
+These instructions guide you to all your agent data directly in the Athena console\. If you don’t have any data in Athena or have not enabled Data Exploration in Amazon Athena, you will be prompted by a dialog box to enable Data Exploration in Amazon Athena as explained [here](#ce-prep-agents)\.
 
 **To explore agent discovered data directly in Athena**
 
@@ -78,23 +78,23 @@ These instructions will guide you to all of your agent data directly in the Athe
 1. Choose the **Explore data in Amazon Athena** link\.
 
    You will be taken to the Amazon Athena console where you will see:
-   + The Query Editor window
+   + The **Query Editor** window
    + In the navigation pane:
-     + Database listbox which will have the default database pre\-listed as *application\_discovery\_service\_database*
-     + Tables list consisting of seven tables representing the data sets grouped by the agents:
-       + os\_info\_agent
-       + network\_interface\_agent
-       + sys\_performance\_agent
-       + processes\_agent
-       + inbound\_connection\_agent
-       + outbound\_connection\_agent
-       + id\_mapping\_agent
+     + Database list box, which will have the default database pre\-listed as *application\_discovery\_service\_database*
+     + Tables list consisting of seven tables representing the data sets grouped by the agents\.
+       + **os\_info\_agent**
+       + **network\_interface\_agent**
+       + **sys\_performance\_agent**
+       + **processes\_agent**
+       + **inbound\_connection\_agent**
+       + **outbound\_connection\_agent**
+       + **id\_mapping\_agent**
 
-1. You are now ready to query the data in the Amazon Athena console by writing and running your own SQL queries in the Athena Query Editor to analyze details about your on\-premises servers\.
+1. Query the data in the Amazon Athena console by writing and running your own SQL queries in the Athena Query Editor\. Analyze details about your on\-premises servers\.
 
-### Predefinied Queries to use in Athena<a name="predefined-queries"></a>
+### Predefined Queries to use in Athena<a name="predefined-queries"></a>
 
-Here you will find a set of predifined queries of typical use cases, such as TCO analysis and network visualization\. You can use these queries as is or modify them to suit your needs\. Simply expand the query you want to use and follow these instructions:
+This section has predefined queries of typical use cases, such as TCO analysis and network visualization\. Use these queries as is or modify them to suit your needs\. Simply expand the query you want to use and follow these instructions\.
 
 **To use a predefined query**
 
@@ -110,7 +110,7 @@ Here you will find a set of predifined queries of typical use cases, such as TCO
 
 #### Network Communication Between Servers Based On Port Number<a name="pq-net-com-srv"></a>
 
-To obtain the network communication between servers based on a given port number, run the following query in the Amazon Athena Console:
+To find the network communication between servers based on a given port number, run the following query in the Amazon Athena console\.
 
 ```
 WITH valid_ips AS
@@ -134,7 +134,7 @@ FROM outer_query;
 
 #### Cost Analysis Based On System Performance<a name="pq-cost-anly-perfmnc"></a>
 
-To obtain the system performance data for cost analysis, run the following query in the Amazon Athena Console:
+To find the system performance data for cost analysis, run the following query in the Amazon Athena console\.
 
 ```
 SELECT DISTINCT SP.AGENT_ID,
@@ -156,7 +156,7 @@ GROUP BY SP.AGENT_ID, OS.OS_NAME, OS.OS_VERSION;
 
 ### Visualize Amazon Athena Data<a name="port-query-to-visualization"></a>
 
-To visualize your data, a query can be ported to a visualization program such as Amazon QuickSight or other open\-source visualization tools such as Cytoscape, yEd, or Gelphi to render network diagrams, summary charts, and other graphical representations\. When this method is used, you connect to Athena through the visualization program so that it can access your collected data as a source to produce the visualization\.
+To visualize your data, port a query to a program such as Amazon QuickSight or other open\-source visualization tools such as Cytoscape, yEd, or Gelphi to render network diagrams, summary charts, and other graphical elements\. When this method is used, connect to Athena through the visualization program so that it can access your collected data as a source to produce the visuals\.
 
 **To visualize your Amazon Athena data using Amazon QuickSight**
 
@@ -177,4 +177,4 @@ To visualize your data, a query can be ported to a visualization program such as
    Your visualization will be rendered\.
 
 **Removing your data from AWS Application Discovery Service**  
-If you’d like to have all your data removed from Application Discovery Service, please contact [AWS Support](https://aws.amazon.com/contact-us/) and request full data deletion from Application Discovery Service\.
+To have all your data removed from Application Discovery Service, contact [AWS Support](https://aws.amazon.com/contact-us/) and request full data deletion\.
