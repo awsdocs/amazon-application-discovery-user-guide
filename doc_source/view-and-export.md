@@ -1,8 +1,8 @@
 # View, Export, and Explore Discovered Data<a name="view-and-export"></a>
 
-The AWS Discovery Connector and AWS Discovery Agent both show performance data based on average and peak utilization\. Use the data collected to calculate total cost of ownership\. A Discovery Agent collects detailed data\. For example, time series data for system performance, inbound and outbound network connections, and running processes\. Use this data to understand network dependencies\. Group related servers as applications for migration planning\. 
+The AWS Discovery Connector and AWS Discovery Agent both provide system performance data based on average and peak utilization\. You can use the system performance data collected to perform a high\-level TCO \(total cost of ownership\)\. Discovery Agents collect more detailed data including time series data for system performance information, inbound and outbound network connections, and processes running on the server\. You can use this data to understand network dependencies between servers and group the related servers as applications for migration planning\.
 
-This section has instructions on how to view and work with data discovered by a Discovery Connector and Discovery Agent\.
+In this section you'll find instructions on how to view and work with data discovered by Discovery Connectors and Discovery Agents from both the console and the AWS CLI\.
 
 **Topics**
 + [View Collected Data Using the Console](view-data.md)

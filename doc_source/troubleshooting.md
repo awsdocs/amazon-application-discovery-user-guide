@@ -6,6 +6,7 @@ In this section, you can find information about how to fix common issues with yo
 + [Stop Data Collection by Data Exploration](#stop-data-collection)
 + [Remove data collected by Data Exploration](#remove-collected-data)
 + [Fix Common Issues with Data Exploration in Amazon Athena](#troubleshoot-data-exploration)
++ [Troubleshooting Failed Import Records](#troubleshooting-import-failed-records)
 
 ## Stop Data Collection by Data Exploration<a name="stop-data-collection"></a>
 
@@ -122,3 +123,52 @@ If you are using AWS Organizations, and initialization for Data Exploration in A
 You will need an IAM user with administrator permissions to grant you access to these services\. An administrator can use their account to grant this access\. See [Step 3: Provide Application Discovery Service Access to Non\-Administrator Users by Attaching Policies](setting-up.md#setting-up-user-policy)\.
 
 To ensure that Data Exploration in Amazon Athena works correctly, do not modify or delete the AWS resources created by Data Exploration in Amazon Athena including the Amazon S3 bucket, Amazon Kinesis Data Firehose Streams, and AWS Glue Data Catalog\. If you accidentally delete or modify these resources, please stop and start Data Exploration and it will automatically create these resources again\. If you delete the Amazon S3 bucket created by Data Exploration, you may lose the data that was collected in the bucket\.
+
+## Troubleshooting Failed Import Records<a name="troubleshooting-import-failed-records"></a>
+
+Migration Hub import allows you to import details of your on\-premises environment directly into Migration Hub without using the Discovery Connector or Discovery Agent\. This gives you the option to perform migration assessment and planning directly from your imported data\. You can also group your devices as applications and track their migration status\.
+
+When importing data, it's possible that you'll encounter errors\. Typically, these errors occur for one of the following reasons:
++ **An import\-related limit was reached** – There are limits associated with import tasks\. If you make an import task request that would exceed one of the limits, then the request will fail and return an error\. For example, if you import 5,000 servers from a single import file, and then try to import that file again, it will fail the second time\. For more information, see [ Import Limits    25,000 imported records per account\.   5,000 imported servers per account\.   25,000 deletions of import records per 24 hour period, starting every day at 00:00 UTC\.   400 servers per application\.   You can take the following steps to request an increase for these limits\. These increases are not granted immediately, so it may take a couple of days for your increase to become effective\. To request a limit increase  Open the [AWS Support Center](https://console.aws.amazon.com/support/home#/) page, sign in, if necessary, and then choose **Create Case**\.   Under **Regarding**, choose **Service Limit Increase**\.   Under **Limit Type**, choose the type of limit to increase, fill in the necessary fields in the form, and then choose your preferred method of contact\.   ](ads_service_limits.md#import-limits)\.
++ **An extra comma \(,\) was inserted into the import file** – Commas in \.CSV files are used to differentiate one field from the next\. Having a comma appear within a field is unsupported, because it will always split a field\. This can cause a cascade of formatting errors\. Be sure that commas are only used between fields, and are not otherwise used in your import files\.
++ **A field has a value outside of its supported range** – Some fields, like `CPU.NumberOfCores` must have a range of values they support\. If you have more or less than this supported range, then the record will fail to be imported\.
+
+If any errors occur with your import request, you can resolve them by downloading your failed records for your import task, and resolve the errors in the failed entries CSV file, and do the import again\.
+
+------
+#### [ Console ]
+
+**To download your failed records archive**
+
+1. Sign into the AWS Management Console, and open the Migration Hub console at [https://console.aws.amazon.com/migrationhub](https://console.aws.amazon.com/migrationhub)\.
+
+1. From the left\-side navigation, under **Discover**, choose **Tools**\.
+
+1. From **Discovery Tools**, choose **view imports**\.
+
+1. From the **Imports** dashboard, choose the radio button associated an import request with some number of **Failed records**\.
+
+1. Choose **Download failed records** from above the table on the dashboard\. This will open your browser's download dialog box for downloading the archive file\.
+
+------
+#### [ AWS CLI ]
+
+**To download your failed records archive**
+
+1. Open a terminal window, and type the following command, where `ImportName is the name of the import task with the failed entries that you want to correct.`:
+
+   ```
+   aws discovery describe-import-tasks - -name ImportName
+   ```
+
+1. From the output, copy the entire contents of the value returned for `errorsAndFailedEntriesZip`, without the surrounding quotes\.
+
+1. Open a web browser, and paste in the contents into the URL text box and press `ENTER`\. This will download the failed records archive, compressed in a \.zip format\.
+
+------
+
+Now that you've downloaded your failed records archive, you can extract the two files within and correct the errors\. Note that if your errors are tied to service\-based limits, you'll either need to request a limit increase, or delete enough of the associated resources to get your account under the limit\. The archive has the following files:
++ **errors\-file\.csv** – This file is your error log, and it tracks the line, column name, `ExternalId`, and a descriptive error message for each failed record of each failed entry\.
++ **failed\-entries\-file\.csv** – This file contains only the failed entries from your original import file\.
+
+To correct the non\-limit\-based errors you've encountered, use the `errors-file.csv` to correct the issues in the `failed-entries-file.csv` file, and then import that file\. For instructions on importing files, see [Importing Data](discovery-import.md#start-data-import)\.

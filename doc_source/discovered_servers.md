@@ -139,9 +139,9 @@ Continuous Export is turned on when you choose "Start data collection", or click
 
 ### Working with Discovered Data in Amazon Athena<a name="working-with-data-athena"></a>
 
- After you enable Data Exploration in Amazon Athena, you can work with current, detailed data that is discovered\. Query this data directly in Athena to generate spreadsheets, run a cost analysis, or port the query to a visualization program, and do more\.
+After you enable Data Exploration in Amazon Athena, you can begin exploring and working with current, detailed data that was discovered by your agents in Amazon Athena\. You can query this data directly in Athena\. With the data, you can generate spreadsheets, run a cost analysis, port the query to a visualization program to diagram network dependencies, and more\.
 
-The following topics provide instructions on the ways you can work with your data in Amazon Athena\. This helps you assess and plan to migrate your local environment to AWS\.
+The topics in this section provide instructions about the various ways you can work with your data in Amazon Athena to assess and plan for migrating your local environment to AWS\.
 
 **Topics**
 + [Explore Data Directly in Amazon Athena](#explore-direct-in-ate)
@@ -237,7 +237,7 @@ GROUP BY SP.AGENT_ID, OS.OS_NAME, OS.OS_VERSION;
 
 #### Visualize Amazon Athena Data<a name="port-query-to-visualization"></a>
 
-To visualize your data, port a query to a program such as Amazon QuickSight or other open\-source visualization tools such as Cytoscape, yEd, or Gelphi to render network diagrams, summary charts, and other graphical elements\. When this method is used, connect to Athena through the visualization program so that it can access your collected data as a source to produce the visuals\.
+To visualize your data, a query can be ported to a visualization program such as Amazon QuickSight or other open\-source visualization tools such as Cytoscape, yEd, or Gelphi\. Use these tools to render network diagrams, summary charts, and other graphical representations\. When this method is used, you connect to Athena through the visualization program so that it can access your collected data as a source to produce the visualization\.
 
 **To visualize your Amazon Athena data using Amazon QuickSight**
 

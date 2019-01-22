@@ -8,6 +8,7 @@ In this section, you can learn how to get started with AWS Application Discovery
 + [Two Ways to Start Collecting Data](#collect-two-ways)
 + [AWS Agentless Discovery Connector](discovery-connector.md)
 + [AWS Application Discovery Agent](discovery-agent.md)
++ [Migration Hub Import](discovery-import.md)
 
 ## Assumptions<a name="gs-assumptions"></a>
 
