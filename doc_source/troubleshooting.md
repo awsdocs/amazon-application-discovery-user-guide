@@ -67,6 +67,9 @@ Deleting the Amazon S3 bucket or any of the objects in it while Data Exploration
       + `outbound_connection_agent`
       + `id_mapping_agent`
 
+**Removing your data from AWS Application Discovery Service**  
+To have all your data removed from Application Discovery Service, contact [AWS Support](https://aws.amazon.com/contact-us/) and request full data deletion\.
+
 ## Fix Common Issues with Data Exploration in Amazon Athena<a name="troubleshoot-data-exploration"></a>
 
 In this section, you can find information about how to fix common issues with Data Exploration in Amazon Athena\. 

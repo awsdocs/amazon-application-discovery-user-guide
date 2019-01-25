@@ -7,6 +7,7 @@ The **Servers** page provides system configuration and performance data about ea
 + [Tagging Servers](#tag-servers)
 + [Exporting Server Data](#export-server-data)
 + [Data Exploration in Athena](#explore-data-console)
++ [Applications](#applications)
 
 ## Viewing and Sorting Servers<a name="sort-view-servers"></a>
 
@@ -14,7 +15,7 @@ You can view information about the servers discovered by the data collection too
 
 ### Viewing Servers<a name="view-servers"></a>
 
-You can get a general view and a detailed view of the servers discovered by the data collection tools\.  
+You can get a general view and a detailed view of the servers discovered by the data collection tools\. 
 
 **To view discovered servers**
 
@@ -44,7 +45,7 @@ To easily find specific servers, apply search filters to sort through all the se
 
 To assist migration planning and help stay organized, you can create multiple tags for each server\. *Tags *are user\-defined key\-value pairs that can store any custom data or metadata about servers\. You can tag an individual server or multiple servers in a single operation\. Application Discovery Service tags are similar to AWS tags, but the two types of tag cannot be used interchangeably\. 
 
-You can add or remove multiple tags for one or more servers from the main **Servers** page\. On a server's detail page, you can add or remove one or more tags for the selected server\. You can do any type of tagging task involving multiple servers or tags in a single operation\.  You can also remove tags\.<a name="add-tags"></a>
+You can add or remove multiple tags for one or more servers from the main **Servers** page\. On a server's detail page, you can add or remove one or more tags for the selected server\. You can do any type of tagging task involving multiple servers or tags in a single operation\. You can also remove tags\.<a name="add-tags"></a>
 
 **To add tags to one or more servers**
 
@@ -91,7 +92,7 @@ Exporting server data from the console is only available for data collected by a
 
 1. In the **Exports** section at the bottom of the screen, choose **Export server details**\.
 
-1. For **Export server details**, fill in **Start date** and **Time**\.   
+1. For **Export server details**, fill in **Start date** and **Time**\. 
 **Note**  
 The start time can't be more than 72 hours before the current time\.
 
@@ -113,146 +114,30 @@ The start time can't be more than 72 hours before the current time\.
 
 ## Data Exploration in Athena<a name="explore-data-console"></a>
 
-Data Exploration in Amazon Athena is enabled by continuous export implicitly being turned on when you confirm options in its dialog box presented from the Data Collectors page after you choose “Start data collection”, or click the slider labeled, “Data exploration in Athena”\. 
+Data Exploration in Amazon Athena allows you to analyze the data collected from all the discovered on\-premises servers by Discovery Agents in one place\. Once Data Exploration in Amazon Athena is enabled from the Migration Hub console \(or by using the StartContinousExport API\) and the data collection for agents is turned on, data collected by agents will automatically get stored in your S3 bucket at regular intervals\. For more information, see [Data Exploration in Amazon Athena](explore-data.md)\.
 
-After you've started Continuous Export and you’re ready to begin exploring data discovered by all your agents, you choose the “Explore data in Athena” link on the Servers page to go directly to Amazon Athena\.
+## Applications<a name="applications"></a>
 
-**Topics**
-+ [Prerequisite for Data Exploration in Amazon Athena](#ce-prep-agents-console)
-+ [Working with Discovered Data in Amazon Athena](#working-with-data-athena)
+Some of your discovered servers might need to be migrated together to remain functional\. In this case, you can logically define and group discovered servers into applications\. 
 
-### Prerequisite for Data Exploration in Amazon Athena<a name="ce-prep-agents-console"></a>
+As part of the grouping process, you can search, filter, and add tags\.
 
-Before you can actually start exploring your discovered data in Athena, you first have to put your discovery agents in "continuous export" mode as a prerequisite by starting Continuous Export\. There are two ways to do this, through the console or by making API calls through the AWS CLI\. Instructions are provided below for both ways by expanding your method of choice:
-
-Continuous Export is turned on when you choose "Start data collection", or click the slider labeled, "Data exploration in Athena" on the **Data Collectors** page of the Migration Hub console\.
-
-**To start Continuous Export from your agents**
-
-1. In the navigation pane, choose **Data Collectors**\.
-
-1. Choose the **Agents** tab\.
-
-1. Choose **Start data collection**, or if you already have data collection turned on, click the **Data exploration in Athena** slider\.
-
-1. In the dialog box generated from the previous step, click the checkbox agreeing to associated costs and choose **Continue** or **Enable**\.
-
-### Working with Discovered Data in Amazon Athena<a name="working-with-data-athena"></a>
-
-After you enable Data Exploration in Amazon Athena, you can begin exploring and working with current, detailed data that was discovered by your agents in Amazon Athena\. You can query this data directly in Athena\. With the data, you can generate spreadsheets, run a cost analysis, port the query to a visualization program to diagram network dependencies, and more\.
-
-The topics in this section provide instructions about the various ways you can work with your data in Amazon Athena to assess and plan for migrating your local environment to AWS\.
-
-**Topics**
-+ [Explore Data Directly in Amazon Athena](#explore-direct-in-ate)
-+ [Predefined Queries to use in Athena](#predefined-queries)
-+ [Visualize Amazon Athena Data](#port-query-to-visualization)
-
-#### Explore Data Directly in Amazon Athena<a name="explore-direct-in-ate"></a>
-
-These instructions guide you to all your agent data directly in the Athena console\. If you don’t have any data in Athena or have not enabled Data Exploration in Amazon Athena, you will be prompted by a dialog box to enable Data Exploration in Amazon Athena as explained [here](explore-data.md#ce-prep-agents)\.
-
-**To explore agent discovered data directly in Athena**
+**To group servers into a new or existing application**
 
 1. In the navigation pane, choose **Servers**\.
 
-1. Choose the **Explore data in Amazon Athena** link\.
+1. In the servers list, select each server that you want to group into a new or existing application\.
 
-   You will be taken to the Amazon Athena console where you will see:
-   + The **Query Editor** window
-   + In the navigation pane:
-     + Database list box, which will have the default database pre\-listed as *application\_discovery\_service\_database*
-     + Tables list consisting of seven tables representing the data sets grouped by the agents\.
-       + **os\_info\_agent**
-       + **network\_interface\_agent**
-       + **sys\_performance\_agent**
-       + **processes\_agent**
-       + **inbound\_connection\_agent**
-       + **outbound\_connection\_agent**
-       + **id\_mapping\_agent**
+   To help choose servers for your group, you can search and filter on any criteria that you specify in the server list\. Click inside the search bar and choose an item from the list, choose an operator from the next list, and then type in your criteria\.
 
-1. Query the data in the Amazon Athena console by writing and running your own SQL queries in the Athena Query Editor\. Analyze details about your on\-premises servers\.
+1. Optional: For each selected server, choose **Add tag**, type a value for **Key**, and then optionally type a value for **Value**\.
 
-#### Predefined Queries to use in Athena<a name="predefined-queries"></a>
+1. Choose **Group as application** to create your application, or add to an existing one\. 
 
-This section has predefined queries of typical use cases, such as TCO analysis and network visualization\. Use these queries as is or modify them to suit your needs\. Simply expand the query you want to use and follow these instructions\.
+1. In the **Group as application** dialog box, choose **Group as a new application** or **Add to an existing application**\.
 
-**To use a predefined query**
+   1. If you chose **Group as a new application**, type a name for **Application name**\. Optionally, you can type a description for **Application description**\.
 
-1. In the navigation pane, choose **Servers**\.
+   1. If you chose **Add to an existing application**, select the name of the application to add to in the list\.
 
-1. Choose the **Explore data in Amazon Athena** link to be taken to your data in the Athena console\.
-
-1. Expand one of the predefined queries listed below and copy it\.
-
-1. Place your cursor in Athena's Query Editor window and paste the query\.
-
-1. Choose **Run Query**\.
-
-##### Network Communication Between Servers Based On Port Number<a name="pq-net-com-srv"></a>
-
-To find the network communication between servers based on a given port number, run the following query in the Amazon Athena console\.
-
-```
-WITH valid_ips AS
-(SELECT DISTINCT source_ip
-FROM outbound_connection_agent ), outer_query AS
-(SELECT agent_id,
-source_ip,
-destination_ip,
-destination_port,
-count(*) AS frequency
-FROM outbound_connection_agent
-WHERE ip_version = 'IPv4'
-AND destination_ip IN
-(SELECT *
-FROM valid_ips)
-GROUP BY agent_id, source_ip, destination_ip, destination_port )
-SELECT source_ip AS Source,
-'Port ' || cast(destination_port AS varchar(20)) AS Edge, destination_ip AS Target, Frequency
-FROM outer_query;
-```
-
-##### Cost Analysis Based On System Performance<a name="pq-cost-anly-perfmnc"></a>
-
-To find the system performance data for cost analysis, run the following query in the Amazon Athena console\.
-
-```
-SELECT DISTINCT SP.AGENT_ID,
-OS.OS_NAME,
-OS.OS_VERSION,
-MAX(SP.total_num_cores) AS Cores,
-MAX(SP.total_num_cpus) AS CPU,
-MAX(SP.total_disk_size_in_gb) AS StorageTotal,
-MAX(SP.total_disk_free_size_in_gb) AS StorageFree,
-MAX(SP.total_ram_in_mb) AS RAM,
-MAX(SP.total_disk_read_ops_per_sec) AS IOPS_Read,
-MAX(SP.total_disk_bytes_written_per_sec_in_kbps) AS IOPS_Write
-FROM sys_performance_agent AS SP, OS_INFO_AGENT AS OS
-WHERE SP.AGENT_ID = OS.AGENT_ID
-GROUP BY SP.AGENT_ID, OS.OS_NAME, OS.OS_VERSION;
-```
-
- 
-
-#### Visualize Amazon Athena Data<a name="port-query-to-visualization"></a>
-
-To visualize your data, a query can be ported to a visualization program such as Amazon QuickSight or other open\-source visualization tools such as Cytoscape, yEd, or Gelphi\. Use these tools to render network diagrams, summary charts, and other graphical representations\. When this method is used, you connect to Athena through the visualization program so that it can access your collected data as a source to produce the visualization\.
-
-**To visualize your Amazon Athena data using Amazon QuickSight**
-
-1. Sign\-in to [Amazon QuickSight](https://aws.amazon.com/quicksight/)\.
-
-1. Choose **Connect to another data source or upload a file**\.
-
-1. Choose **Athena** which will produce the **New Athena data source** dialog box\.
-
-1. Enter a name in the **Data source name** field\.
-
-1. Choose **Create data source**\.
-
-1. Select the **Agents\-servers\-os** table in the **Choose your table** dialog box and choose **Select**\.
-
-1. In the **Finish data set creation** dialog box, select **Import to SPICE for quicker analytics** and choose **Visualize**\.
-
-   Your visualization will be rendered\.
+1. Choose **Save**\. 

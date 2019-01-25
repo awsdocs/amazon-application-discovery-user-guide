@@ -12,16 +12,21 @@ There are limits related to the number of imported records, imported servers, an
 
 Migration Hub import allows you to import data from any source as long as the data provided is in the supported format for a CSV file and only contains the supported fields with the supported ranges for those fields\.
 
+An asterisk next to an import field name in the following table denotes that it is a required field\. Each record of your import file must have at least one or more of those required fields populated to uniquely identify a server or application\. Otherwise, a record without any of the required fields will fail to be imported\.
+
+**Note**  
+If you're using either VMware\.MoRefId or VMWare\.VCenterId, to identify a record, you must have both fields in the same record\.
+
 
 | Import Field Name | Description | Examples | 
 | --- | --- | --- | 
-| ExternalId | A custom identifier that allows you to mark each record as unique\. For example, ExternalId can be the inventory ID for the server in your data center\. | Inventory Id 1 Server 2 CMBD Id 3  | 
+| ExternalId\* | A custom identifier that allows you to mark each record as unique\. For example, ExternalId can be the inventory ID for the server in your data center\. | Inventory Id 1 Server 2 CMBD Id 3  | 
 | SMBiosId | System management BIOS \(SMBIOS\) ID\. |  | 
-| IPAddress | A comma\-delimited list of IP addresses of the server, in quotes\. | 192\.0\.0\.2 "10\.12\.31\.233, 10\.12\.32\.11" | 
-| MACAddress | A comma\-delimited list of MAC address of the server, in quotes\. | 00:1B:44:11:3A:B7 "00\-15\-E9\-2B\-99\-3C, 00\-14\-22\-01\-23\-45" | 
-| HostName | The host name of the server\. We recommend using the fully qualified domain name \(FQDN\) for this value\. | ip\-1\-2\-3\-4localhost\.domain | 
-| VMware\.MoRefId | The managed object reference ID\. Must be provided with a VMware\.VCenterId\. |  | 
-| VMware\.VCenterId | Virtual machine unique identifier\. Must be provided with a VMware\.MoRefId\. |  | 
+| IPAddress\* | A comma\-delimited list of IP addresses of the server, in quotes\. | 192\.0\.0\.2 "10\.12\.31\.233, 10\.12\.32\.11" | 
+| MACAddress\* | A comma\-delimited list of MAC address of the server, in quotes\. | 00:1B:44:11:3A:B7 "00\-15\-E9\-2B\-99\-3C, 00\-14\-22\-01\-23\-45" | 
+| HostName\* | The host name of the server\. We recommend using the fully qualified domain name \(FQDN\) for this value\. | ip\-1\-2\-3\-4localhost\.domain | 
+| VMware\.MoRefId\* | The managed object reference ID\. Must be provided with a VMware\.VCenterId\. |  | 
+| VMware\.VCenterId\* | Virtual machine unique identifier\. Must be provided with a VMware\.MoRefId\. |  | 
 | CPU\.NumberOfProcessors | The number of CPUs\. | 4 | 
 | CPU\.NumberOfCores | The number of cores in a processor\. | 7 | 
 | OS\.Name | The name of the operating system\. | LinuxWindows\.Hat | 
@@ -45,7 +50,7 @@ Migration Hub import allows you to import data from any source as long as the da
 | Applications | A comma\-delimited list of applications that include this server, in quotes\. This value can include existing applications and/or new applications that are created upon import\. | Application1"Application2, Application3" | 
 | Tags | A comma\-delimited list of tags formatted as name:value\. | "zone:1, critical:yes""zone:3, critical:no, zone:1" | 
 
-You can import data even if you don’t have data populated for all the fields defined in the import template\. Duplicates will result in multiple records\. 
+You can import data even if you don’t have data populated for all the fields defined in the import template, so long as each record has at least one of the required fields within it\. Duplicates are managed across multiple import requests by using either an external or internal matching key\. If you populate your own matching key, `External ID`, this field is used to uniquely identify and import the records\. If no matching key is specified, import uses an internally generated matching key that is derived from some of the columns in the import template\. For more information on this matching, see [](view-data.md#add-match-logic)\.
 
 **Note**  
 Migration Hub import does not support any fields outside of those defined in the import template\. Any custom fields supplied will be ignored and will not be imported\.
