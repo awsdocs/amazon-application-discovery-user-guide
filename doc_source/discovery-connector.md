@@ -106,9 +106,9 @@ Beginning with this section and those that follow on this page, you will be inst
 
    ```
    $ md5sum AWSDiscoveryConnector.ova
-   MD5 (AWSDiscoveryConnector.ova) = 60c6f85b1db16afd5d6a837a3e7aa8c8
+   MD5 (AWSDiscoveryConnector.ova) = 6b08c7c6eab341d72847e384762749cc
    $ sha256sum AWSDiscoveryConnector.ova
-   SHA256(AWSDiscoveryConnector.ova)= 0eb383b8199e336ce7e8ce9a32f4ad8ad7fca4e61a2651afd6cd1b57dded65fd
+   SHA256(AWSDiscoveryConnector.ova)= 875b8e6e05a0fc8d2114cbcb647af718e47079dfce55b62cf49b681669315410
    ```
 
    Verify that the checksum value returned from the command you ran is equal to the respective value displayed in the example above\.
