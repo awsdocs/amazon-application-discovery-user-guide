@@ -144,17 +144,14 @@ SELECT "OS"."os_name" "OS Name" ,
          "SP"."total_disk_free_size_in_gb" "Free Storage (GB)" ,
          ("SP"."total_disk_size_in_gb" - "SP"."total_disk_free_size_in_gb") "Used Storage" ,
          "SP"."total_ram_in_mb" "Total RAM (MB)" ,
-         ("SP"."total_ram_in_mb" - "SP"."total_free_ram_in_mb") "Used RAM (MB)" ,
-         "SP"."total_free_ram_in_mb" "Free RAM (MB)" ,
+         ("SP"."total_ram_in_mb" - "SP"."free_ram_in_mb") "Used RAM (MB)" ,
+         "SP"."free_ram_in_mb" "Free RAM (MB)" ,
          "SP"."total_disk_read_ops_per_sec" "Disk Read IOPS" ,
          "SP"."total_disk_bytes_written_per_sec_in_kbps" "Disk Write IOPS" ,
          "SP"."total_network_bytes_read_per_sec_in_kbps" "Network Reads (kbps)" ,
-         "SP"."total_network_bytes_written_per_sec_in_kbps" "Network Write (kbps)" ,
-         "C"."environment type" "Environment Type" ,
-         "C"."application/system name"
-FROM sys_performance_agent "SP" , "OS_INFO_agent" "OS" , cmdb_import "C"
-WHERE (("SP"."agent_id" = "OS"."agent_id")
-        AND ("OS"."host_name" = "C"."hostname"))
+         "SP"."total_network_bytes_written_per_sec_in_kbps" "Network Write (kbps)"
+FROM "sys_performance_agent" "SP" , "OS_INFO_agent" "OS"
+WHERE ("SP"."agent_id" = "OS"."agent_id") limit 10;
 ```
 
 ### Track Outbound Communication Between Servers Based On Port Number<a name="pq-analyze-outbound-connections"></a>

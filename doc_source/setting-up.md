@@ -546,7 +546,7 @@ If you no longer need to use a feature or service that requires a service\-linke
 Before you can use IAM to delete a service\-linked role, you must first delete any resources used by the role\.
 
 **Note**  
-If the Application Discovery Service service is using the role when you try to delete the resources, then the deletion might fail\. If that happens, wait for a few minutes and try the operation again\.
+If Application Discovery Service is using the role when you try to delete the resources, then the deletion might fail\. If that happens, wait for a few minutes and try the operation again\.
 
 **To delete Application Discovery Service resources used by the AWSServiceRoleForApplicationDiscoveryServiceContinuousExport service\-linked role from the Migration Hub Console**
 

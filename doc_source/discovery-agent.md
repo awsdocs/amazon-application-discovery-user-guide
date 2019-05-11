@@ -2,9 +2,9 @@
 
 The AWS Discovery Agent is AWS software that you install on on\-premises servers and VMs targeted for discovery and migration\. Agents capture system configuration, system performance, running processes, and details of the network connections between systems\. Agents support most Linux and Windows operating systems, and you can deploy them on physical on\-premises servers, Amazon EC2 instances, and virtual machines\. 
 
-The Discovery Agent runs in your local environment and requires root privileges\. When you start the Discovery Agent, it registers with the Application Discovery Service endpoint, *arsenal\.aws\.com*, and pings the service at 15 minute intervals for configuration information\. When you send a command that tells an agent to start data collection, it starts collecting data for the host or VM where it resides\. Collection includes system specifications, times series utilization or performance data, network connections, and process data\. You can use this information to map your IT assets and their network dependencies\. All of these data points can help you determine the cost of running these servers in AWS and also plan for migration\.
+The Discovery Agent runs in your local environment and requires root privileges\. When you start the Discovery Agent, it connects securely with `arsenal.us-west-2.amazonaws.com` and registers with Application Discovery Service\. Then it pings the service at 15 minute intervals for configuration information\. When you send a command that tells an agent to start data collection, it starts collecting data for the host or VM where it resides\. Collection includes system specifications, times series utilization or performance data, network connections, and process data\. You can use this information to map your IT assets and their network dependencies\. All of these data points can help you determine the cost of running these servers in AWS and also plan for migration\.
 
-Data is transmitted securely by the Discovery Agents to Application Discovery Service using Transport Layer Security \(TLS\) encryption\.  Agents are configured to upgrade automatically when new versions become available\. You can change this configuration setting if desired\.
+Data is transmitted securely by the Discovery Agents to Application Discovery Service using Transport Layer Security \(TLS\) encryption\. Agents are configured to upgrade automatically when new versions become available\. You can change this configuration setting if desired\.
 
 **Tip**  
 Before downloading and beginning Discovery Agent installation, be sure to read through all of the required prerequisites in [Prerequisites for Agent Installation](#gen-prep-agents)
@@ -65,7 +65,7 @@ Following, you can find an inventory of the information collected by the Discove
 | totalNetworkBytesWrittenPerSecond \(Kbps\) | Total amount of throughput of bytes written per second | 
 | totalNumCores | Total number of independent processing units within CPU | 
 | totalNumCpus | Total number of central processing units | 
-| totalNumDisks | Total number of disks on host | 
+| totalNumDisks | The number of physical hard disks on a host | 
 | totalNumLogicalProcessors\* | Total number of physical cores times the number of threads that can run on each core | 
 | totalNumNetworkCards | Total count of network cards on server | 
 | totalRAM \(MB\) | Total amount of RAM available on host | 
@@ -73,7 +73,7 @@ Following, you can find an inventory of the information collected by the Discove
 
 ## Prerequisites for Agent Installation<a name="gen-prep-agents"></a>
 
-  These are the pre\-installation tasks that should be performed to prevent errors from occurring during the actual installation of the agent\. If you have a *1\.x* version of the agent installed, it needs to be removed before installing the latest version\. Instructions for removing older versions are provided in the tasks below:
+ These are the pre\-installation tasks that should be performed to prevent errors from occurring during the actual installation of the agent\. If you have a *1\.x* version of the agent installed, it needs to be removed before installing the latest version\. Instructions for removing older versions are provided in the tasks below:
 + Verify your OS environment is supported:
   + **Linux**
     + Amazon Linux 2012\.03, 2015\.03
@@ -88,13 +88,13 @@ Following, you can find an inventory of the information collected by the Discove
     + Windows Server 2016
 + If outbound connections from your network are restricted, you'll need to update your firewall settings\. Agents require access to `arsenal` over TCP port 443 as in `https://arsenal.us-west-2.amazonaws.com:443`\. They don't require any inbound ports to be open\.
 + Access to AWS S3 in us\-west\-2 is required for auto\-upgrade to function\.
-+ Create an IAM user with a policy providing agent access to Application Discovery Service\. For information, see [Step 2: Create an IAM User](setting-up.md#setting-up-iam)\.
++ Create an IAM user in the IAM console and attach the existing `AWSApplicationDiscoveryAgentAccess` permissions policy\. This will allow the user to perform the necessary agent actions on your behalf\. See [Step 3: Provide Application Discovery Service Access to Non\-Administrator Users by Attaching Policies](setting-up.md#setting-up-user-policy) for Discovery Agent installation prerequisites\.
 + Check the time skew from your Network Time Protocol \(NTP\) servers and correct if necessary\. Incorrect time skew causes the agent registration call to fail\.
 + Remove any previous\-generation agents\. If you previously installed Application Discovery Agent 1\.0 for either Windows or Linux, you must uninstall it before continuing with the installation of the current agent\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/application-discovery/latest/userguide/discovery-agent.html)
 
 **Note**  
-The Discovery Agent has a 32\-bit agent executable, which works on both 32\-bit and 64\-bit operating systems\. Having a single executable reduces the number of installation packages needed for deployment\.  This applies for both Linux and Windows OS and is addressed in their respective installation sections below\.
+The Discovery Agent has a 32\-bit agent executable, which works on both 32\-bit and 64\-bit operating systems\. Having a single executable reduces the number of installation packages needed for deployment\. This applies for both Linux and Windows OS and is addressed in their respective installation sections below\.
 
 ## Agent Installation on Linux<a name="install_on_linux"></a>
 
@@ -151,7 +151,7 @@ If you are using a non\-current Linux version, see [Requirements on Older Linux 
 **Note**  
 Agents automatically download and apply updates as they become available\. We recommend using this default configuration\. However, if you don't want agents to download and apply updates automatically, include the `-u false` parameter when running the installation script\.
 
-1. If outbound connections from your network are restricted, update your firewall settings\. Agents require access to `arsenal` over TCP port 443 as in `us-west-2.amazonaws.com:443`  They don't require any inbound ports to be open\.
+1. If outbound connections from your network are restricted, update your firewall settings\. Agents require access to `arsenal` over TCP port 443 as in `us-west-2.amazonaws.com:443` They don't require any inbound ports to be open\.
 **Note**  
 Agents also work with transparent web proxies\. However, if you need to **configure a non\-transparent proxy**, proceed to the next step\.
 
@@ -209,21 +209,51 @@ sudo bash install -r us-west-2 -k <aws key id> -s <aws key secret> -p false -c t
 
 ### Manage the Discovery Agent Process on Linux<a name="using_on_linux"></a>
 
-You can manage the behavior of the Discovery Agent at the system level using the following commands\. For the correct command for each Linux distribution, see the following legend:
-+ *\(a\)* Amazon, Red Hat, or CentOS
-+ *\(b\)* Ubuntu
-+ *\(c\)* SUSE
+You can manage the behavior of the Discovery Agent at the system level using the `systemd`, `Upstart`, or `System V init` tools\. The following tabs outline the commands for the supported tasks in each of the respective tools\.
+
+------
+#### [ systemd ]
 
 
-**Linux Commands for Application Discovery Agent**  
+**Management Commands for the Application Discovery Agent**  
 
 | Task | Command | 
 | --- | --- | 
-| Verify that an agent is running |  `sudo systemctl status aws-discovery-daemon.service` *a* `sudo initctl status aws-discovery-daemon` *b* `sudo /etc/init.d/aws-discovery-daemon status` *c*  | 
-| Start an agent |  `sudo systemctl start aws-discovery-daemon.service` *a* `sudo initctl start aws-discovery-daemon` *b* `sudo /etc/init.d/aws-discovery-daemon start` *c*  | 
-| Stop an agent |  `sudo systemctl stop aws-discovery-daemon.service` *a* `sudo initctl stop aws-discovery-daemon` *b* `sudo /etc/init.d/aws-discovery-daemon stop` *c*  | 
-| Restart an agent |  `sudo systemctl restart aws-discovery-daemon.service` *a* `sudo initctl restart aws-discovery-daemon` *b* `sudo /etc/init.d/aws-discovery-daemon restart` *c*  | 
-| Uninstall an agent |  `yum remove aws-discovery-agent` *a* `apt-get remove aws-discovery-agent` *b* `zypper remove aws-discovery-agent` *c*  | 
+| Verify that an agent is running |  `sudo systemctl status aws-discovery-daemon.service`   | 
+| Start an agent |  `sudo systemctl start aws-discovery-daemon.service`   | 
+| Stop an agent |  `sudo systemctl stop aws-discovery-daemon.service`   | 
+| Restart an agent |  `sudo systemctl restart aws-discovery-daemon.service`   | 
+| Uninstall an agent |  `yum remove aws-discovery-agent`   | 
+
+------
+#### [ Upstart ]
+
+
+**Management Commands for the Application Discovery Agent**  
+
+| Task | Command | 
+| --- | --- | 
+| Verify that an agent is running |  `sudo initctl status aws-discovery-daemon`   | 
+| Start an agent |  `sudo initctl start aws-discovery-daemon`   | 
+| Stop an agent |  `sudo initctl stop aws-discovery-daemon`   | 
+| Restart an agent |  `sudo initctl restart aws-discovery-daemon`   | 
+| Uninstall an agent |  `apt-get remove aws-discovery-agent`   | 
+
+------
+#### [ System V init ]
+
+
+**Management Commands for the Application Discovery Agent**  
+
+| Task | Command | 
+| --- | --- | 
+| Verify that an agent is running |  `sudo /etc/init.d/aws-discovery-daemon status`   | 
+| Start an agent |  `sudo /etc/init.d/aws-discovery-daemon start`   | 
+| Stop an agent |  `sudo /etc/init.d/aws-discovery-daemon stop`   | 
+| Restart an agent |  `sudo /etc/init.d/aws-discovery-daemon restart`   | 
+| Uninstall an agent |  `zypper remove aws-discovery-agent`   | 
+
+------
 
 ### Agent Troubleshooting on Linux<a name="linux_troubleshooting"></a>
 
@@ -273,7 +303,7 @@ Agents automatically download and apply updates as they become available\. We re
 **Warning**  
 Disabling auto\-upgrades will prevent the latest security patches from being installed\.
 
-1. If outbound connections from your network are restricted, update your firewall settings\. Agents require access to `arsenal` over TCP port 443 as in `us-west-2.amazonaws.com:443`\.  They do not require any inbound ports to be open\.
+1. If outbound connections from your network are restricted, update your firewall settings\. Agents require access to `arsenal` over TCP port 443 as in `us-west-2.amazonaws.com:443`\. They do not require any inbound ports to be open\.
 **Note**  
 Agents also work with transparent web proxies\. However, if you need to **configure a non\-transparent proxy**, continue on with the following steps\.
 
@@ -314,7 +344,7 @@ For Windows Server 2008 and later, Amazon cryptographically signs the Applicatio
 
 ### Manage the Discovery Agent Process on Windows<a name="using_on_windows"></a>
 
-You can manage the behavior of the Discovery Agent at the system level through the Windows Server Manager Services console\. The following table describes how\. 
+You can manage the behavior of the Discovery Agent at the system level through the Windows Server Manager Services console\. The following table describes how\.
 
 
 | Task | Service Name | Service Status/Action | 

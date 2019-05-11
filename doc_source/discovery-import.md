@@ -28,11 +28,14 @@ If you're using either VMware\.MoRefId or VMWare\.VCenterId, to identify a recor
 | VMware\.MoRefId\* | The managed object reference ID\. Must be provided with a VMware\.VCenterId\. |  | 
 | VMware\.VCenterId\* | Virtual machine unique identifier\. Must be provided with a VMware\.MoRefId\. |  | 
 | CPU\.NumberOfProcessors | The number of CPUs\. | 4 | 
-| CPU\.NumberOfCores | The number of cores in a processor\. | 7 | 
+| CPU\.NumberOfCores | The total number of physical cores\. | 8 | 
+| CPU\.NumberOfLogicalCores | The total number of threads that can execute concurrently on all CPUs in a server\. Some CPUs support multiple threads to run concurrently on a single CPU core\. In those cases, this number will be larger than the number of physical \(or virtual\) cores\. | 16 | 
 | OS\.Name | The name of the operating system\. | LinuxWindows\.Hat | 
 | OS\.Version | The version of the operating system\. | 16\.04\.3NT 6\.2\.8 | 
 | VMware\.VMName | The name of the virtual machine\. | Corp1 | 
 | RAM\.TotalSizeInMB | The total RAM, in MB, available on the server\. | 64128 | 
+| RAM\.UsedSizeInMB\.Avg | The total RAM, in MB, available on the server\. | 64128 | 
+| RAM\.UsedSizeInMB\.Max | The total RAM, in MB, available on the server\. | 64128 | 
 | CPU\.UsagePct\.Avg | The average CPU utilization when the discovery tool was collecting data\. | 4523\.9 | 
 | CPU\.UsagePct\.Max | The maximum CPU utilization when the discovery tool was collecting data\. | 55\.3424 | 
 | DiskReadsPerSecondInKB\.Avg | The average number of disk reads per second, in KB\. | 115984506 | 
@@ -50,7 +53,7 @@ If you're using either VMware\.MoRefId or VMWare\.VCenterId, to identify a recor
 | Applications | A comma\-delimited list of applications that include this server, in quotes\. This value can include existing applications and/or new applications that are created upon import\. | Application1"Application2, Application3" | 
 | Tags | A comma\-delimited list of tags formatted as name:value\. | "zone:1, critical:yes""zone:3, critical:no, zone:1" | 
 
-You can import data even if you don’t have data populated for all the fields defined in the import template, so long as each record has at least one of the required fields within it\. Duplicates are managed across multiple import requests by using either an external or internal matching key\. If you populate your own matching key, `External ID`, this field is used to uniquely identify and import the records\. If no matching key is specified, import uses an internally generated matching key that is derived from some of the columns in the import template\. For more information on this matching, see [](view-data.md#add-match-logic)\.
+You can import data even if you don’t have data populated for all the fields defined in the import template, so long as each record has at least one of the required fields within it\. Duplicates are managed across multiple import requests by using either an external or internal matching key\. If you populate your own matching key, `External ID`, this field is used to uniquely identify and import the records\. If no matching key is specified, import uses an internally generated matching key that is derived from some of the columns in the import template\. For more information on this matching, see [Matching Logic for Discovered Servers and Applications](view-data.md#add-match-logic)\.
 
 **Note**  
 Migration Hub import does not support any fields outside of those defined in the import template\. Any custom fields supplied will be ignored and will not be imported\.
