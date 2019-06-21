@@ -154,86 +154,159 @@ FROM "sys_performance_agent" "SP" , "OS_INFO_agent" "OS"
 WHERE ("SP"."agent_id" = "OS"."agent_id") limit 10;
 ```
 
-### Track Outbound Communication Between Servers Based On Port Number<a name="pq-analyze-outbound-connections"></a>
+### Track Outbound Communication Between Servers Based On Port Number and Process Details<a name="pq-analyze-outbound-connections"></a>
 
-This query analyzes the outbound connections from servers discovered using agents\. This query helps you to identify the outbound TCP network traffic from the hosts \(servers\) where agents are installed, along with the frequency at which the outbound traffic is generated\. You can visualize the output of this query in Amazon QuickSight Heat Map to understand network dependencies\.
+Before running this query, perform the following procedures\. Note that if you've already created the `iana_service_ports_import` table, you can skip the first procedure\.
 
-```
-WITH valid_ips (source_ip) AS 
-    (SELECT DISTINCT "source_ip"
-    FROM outbound_connection_agent ) , outer_query AS 
-    (SELECT "agent_id" ,
-         "source_ip" ,
-         "destination_ip" ,
-         "destination_port" ,
-         "count"(*) "frequency"
-    FROM outbound_connection_agent
-    WHERE (("ip_version" = 'IPv4')
-            AND ("destination_ip" IN 
-        (SELECT *
-        FROM valid_ips )))
-        GROUP BY  "agent_id", "source_ip", "destination_ip", "destination_port" )
-    SELECT "source_ip" "Source" ,
-         "destination_port" "Port" ,
-         "destination_ip" "Target" ,
-         "Frequency" ,
-         "h1"."host_name" "Source Host Name" ,
-         "h2"."host_name" "Destination Host Name"
-FROM outer_query o , hostname_ip_helper h1 , hostname_ip_helper h2
-WHERE (("o"."source_ip" = "h1"."ip_address")
-        AND ("o"."destination_ip" = "h2"."ip_address"))
-```
+**To create the iana\_service\_ports\_import table**
 
-### Track Inbound Communication Between Servers Based On Port Number<a name="pq-analyze-inbound-connections"></a>
+1. Download the IANA Port database CSV file from [Service Name and Transport Protocol Port Number Registry](https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml) on *iana\.org*\.
 
-This query analyzes the inbound connections from the servers discovered using agents\. This query is similar to the outbound connections query and helps you to understand the hosts \(servers\) that are communicating with a given server over the TCP/IP protocol\. You can visualize the output of this query in Amazon QuickSight Heat Map to understand network dependencies\.
+1. Upload the file to Amazon S3\. For more information, see [How Do I Upload Files and Folders to an S3 Bucket?](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/upload-objects.html)\.
 
-```
-WITH valid_inbound_ips (source_ip) AS 
-   (SELECT DISTINCT "source_ip"
+1. Create a new table in Athena named `iana_service_ports_import` and specify the Amazon S3 path to the object you uploaded in the previous step\. For more information, see [Step 2: Create a Table](https://docs.aws.amazon.com/athena/latest/ug/getting-started.html#step-2-create-a-table) in the *Amazon Athena User Guide*\.
+
+Now that the `iana_service_ports_import` table has been created, you create two help functions for tracking outbound traffic\. For information on how to create a view, see [CREATE VIEW](https://docs.aws.amazon.com/athena/latest/ug/create-view.html) in the *Amazon Athena User Guide*\. 
+
+**To create outbound tracking helper functions**
+
+1. Open the Athena console at [https://console\.aws\.amazon\.com/athena/](https://console.aws.amazon.com/athena/home)\.
+
+1. Create the view `valid_outbound_ips_helper`\. This helper function gives the list of all distinct outbound source ip addresses and is as follows:
+
+   ```
+   CREATE OR REPLACE VIEW valid_outbound_ips_helper AS 
+   SELECT DISTINCT "source_ip"
    FROM
-     inbound_connection_agent
-) 
-, outer_inbound_query AS (
+     outbound_connection_agent;
+   ```
+
+1. Create the view `outbound_query_helper`\. This helper function determines the frequency of communication for outbound traffic and is as follows:
+
+   ```
+   CREATE OR REPLACE VIEW outbound_query_helper AS 
    SELECT
      "agent_id"
    , "source_ip"
    , "destination_ip"
    , "destination_port"
+   , "agent_assigned_process_id"
+   , "count"(*) "frequency"
+   FROM
+     outbound_connection_agent
+   WHERE (("ip_version" = 'IPv4') AND ("destination_ip" IN (SELECT *
+   FROM
+     valid_outbound_ips_helper
+   )))
+   GROUP BY "agent_id", "source_ip", "destination_ip", "destination_port", "agent_assigned_process_id";
+   ```
+
+Now that you have the `iana_service_ports_import` table and your two helper functions, you can run the following query to get the details on the outbound traffic for each service, along with the port number and process details\.
+
+```
+SELECT DISTINCT
+  "hin1"."host_name" "Source Host Name"
+, "hin2"."host_name" "Destination Host Name"
+, "o"."source_ip" "Source IP Address"
+, "o"."destination_ip" "Destination IP Address"
+, "o"."frequency" "Connection Frequency"
+, "o"."destination_port" "Destination Communication Port"
+, "p"."name" "Process Name"
+, "ianap"."service name" "Process Service Name"
+, "ianap"."description" "Process Service Description"
+FROM
+  outbound_query_helper o
+, hostname_ip_helper hin1
+, hostname_ip_helper hin2
+, processes_agent p
+, iana_service_ports_import ianap
+WHERE ((((("o"."source_ip" = "hin1"."ip_address") AND ("o"."destination_ip" = "hin2"."ip_address")) AND ("p"."agent_assigned_process_id" = "o"."agent_assigned_process_id")) AND ("hin1"."host_name" <> "hin2"."host_name")) AND (("o"."destination_port" = TRY_CAST("ianap"."port number" AS integer)) AND ("ianap"."transport protocol" = 'tcp')))
+ORDER BY "hin1"."host_name" ASC, "o"."frequency" DESC;
+```
+
+### Track Inbound Communication Between Servers Based On Port Number and Process Details<a name="pq-analyze-inbound-connections"></a>
+
+Before running this query, perform the following procedures\. Note that if you've already created the `iana_service_ports_import` table, you can skip the first procedure\.
+
+**To create the iana\_service\_ports\_import table**
+
+1. Download the IANA Port database CSV file from [Service Name and Transport Protocol Port Number Registry](https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml) on *iana\.org*\.
+
+1. Upload the file to Amazon S3\. For more information, see [How Do I Upload Files and Folders to an S3 Bucket?](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/upload-objects.html)\.
+
+1. Create a new table in Athena named `iana_service_ports_import` and specify the Amazon S3 path to the object you uploaded in the previous step\. For more information, see [Step 2: Create a Table](https://docs.aws.amazon.com/athena/latest/ug/getting-started.html#step-2-create-a-table) in the *Amazon Athena User Guide*\.
+
+Now that the `iana_service_ports_import` table has been created, you create two help functions for tracking inbound traffic\. For information on how to create a view, see [CREATE VIEW](https://docs.aws.amazon.com/athena/latest/ug/create-view.html) in the *Amazon Athena User Guide*\. 
+
+**To create import tracking helper functions**
+
+1. Open the Athena console at [https://console\.aws\.amazon\.com/athena/](https://console.aws.amazon.com/athena/home)\.
+
+1. Create the view `valid_inbound_ips_helper`\. This helper function gives the list of all distinct inbound source ip addresses and is as follows:
+
+   ```
+   CREATE OR REPLACE VIEW valid_inbound_ips_helper AS 
+   SELECT DISTINCT "source_ip"
+   FROM
+     inbound_connection_agent;
+   ```
+
+1. Create the view `inbound_query_helper`\. This helper function determines the frequency of communication for inbound traffic and is as follows:
+
+   ```
+   CREATE OR REPLACE VIEW inbound_query_helper AS 
+   SELECT
+     "agent_id"
+   , "source_ip"
+   , "destination_ip"
+   , "destination_port"
+   , "agent_assigned_process_id"
    , "count"(*) "frequency"
    FROM
      inbound_connection_agent
-   WHERE (("ip_version" = 'IPv4') AND ("destination_ip" IN (SELECT *
-FROM
-  valid_inbound_ips
-)))
-   GROUP BY "agent_id", "source_ip", "destination_ip", "destination_port"
-) 
-SELECT
-  "source_ip" "Source"
-, "destination_port" "Port"
-, "destination_ip" "Target"
-, "Frequency"
-, "hin1"."host_name" "Source Host Name"
+   WHERE (("ip_version" = 'IPv4') AND ("source_ip" IN (SELECT *
+   FROM
+     valid_inbound_ips_helper
+   )))
+   GROUP BY "agent_id", "source_ip", "destination_ip", "destination_port", "agent_assigned_process_id";
+   ```
+
+Now that you have the `iana_service_ports_import` table and your two helper functions, you can run the following query to get the details on the inbound traffic for each service, along with the port number and process details\.
+
+```
+SELECT DISTINCT
+  "hin1"."host_name" "Source Host Name"
 , "hin2"."host_name" "Destination Host Name"
+, "i"."source_ip" "Source IP Address"
+, "i"."destination_ip" "Destination IP Address"
+, "i"."frequency" "Connection Frequency"
+, "i"."destination_port" "Destination Communication Port"
+, "p"."name" "Process Name"
+, "ianap"."service name" "Process Service Name"
+, "ianap"."description" "Process Service Description"
 FROM
-  outer_inbound_query o
+  inbound_query_helper i
 , hostname_ip_helper hin1
 , hostname_ip_helper hin2
-WHERE (("o"."source_ip" = "hin1"."ip_address") AND ("o"."destination_ip" = "hin2"."ip_address"))
+, processes_agent p
+, iana_service_ports_import ianap
+WHERE ((((("i"."source_ip" = "hin1"."ip_address") AND ("i"."destination_ip" = "hin2"."ip_address")) AND ("p"."agent_assigned_process_id" = "i"."agent_assigned_process_id")) AND ("hin1"."host_name" <> "hin2"."host_name")) AND (("i"."destination_port" = TRY_CAST("ianap"."port number" AS integer)) AND ("ianap"."transport protocol" = 'tcp')))
+ORDER BY "hin1"."host_name" ASC, "i"."frequency" DESC;
 ```
 
 ### Identify Running Software From Port Number<a name="pq-identify-software"></a>
 
 This query can be used to identify the running software based on port numbers\. Note that this query requires you to download the IANA Port database, which can be downloaded from the IANA website at the following URL: [https://www\.iana\.org/assignments/service\-names\-port\-numbers/service\-names\-port\-numbers\.csv](https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.csv )\.
 
-Before you can run this query, you must perform the following steps:
+Before running this query, you'll need to create the `iana_service_ports_import` table\. Note that if you've already created the table, you can skip this procedure\.
 
-1. Download the IANA Port database CSV file\.
+**To create the iana\_service\_ports\_import table**
 
-1. Upload the database to Amazon S3\.
+1. Download the IANA Port database CSV file from [Service Name and Transport Protocol Port Number Registry](https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml) on *iana\.org*\.
 
-1. Create a new table in Athena named `iana_service_ports_import` and specify the Amazon S3 path to the object you uploaded in the last step\.
+1. Upload the file to Amazon S3\. For more information, see [How Do I Upload Files and Folders to an S3 Bucket?](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/upload-objects.html)\.
+
+1. Create a new table in Athena named `iana_service_ports_import` and specify the Amazon S3 path to the object you uploaded in the previous step\. For more information, see [Step 2: Create a Table](https://docs.aws.amazon.com/athena/latest/ug/getting-started.html#step-2-create-a-table) in the *Amazon Athena User Guide*\.
 
 ```
 SELECT DISTINCT

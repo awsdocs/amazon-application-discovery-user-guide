@@ -69,3 +69,6 @@ The start time can't be more than 72 hours prior from the current time\.
    You can open the \.csv files in Microsoft Excel and review the exported server data\. 
 
    Among the files, you can find a JSON file containing data about the export task and its results\.
+
+**Note**  
+For information on generating and exporting Amazon EC2 instance recommendations in the AWS Migration Hub console, see [Amazon EC2 Instance Recommendations](https://docs.aws.amazon.com/migrationhub/latest/ug/ec2-recommendations.html) in the *AWS Migration Hub User Guide*\.
