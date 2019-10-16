@@ -16,7 +16,7 @@ AWS Application Discovery Service has built\-in matching logic that identifies w
 
 When server discovery occurs, each entry is cross\-checked with previously imported records to ensure that the imported server does not already exist\. If no match is found, a new record is created and a new unique server identifier is assigned\. If a match is found, then a new entry is still created, but it's assigned the same unique server identifier as the existing server\. When viewing this server in the Migration Hub console, you only find one unique entry for the server\.
 
-Server attributes associated with this entry are merged to show attribute values from a previously available record as well as the newly imported record\. If there is more than one value for a given server attribute from multiple sources, e\.g\., two different values within for `Total RAM` associated with a given server discovered using import and also by the Discovery Agent, then the value that was most recently discovered is shown in the matched record for the server\.
+Server attributes associated with this entry are merged to show attribute values from a previously available record as well as the newly imported record\. If there is more than one value for a given server attribute from multiple sources, e\.g\., two different values within for `Total RAM` associated with a given server discovered using import and also by the Discovery Agent, then the value that was most recently updated is shown in the matched record for the server\.
 
 ### Matching Fields<a name="matching-fields"></a>
 
