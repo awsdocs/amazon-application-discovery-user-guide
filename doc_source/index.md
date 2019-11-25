@@ -30,6 +30,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Main Dashboard](dashboard.md)
    + [Data Collection Tools](data_collection.md)
    + [View, Export, and Explore Server Data](discovered_servers.md)
++ [Querying Discovered Configuration Items](discovery-api-queries.md)
 + [Troubleshooting Data Exploration in Amazon Athena](troubleshooting.md)
 + [AWS Application Discovery Service Limits](ads_service_limits.md)
 + [Document History for AWS Application Discovery Service](doc-history.md)

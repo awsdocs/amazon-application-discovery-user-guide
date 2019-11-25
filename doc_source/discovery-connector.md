@@ -2,9 +2,18 @@
 
 Agentless discovery uses the AWS Discovery Connector\. The AWS Discovery Connector is a VMware appliance that can collect information only about VMware virtual machines \(VMs\)\. This mode doesn't require you to install a connector on each host\. You install the Discovery Connector as a VM in your VMware vCenter Server environment using an Open Virtualization Archive \(OVA\) file\. Because the Discovery Connector relies on VMware metadata to gather server information regardless of operating system, it minimizes the time required for initial on\-premises infrastructure assessment\.
 
-After you deploy and configure the Discovery Connector, it registers with the Application Discovery Service endpoint, *https://arsenal\.us\-west\-2\.amazonaws\.com/*, and pings the service at regular intervals, approximately every 60 minutes, for configuration information\. When you start the connector's data collecting process, it connects to VMware vCenter Server where it collects information about all the VMs and hosts managed by this specific vCenter\.
+**Note**  
+Before you deploy the Discovery Connector, you must choose a [Migration Hub home region](https://docs.aws.amazon.com/migrationhub/latest/ug/home-region.html)\. You must register your connector in your home region\.
 
-The collected data is sent to the Application Discovery Service using Secure Sockets Layer \(SSL\) encryption\. The connector is configured to automatically upgrade when new versions of the connector become available\. You can change this configuration setting at any time\. 
+After you deploy and configure the Discovery Connector, it registers with the Application Discovery Service endpoint, and pings the service at regular intervals, approximately every 60 minutes, for configuration information\.
++ For example, if your home region is set to `us-west-2`, it registers with ` https://arsenal.us-west-2.amazonaws.com/`\.
++ Alternatively, if `eu-central-1` is your home region, it registers with `https://arsenal-discovery.eu-central-1.amazonaws.com`\.
+
+**How it works**
+
+When you start the connector's data collecting process, it connects to VMware vCenter Server where it collects information about all the VMs and hosts managed by this specific vCenter\.
+
+The collected data is sent to the Application Discovery Service using Secure Sockets Layer \(SSL\) encryption\. The connector is configured to upgrade automatically when new versions of the connector become available\. You can change this configuration setting at any time\. 
 
 **Topics**
 + [Data Collected by the Discovery Connector](#agentless-data-collected)
@@ -15,7 +24,7 @@ The collected data is sent to the Application Discovery Service using Secure Soc
 
 ## Data Collected by the Discovery Connector<a name="agentless-data-collected"></a>
 
-The Discovery Connector collects information about your VMware vCenter Server hosts and VMs, including performance data about those hosts and VMs\. However, you can capture this data only if VMware vCenter Server tools are installed\. See [Step 3: Provide Application Discovery Service Access to Non\-Administrator Users by Attaching Policies](setting-up.md#setting-up-user-policy) for Discovery Connector installation prerequisites\.
+The Discovery Connector collects information about your VMware vCenter Server hosts and VMs\. However, you can capture this data only if VMware vCenter Server tools are installed\. See [Step 3: Provide Application Discovery Service Access to Non\-Administrator Users by Attaching Policies](setting-up.md#setting-up-user-policy) for Discovery Connector installation prerequisites\.
 
 Following, you can find an inventory of the information collected by the Discovery Connector\.
 
@@ -106,9 +115,9 @@ Beginning with this section and those that follow on this page, you will be inst
 
    ```
    $ md5sum AWSDiscoveryConnector.ova
-   MD5 (AWSDiscoveryConnector.ova) = fe362d13e0f444629f3853fd453d6f56
+   MD5 (AWSDiscoveryConnector.ova) = 44befb96e385dc2467d2874337bea0bb
    $ sha256sum AWSDiscoveryConnector.ova
-   SHA256(AWSDiscoveryConnector.ova)= b01141d55569a19d73415f55794a1f73c1cde8f6e08cbc6a9b2e1c8fc956b540
+   SHA256(AWSDiscoveryConnector.ova)= f43c1b338246e7a8184fdc5050e7209d0ab7c80a8be78599702fd33c5062bd10
    ```
 
    Verify that the checksum value returned from the command you ran is equal to the respective value displayed in the example above\.
@@ -131,7 +140,7 @@ Deploy the downloaded OVA file of the Discovery Connector in your VMware environ
 
 ## Configure the AWS Discovery Connector<a name="configure-connector"></a>
 
-To finish the setup process, open a web browser and complete the following procedure and optional tasks within this section\.
+To finish the setup process, open a web browser and complete the following procedure and optional tasks within this section\. Be sure you have first selected a home region in Migration Hub\. 
 
 **To configure the connector using the VMWare console**
 
@@ -161,7 +170,7 @@ To finish the setup process, open a web browser and complete the following proce
 
 ### Configure a static IP address for the connector<a name="connector_static_ip"></a>
 
-This optional procedure is required if your environment requires that you use a static IP address\.
+Follow this procedure if your environment requires that you use a static IP address\.
 
 **To Configure a static IP address for the connector**
 
@@ -257,7 +266,7 @@ Disabling auto\-upgrades will prevent the latest security patches from being ins
 
 ## Start Discovery Connector Data Collection<a name="start-connector-data-collection"></a>
 
-Now that you have deployed and configured the Discovery Connector in your VMware environment, you must complete the final step of actually turning on its data collection process\. There are two ways to do this, through the console or by making API calls through the AWS CLI\. Instructions are provided below for both ways\.
+After you have deployed and configured the Discovery Connector in your VMware environment, you must complete the final step of actually turning on its data collection process\.You can turn on data collection through the console or by making API calls through the AWS CLI\. Instructions are provided below for both methods\.
 
 ### Start Data Collection Using the Migration Hub Console<a name="start-agentless-console"></a>
 
@@ -288,9 +297,9 @@ To start the Discovery Connector data collection process from the AWS CLI, the A
 
    1. Type `aws configure` and press Enter\.
 
-   1. Enter your AWS Access Key Id and AWS Secret Access Key\.
+   1. Enter your AWS Access Key ID and AWS Secret Access Key\.
 
-   1. Enter `us-west-2` for the Default Region Name\.
+   1. Enter your home region, for example `us-west-2`, for the Default Region Name\.
 
    1. Enter `text` for Default Output Format\.
 

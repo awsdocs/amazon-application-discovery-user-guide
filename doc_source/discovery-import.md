@@ -1,16 +1,23 @@
 # Migration Hub Import<a name="discovery-import"></a>
 
-Migration Hub import allows you to import details of your on\-premises environment directly into Migration Hub without using the Discovery Connector or Discovery Agent\. This gives you the option to perform migration assessment and planning directly from your imported data\. You can also group your devices as applications and track their migration status\.
+Migration Hub import allows you to import details of your on\-premises environment directly into Migration Hub without using the Discovery Connector or Discovery Agent, so you can perform migration assessment and planning directly from your imported data\. You also can group your devices as applications and track their migration status\.
 
-To initiate an import request, first download the specially\-formatted, comma separated value \(CSV\) import template, populate it with your existing on\-premises server data, and upload it to Migration Hub using the Migration Hub console, AWS CLI or one of the AWS SDKs\. You can submit multiple import requests and each request is processed sequentially\. At any given time, by using the console or import APIs, you can check the status of your import requests\.
+**To initiate an import request**
++ Download the specially\-formatted, comma separated value \(CSV\) import template\.
++ Populate it with your existing on\-premises server data\.
++ Upload it to Migration Hub using the Migration Hub console, AWS CLI or one of the AWS SDKs\.
 
-After an import request is complete, you can view the details of individual imported records\. View utilization data, tags, and application mappings directly from within the Migration Hub console\. If errors were encountered during the import, you can review the count of successful and failed records and the error details for each failed record\. A link is provided to download the error log and failed records files as CSV files in a compressed archive\. Use these files to resubmit your import request after correcting the errors\.
+You can submit multiple import requests\. Each request is processed sequentially\. You can check the status of your import requests at any time, through the console or import APIs\.
 
-There are limits related to the number of imported records, imported servers, and deleted records\. For more information see [AWS Application Discovery Service Limits](ads_service_limits.md)\.
+After an import request is complete, you can view the details of individual imported records\. View utilization data, tags, and application mappings directly from within the Migration Hub console\. If errors were encountered during the import, you can review the count of successful and failed records, and you can see the error details for each failed record\.
+
+**Handling errors:** A link is provided to download the error log and failed records files as CSV files in a compressed archive\. Use these files to resubmit your import request after correcting the errors\.
+
+Limits apply to the number of imported records, imported servers, and deleted records you can keep\. For more information see [AWS Application Discovery Service Limits](ads_service_limits.md)\.
 
 ## Supported Import File Fields<a name="import-supported-fields"></a>
 
-Migration Hub import allows you to import data from any source as long as the data provided is in the supported format for a CSV file and only contains the supported fields with the supported ranges for those fields\.
+Migration Hub import allows you to import data from any source\. The data provided must be in the supported format for a CSV file, and the data must contain only the supported fields with the supported ranges for those fields\.
 
 An asterisk next to an import field name in the following table denotes that it is a required field\. Each record of your import file must have at least one or more of those required fields populated to uniquely identify a server or application\. Otherwise, a record without any of the required fields will fail to be imported\.
 
@@ -33,9 +40,9 @@ If you're using either VMware\.MoRefId or VMWare\.VCenterId, to identify a recor
 | OS\.Name | The name of the operating system\. | LinuxWindows\.Hat | 
 | OS\.Version | The version of the operating system\. | 16\.04\.3NT 6\.2\.8 | 
 | VMware\.VMName | The name of the virtual machine\. | Corp1 | 
-| RAM\.TotalSizeInMB | The total RAM, in MB, available on the server\. | 64128 | 
-| RAM\.UsedSizeInMB\.Avg | The total RAM, in MB, available on the server\. | 64128 | 
-| RAM\.UsedSizeInMB\.Max | The total RAM, in MB, available on the server\. | 64128 | 
+| RAM\.TotalSizeInMB | The total RAM available on the server, in MB\. | 64128 | 
+| RAM\.UsedSizeInMB\.Avg | The average amount of used RAM on the server, in MB\. | 64128 | 
+| RAM\.UsedSizeInMB\.Max | The maximum amount of used RAM available on the server, in MB\. | 64128 | 
 | CPU\.UsagePct\.Avg | The average CPU utilization when the discovery tool was collecting data\. | 4523\.9 | 
 | CPU\.UsagePct\.Max | The maximum CPU utilization when the discovery tool was collecting data\. | 55\.3424 | 
 | DiskReadsPerSecondInKB\.Avg | The average number of disk reads per second, in KB\. | 115984506 | 
@@ -60,7 +67,7 @@ Migration Hub import does not support any fields outside of those defined in the
 
 ## Setting Up Your Import Permissions<a name="import-perms"></a>
 
-Before you can import your data, you need to ensure that your IAM user has the necessary Amazon S3 permissions to upload \(`s3:PutObject`\) your import file to Amazon S3, to read the object \(`s3:GetObject`\)\. You also need to establish programmatic access \(for the AWS CLI\) or console access\. You can do this by creating an IAM policy and attaching it to the IAM user that performs imports in your AWS account\.
+Before you can import your data, ensure that your IAM user has the necessary Amazon S3 permissions to upload \(`s3:PutObject`\) your import file to Amazon S3, to read the object \(`s3:GetObject`\)\. You also must establish programmatic access \(for the AWS CLI\) or console access, by creating an IAM policy and attaching it to the IAM user that performs imports in your AWS account\.
 
 ------
 #### [ Console Permissions ]
@@ -235,7 +242,7 @@ Start data import on the **Tools** page of the Migration Hub console\.
 
 1. In the next screen, specify a name for the import in the **Import name** field\.
 
-1. Fill out the **Data file link on S3** field\. To do this step, you'll need to upload your import data file to Amazon S3\. For more information, see [](#migration-hub-import-s3-upload)\.
+1. Fill out the **Data file link on S3** field\. To do this step, you'll need to upload your import data file to Amazon S3\. For more information, see [Uploading Your Import File to Amazon S3](#migration-hub-import-s3-upload)\.
 
 1. Choose **Import** in the lower\-right area\. This will open the **Imports** page where you can see your import and its status listed in the table\.
 

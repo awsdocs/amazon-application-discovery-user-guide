@@ -1,11 +1,12 @@
 # Document History for AWS Application Discovery Service<a name="doc-history"></a>
 + **API version**: 2015\-11\-01
-+ **Latest User Guide documentation update**: January 18, 2019
++ **Latest User Guide documentation update**: November 14, 2019
 
 The following table describes important changes to the *AWS Migration Hub User Guide* after January 18 2019\. For notifications about documentation updates, you can subscribe to the RSS feed\.
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Introducing the Home Region](#doc-history) | The Migration Hub home region provides a single repository of discovery and migration planning information for your entire portfolio, and a single view of migrations into multiple AWS Regions\. | November 20, 2019 | 
 | [Introducing the Migration Hub import feature](#doc-history) | Migration Hub import allows you to import information about your on\-premises servers and applications into Migration Hub, including server specifications and utilization data\. You can also use this data to track the status of application migrations\. For more information, see [Migration Hub Import](https://docs.aws.amazon.com/application-discovery/latest/userguide/discovery-import.html)\. | January 18, 2019 | 
 
 The following table describes documentation releases for the *AWS Migration Hub User Guide* before January 18, 2019:

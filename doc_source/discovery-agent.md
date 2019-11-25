@@ -2,7 +2,18 @@
 
 The AWS Discovery Agent is AWS software that you install on on\-premises servers and VMs targeted for discovery and migration\. Agents capture system configuration, system performance, running processes, and details of the network connections between systems\. Agents support most Linux and Windows operating systems, and you can deploy them on physical on\-premises servers, Amazon EC2 instances, and virtual machines\. 
 
-The Discovery Agent runs in your local environment and requires root privileges\. When you start the Discovery Agent, it connects securely with `arsenal.us-west-2.amazonaws.com` and registers with Application Discovery Service\. Then it pings the service at 15 minute intervals for configuration information\. When you send a command that tells an agent to start data collection, it starts collecting data for the host or VM where it resides\. Collection includes system specifications, times series utilization or performance data, network connections, and process data\. You can use this information to map your IT assets and their network dependencies\. All of these data points can help you determine the cost of running these servers in AWS and also plan for migration\.
+**Note**  
+Before you deploy the Discovery Agent, you must choose a [Migration Hub home region](https://docs.aws.amazon.com/migrationhub/latest/ug/home-region.html)\. You must register your agent in your home region\.
+
+The Discovery Agent runs in your local environment and requires root privileges\. When you start the Discovery Agent, it connects securely with your home region and registers with Discovery Agent\.
++ For example, if `us-west-2` is your home region, it registers `arsenal.us-west-2.amazonaws.com` with Application Discovery Service\. 
++ Alternatively, if `eu-central-1` is your home region, it registers `arsenal-discovery.eu-central-1.amazonaws.com` with Application Discovery Service\.
+
+**How it works**
+
+After registration, it pings the service at 15\-minute intervals for configuration information\. When you send a command that tells an agent to start data collection, it starts collecting data for the host or VM where it resides\.
+
+The collected data includes system specifications, times series utilization or performance data, network connections, and process data\. You can use this information to map your IT assets and their network dependencies\. All of these data points can help you determine the cost of running these servers in AWS and also plan for migration\.
 
 Data is transmitted securely by the Discovery Agents to Application Discovery Service using Transport Layer Security \(TLS\) encryption\. Agents are configured to upgrade automatically when new versions become available\. You can change this configuration setting if desired\.
 
@@ -24,7 +35,7 @@ Following, you can find an inventory of the information collected by the Discove
 + The term host refers to either a physical server or a VM\.
 + Collected data is in measurements of kilobytes \(KB\) unless stated otherwise\.
 + Equivalent data in the Migration Hub console is reported in megabytes \(MB\)\.
-+ Data fields denoted with an asterisk \(\*\) are only available in the \.csv files produced from the agent's API export function\.
++ Data fields denoted with an asterisk \(\*\) are only available in the `.csv` files produced from the agent's API export function\.
 + The polling period is in intervals of approximately 15 minutes\.
 
 
@@ -73,10 +84,11 @@ Following, you can find an inventory of the information collected by the Discove
 
 ## Prerequisites for Agent Installation<a name="gen-prep-agents"></a>
 
- These are the pre\-installation tasks that should be performed to prevent errors from occurring during the actual installation of the agent\. If you have a *1\.x* version of the agent installed, it needs to be removed before installing the latest version\. Instructions for removing older versions are provided in the tasks below:
-+ Verify your OS environment is supported:
+ These are the pre\-installation tasks that should be performed to prevent errors from occurring during the actual installation of the agent\. Be sure you have set a [Migration Hub home region](https://docs.aws.amazon.com/migrationhub/latest/ug/home-region.html) before you begin installing an agent\. If you have a *1\.x* version of the agent installed, it must be removed before installing the latest version\. Instructions for removing older versions are provided in the tasks that follow\.
++ Verify that your operating system \(OS\) environment is supported:
   + **Linux**
     + Amazon Linux 2012\.03, 2015\.03
+    + Amazon Linux 2 \(9/25/2018 update and later\)
     + Ubuntu 12\.04, 14\.04, 16\.04
     + Red Hat Enterprise Linux 5\.11, 6\.9, 7\.3
     + CentOS 5\.11, 6\.9, 7\.3
@@ -86,19 +98,23 @@ Following, you can find an inventory of the information collected by the Discove
     + Windows Server 2008 R1 SP2, 2008 R2 SP1
     + Windows Server 2012 R1, 2012 R2
     + Windows Server 2016
-+ If outbound connections from your network are restricted, you'll need to update your firewall settings\. Agents require access to `arsenal` over TCP port 443 as in `https://arsenal.us-west-2.amazonaws.com:443`\. They don't require any inbound ports to be open\.
-+ Access to AWS S3 in us\-west\-2 is required for auto\-upgrade to function\.
-+ Create an IAM user in the IAM console and attach the existing `AWSApplicationDiscoveryAgentAccess` permissions policy\. This will allow the user to perform the necessary agent actions on your behalf\. See [Step 3: Provide Application Discovery Service Access to Non\-Administrator Users by Attaching Policies](setting-up.md#setting-up-user-policy) for Discovery Agent installation prerequisites\.
-+ Check the time skew from your Network Time Protocol \(NTP\) servers and correct if necessary\. Incorrect time skew causes the agent registration call to fail\.
+    + Windows Server 2019
++ If outbound connections from your network are restricted, you'll need to update your firewall settings\. Agents require access to `arsenal` over TCP port 443\. They don't require any inbound ports to be open\.
+  + For example, if your home region is `us-west-2`, you'd use `https://arsenal.us-west-2.amazonaws.com:443`
+  + Alternatively, if `eu-central-1` is your home region, use with `https://arsenal-discovery.eu-central-1.amazonaws.com:443`
+  + Or substitute your home region as needed\.
++ Access to AWS S3 in your home region is required for auto\-upgrade to function\.
++ Create an IAM user in the IAM console and attach the existing `AWSApplicationDiscoveryAgentAccess` permissions policy\. This policy allows the user to perform necessary agent actions on your behalf\. See [Step 3: Provide Application Discovery Service Access to Non\-Administrator Users by Attaching Policies](setting-up.md#setting-up-user-policy) for Discovery Agent installation prerequisites\.
++ Check the time skew from your Network Time Protocol \(NTP\) servers and correct if necessary\. Incorrect time synchronization causes the agent registration call to fail\.
 + Remove any previous\-generation agents\. If you previously installed Application Discovery Agent 1\.0 for either Windows or Linux, you must uninstall it before continuing with the installation of the current agent\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/application-discovery/latest/userguide/discovery-agent.html)
 
 **Note**  
-The Discovery Agent has a 32\-bit agent executable, which works on both 32\-bit and 64\-bit operating systems\. Having a single executable reduces the number of installation packages needed for deployment\. This applies for both Linux and Windows OS and is addressed in their respective installation sections below\.
+The Discovery Agent has a 32\-bit agent executable, which works on 32\-bit and 64\-bit operating systems\. The number of installation packages needed for deployment is reduced by having a single executable\. This executable agent works for Linux and for Windows OS\. It is addressed in their respective installation sections that follow\.
 
 ## Agent Installation on Linux<a name="install_on_linux"></a>
 
-Complete the following procedure on Linux\.
+Complete the following procedure on Linux\. Be sure that your [Migration Hub home region](https://docs.aws.amazon.com/migrationhub/latest/ug/home-region.html) has been set before you begin this procedure\.
 
 **Note**  
 If you are using a non\-current Linux version, see [Requirements on Older Linux Platforms](#old_linux)\.<a name="linux_steps"></a>
@@ -143,15 +159,17 @@ If you are using a non\-current Linux version, see [Requirements on Older Linux 
    tar -xzf aws-discovery-agent.tar.gz
    ```
 
-1. Run the following command to install the agent in the `us-west-2` Region\.
+1. Run the command to install the agent in your home region\. In this example, we use the string `Your_Home_Region`to show where to insert your home region\.
 
    ```
-   sudo bash install -r us-west-2 -k <aws key id> -s <aws key secret>
+   sudo bash install -r Your_Home_Region -k <aws key id> -s <aws key secret>
    ```
 **Note**  
 Agents automatically download and apply updates as they become available\. We recommend using this default configuration\. However, if you don't want agents to download and apply updates automatically, include the `-u false` parameter when running the installation script\.
 
-1. If outbound connections from your network are restricted, update your firewall settings\. Agents require access to `arsenal` over TCP port 443 as in `us-west-2.amazonaws.com:443` They don't require any inbound ports to be open\.
+1. If outbound connections from your network are restricted, you'll need to update your firewall settings\. Agents require access to `arsenal` over TCP port 443\. They don't require any inbound ports to be open\.
+   + For example, if your home region is `us-west-2`, you'd use `https://arsenal.us-west-2.amazonaws.com:443`
+   + Alternatively, if `eu-central-1` is your home region, use `https://arsenal-discovery.eu-central-1.amazonaws.com:443`
 **Note**  
 Agents also work with transparent web proxies\. However, if you need to **configure a non\-transparent proxy**, proceed to the next step\.
 
@@ -166,7 +184,7 @@ Agents also work with transparent web proxies\. However, if you need to **config
       "proxyPassword" : "<mypassword>",
       ```
 
-   1. Save the edited configuration file ensuring that you still have valid json \(taking care with the quotes and the commas\)\. If your proxy doesn't require authentication, then leave out *proxyUser* and *proxyPassword*\. While most proxies use http, if yours uses https, specify the following in the configuration file:
+   1. Save the edited configuration file ensuring that you still have valid json \(taking care with the quotes and the commas\)\. If your proxy doesn't require authentication, then leave out *proxyUser* and *proxyPassword*\. While most proxies use HTTP, if your proxy uses HTTPS, specify the following in the configuration file:
 
       ```
       "proxyScheme" : "https"
@@ -202,7 +220,7 @@ Older Linux systems might have an out\-of\-date Certificate Authority \(CA\) bun
 These three installation script options can be used in any combination\. In the following example command, all three have been passed to the installation script: 
 
 ```
-sudo bash install -r us-west-2 -k <aws key id> -s <aws key secret> -p false -c true -b true
+sudo bash install -r Your_Home_Region -k <aws key id> -s <aws key secret> -p false -c true -b true
 ```
 
  
@@ -280,7 +298,7 @@ If you encounter problems while installing or using the Application Discovery Ag
 
 ## Agent Installation on Windows<a name="install_on_windows"></a>
 
-Complete the following procedure on Windows\.<a name="windows_steps"></a>
+Complete the following procedure to install an agent on Windows\. Be sure that your [Migration Hub home region](https://docs.aws.amazon.com/migrationhub/latest/ug/home-region.html) has been set before you begin this procedure\.<a name="windows_steps"></a>
 
 **To install AWS Application Discovery Agent in your data center**
 
@@ -292,10 +310,10 @@ Do not double\-click and execute the installer within Windows as it will fail to
 
 1. Open a command prompt as an administrator and navigate to the location where you saved the installation package\.
 
-1. To install the agent, run the following command\.
+1. To install the agent, run the following example command\. The example uses the string `Your_Home_Region` to show where to insert the name of your home region\.
 
    ```
-   msiexec.exe /i AWSDiscoveryAgentInstaller.msi REGION="us-west-2" KEY_ID="<aws key id>" KEY_SECRET="<aws key secret>" /q
+   msiexec.exe /i AWSDiscoveryAgentInstaller.msi REGION="Your_Home_Region" KEY_ID="<aws key id>" KEY_SECRET="<aws key secret>" /q
    ```
 **Note**  
 Agents automatically download and apply updates as they become available\. We recommend this default configuration\. To avoid downloading agents and applying updates automatically, include the following parameter when running the installation:  
@@ -303,7 +321,9 @@ Agents automatically download and apply updates as they become available\. We re
 **Warning**  
 Disabling auto\-upgrades will prevent the latest security patches from being installed\.
 
-1. If outbound connections from your network are restricted, update your firewall settings\. Agents require access to `arsenal` over TCP port 443 as in `us-west-2.amazonaws.com:443`\. They do not require any inbound ports to be open\.
+1. If outbound connections from your network are restricted, you'll need to update your firewall settings\. Agents require access to `arsenal` over TCP port 443\. They don't require any inbound ports to be open\.
+   + For example, if your home region is `us-west-2`, you'd use `https://arsenal.us-west-2.amazonaws.com:443`
+   + Alternatively, if `eu-central-1` is your home region, use with `https://arsenal-discovery.eu-central-1.amazonaws.com:443`
 **Note**  
 Agents also work with transparent web proxies\. However, if you need to **configure a non\-transparent proxy**, continue on with the following steps\.
 
@@ -408,11 +428,11 @@ If you encounter problems while installing or using the Application Discovery Ag
 
 ## Start Discovery Agent Data Collection<a name="start-agent-data-collection"></a>
 
-Now that you have deployed and configured the Discovery Agent, you must complete the final step of actually turning on its data collection process\. There are two ways to do this, through the console or by making API calls through the AWS CLI\. Instructions are provided below for both ways by expanding your method of choice:
+Now that you have deployed and configured the Discovery Agent, you must complete the final step of actually turning on its data collection process\. You can turn on data collection through the console or by making API calls through the AWS CLI\. Instructions are provided below for both ways, by expanding your method of choice:
 
 ### Start Data Collection Using the Migration Hub Console<a name="start-agent-console"></a>
 
-You start the Discovery Agent data collection process on the **Data Collectors** page of the Migration Hub console\.
+Start the Discovery Agent data collection process on the **Data Collectors** page of the Migration Hub console\. Be sure you've selected a [Migration Hub home region](https://docs.aws.amazon.com/migrationhub/latest/ug/home-region.html) before you start data collection\. All of your data is stored in your home region\.
 
 **To start data collection**
 
@@ -428,7 +448,7 @@ If you installed multiple agents but only want to start data collection on certa
 
 ### Start Data Collection Using the AWS CLI<a name="start-agent-api"></a>
 
-To start the Discovery Agent data collection process from the AWS CLI the AWS CLI must first be installed in your environment\.
+To start the Discovery Agent data collection process from the AWS CLI the AWS CLI must first be installed in your environment, and you must set the CLI to use your selected [Migration Hub home region](https://docs.aws.amazon.com/migrationhub/latest/ug/home-region.html)\.
 
 **To install the AWS CLI and start data collection**
 
@@ -438,9 +458,9 @@ To start the Discovery Agent data collection process from the AWS CLI the AWS CL
 
    1. Type `aws configure` and press Enter\.
 
-   1. Enter your AWS Access Key Id and AWS Secret Access Key\.
+   1. Enter your AWS Access Key ID and AWS Secret Access Key\.
 
-   1. Enter `us-west-2` for the Default Region Name\.
+   1. Enter your home region for the Default Region Name, for example *`us-west-2`*\. \(We are assuming that `us-west-2` is your home region in this example\.\)
 
    1. Enter `text` for Default Output Format\.
 
