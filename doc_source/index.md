@@ -1,7 +1,7 @@
 # AWS Application Discovery Service User Guide
 
 -----
-*****Copyright &copy; 2019 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; 2020 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -16,10 +16,20 @@ Amazon's trademarks and trade dress may not be used in
 ## Contents
 + [What Is AWS Application Discovery Service?](what-is-appdiscovery.md)
 + [Setting Up AWS Application Discovery Service](setting-up.md)
-+ [Getting Started with AWS Application Discovery Service](getting-started.md)
-   + [AWS Agentless Discovery Connector](discovery-connector.md)
-   + [AWS Application Discovery Agent](discovery-agent.md)
-   + [Migration Hub Import](discovery-import.md)
++ [AWS Application Discovery Agent](discovery-agent.md)
+   + [Data Collected by the Discovery Agent](agent-data-collected.md)
+   + [Prerequisites for Agent Installation](gen-prep-agents.md)
+   + [Agent Installation on Linux](install_on_linux.md)
+   + [Agent Installation on Windows](install_on_windows.md)
+   + [Start Discovery Agent Data Collection](start-agent-data-collection.md)
++ [AWS Agentless Discovery Connector](discovery-connector.md)
+   + [Data Collected by the Discovery Connector](agentless-data-collected.md)
+   + [Download the Discovery Connector](setting-up-agentless.md)
+   + [Deploy the Discovery Connector](deploy-connector-appliance.md)
+   + [Configure the AWS Discovery Connector](configure-connector.md)
+   + [Start Discovery Connector Data Collection](start-connector-data-collection.md)
+   + [Troubleshooting the Discovery Connector](agentless-troubleshooting.md)
++ [Migration Hub Import](discovery-import.md)
 + [View, Export, and Explore Discovered Data](view-and-export.md)
    + [View Collected Data Using the Console](view-data.md)
    + [Export Collected Data](export-data.md)
