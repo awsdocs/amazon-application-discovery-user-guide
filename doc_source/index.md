@@ -44,4 +44,4 @@ Amazon's trademarks and trade dress may not be used in
 + [Troubleshooting Data Exploration in Amazon Athena](troubleshooting.md)
 + [AWS Application Discovery Service Limits](ads_service_limits.md)
 + [Document History for AWS Application Discovery Service](doc-history.md)
-+ [AWS Glossary](glossary.md)
++ [AWS glossary](glossary.md)

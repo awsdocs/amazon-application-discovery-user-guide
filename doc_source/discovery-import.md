@@ -58,7 +58,7 @@ If you're using either VMware\.MoRefId or VMWare\.VCenterId, to identify a recor
 | NetworkReadsPerSecondInKB\.Max | The maximum number of network read operations per second, in KB\. | 1083176 | 
 | NetworkWritesPerSecondInKB\.Max | The maximum number of network write operations per second, in KB\. | 53571 | 
 | Applications | A comma\-delimited list of applications that include this server, in quotes\. This value can include existing applications and/or new applications that are created upon import\. | Application1"Application2, Application3" | 
-| Tags | A comma\-delimited list of tags formatted as name:value\. | "zone:1, critical:yes""zone:3, critical:no, zone:1" | 
+| Tags | A comma\-delimited list of tags formatted as name:value\.  Do not store sensitive information \(like personal data\) in tags\.  | "zone:1, critical:yes""zone:3, critical:no, zone:1" | 
 
 You can import data even if you don’t have data populated for all the fields defined in the import template, so long as each record has at least one of the required fields within it\. Duplicates are managed across multiple import requests by using either an external or internal matching key\. If you populate your own matching key, `External ID`, this field is used to uniquely identify and import the records\. If no matching key is specified, import uses an internally generated matching key that is derived from some of the columns in the import template\. For more information on this matching, see [Matching Logic for Discovered Servers and Applications](view-data.md#add-match-logic)\.
 
@@ -234,7 +234,7 @@ Start data import on the **Tools** page of the Migration Hub console\.
 
 1. In the navigation pane, under **Discover**, choose **Tools**\.
 
-1. If you don't already have an import template filled out, you can download the template by choosing **import template** in the **Import** box\. Open the downloaded template and populate it with your existing on\-premises server data\. You can also download the import template from our Amazon S3 bucket at [https://s3\-us\-west\-2\.amazonaws\.com/templates\-7cffcf56\-bd96\-4b1c\-b45b\-a5b42f282e46/import\_template\.csv](https://s3-us-west-2.amazonaws.com/templates-7cffcf56-bd96-4b1c-b45b-a5b42f282e46/import_template.csv)
+1. If you don't already have an import template filled out, you can download the template by choosing **import template** in the **Import** box\. Open the downloaded template and populate it with your existing on\-premises server data\. You can also download the import template from our Amazon S3 bucket at [https://s3\.us\-west\-2\.amazonaws\.com/templates\-7cffcf56\-bd96\-4b1c\-b45b\-a5b42f282e46/import\_template\.csv](https://s3.us-west-2.amazonaws.com/templates-7cffcf56-bd96-4b1c-b45b-a5b42f282e46/import_template.csv)
 
 1. Choose the **Import** button in the **Import** box, which will take you to the **Import** page under **Tools**\. 
 
@@ -258,7 +258,7 @@ The archive is in a \.zip format, and contains two files; `errors-file` and `fai
 To start the data import process from the AWS CLI, the AWS CLI must first be installed in your environment\. For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) in the *AWS Command Line Interface User Guide*\.
 
 **Note**  
-If you don't already have an import template filled out, you can download the import template from our Amazon S3 bucket here: [https://s3\-us\-west\-2\.amazonaws\.com/templates\-7cffcf56\-bd96\-4b1c\-b45b\-a5b42f282e46/import\_template\.csv](https://s3-us-west-2.amazonaws.com/templates-7cffcf56-bd96-4b1c-b45b-a5b42f282e46/import_template.csv)
+If you don't already have an import template filled out, you can download the import template from our Amazon S3 bucket here: [https://s3\.us\-west\-2\.amazonaws\.com/templates\-7cffcf56\-bd96\-4b1c\-b45b\-a5b42f282e46/import\_template\.csv](https://s3.us-west-2.amazonaws.com/templates-7cffcf56-bd96-4b1c-b45b-a5b42f282e46/import_template.csv)
 
 **To start data import**
 

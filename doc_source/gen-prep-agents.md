@@ -16,9 +16,9 @@
     + Windows Server 2016
     + Windows Server 2019
 + If outbound connections from your network are restricted, you'll need to update your firewall settings\. Agents require access to `arsenal` over TCP port 443\. They don't require any inbound ports to be open\.
-  + For example, if your home region is `us-west-2`, you'd use `https://arsenal.us-west-2.amazonaws.com:443`
-  + Alternatively, if `eu-central-1` is your home region, use with `https://arsenal-discovery.eu-central-1.amazonaws.com:443`
-  + Or substitute your home region as needed\.
+  + For example, if your home region is `eu-central-1`, you'd use `https://arsenal-discovery.eu-central-1.amazonaws.com:443`
+  + Or substitute your home region as needed for all other regions except us\-west\-2\.
+  + If `us-west-2` is your home region, use `https://arsenal.us-west-2.amazonaws.com:443`
 + Access to AWS S3 in your home region is required for auto\-upgrade to function\.
 + Create an IAM user in the IAM console and attach the existing `AWSApplicationDiscoveryAgentAccess` permissions policy\. This policy allows the user to perform necessary agent actions on your behalf\. See [Step 3: Provide Application Discovery Service Access to Non\-Administrator Users by Attaching Policies](setting-up.md#setting-up-user-policy) for Discovery Agent installation prerequisites\.
 + Check the time skew from your Network Time Protocol \(NTP\) servers and correct if necessary\. Incorrect time synchronization causes the agent registration call to fail\.

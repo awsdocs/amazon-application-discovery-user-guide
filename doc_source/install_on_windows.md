@@ -6,7 +6,7 @@ Complete the following procedure to install an agent on Windows\. Be sure that y
 
 1. Navigate to the [Microsoft Download Center](https://www.microsoft.com/en-us/download/details.aspx?id=48145) and choose **Download** to be taken to the download selection page, then on this page, select only **`vc_redist.x86.exe`** *\(do not select the "x64" version\)* regardless of the architecture of the machine you are installing on, then choose **Next**\. Your download begins immediately\.
 
-1. Download the [Windows agent installer](https://s3-us-west-2.amazonaws.com/aws-discovery-agent.us-west-2/windows/latest/AWSDiscoveryAgentInstaller.msi) *but do not double\-click and execute the installer within Windows*\.
+1. Download the [Windows agent installer](https://s3.us-west-2.amazonaws.com/aws-discovery-agent.us-west-2/windows/latest/AWSDiscoveryAgentInstaller.msi) *but do not double\-click and execute the installer within Windows*\.
 **Important**  
 Do not double\-click and execute the installer within Windows as it will fail to install\. *Agent installation only works from the command prompt*\. \(If you already double\-clicked on the installer, you must go to **Add/Remove Programs** and uninstall the agent before continuing on with the remaining installation steps\.\)
 
@@ -24,8 +24,9 @@ Agents automatically download and apply updates as they become available\. We re
 Disabling auto\-upgrades will prevent the latest security patches from being installed\.
 
 1. If outbound connections from your network are restricted, you'll need to update your firewall settings\. Agents require access to `arsenal` over TCP port 443\. They don't require any inbound ports to be open\.
-   + For example, if your home region is `us-west-2`, you'd use `https://arsenal.us-west-2.amazonaws.com:443`
-   + Alternatively, if `eu-central-1` is your home region, use with `https://arsenal-discovery.eu-central-1.amazonaws.com:443`
+   + For example, if your home region is `eu-central-1`, you'd use `https://arsenal-discovery.eu-central-1.amazonaws.com:443`
+   + Or substitute your home region as needed for all other regions except us\-west\-2\.
+   + If `us-west-2` is your home region, use `https://arsenal.us-west-2.amazonaws.com:443`
 **Note**  
 Agents also work with transparent web proxies\. However, if you need to **configure a non\-transparent proxy**, continue on with the following steps\.
 

@@ -26,11 +26,11 @@ If you are using a non\-current Linux version, see [Requirements on Older Linux 
 1. Verify the cryptographic signature of the installation package with the following three commands:
 
    ```
-   curl -o ./agent.sig https://s3-us-west-2.amazonaws.com/aws-discovery-agent.us-west-2/linux/latest/aws-discovery-agent.tar.gz.sig
+   curl -o ./agent.sig https://s3.us-west-2.amazonaws.com/aws-discovery-agent.us-west-2/linux/latest/aws-discovery-agent.tar.gz.sig
    ```
 
    ```
-   curl -o ./discovery.gpg https://s3-us-west-2.amazonaws.com/aws-discovery-agent.us-west-2/linux/latest/discovery.gpg
+   curl -o ./discovery.gpg https://s3.us-west-2.amazonaws.com/aws-discovery-agent.us-west-2/linux/latest/discovery.gpg
    ```
 
    ```
@@ -54,8 +54,9 @@ If you are using a non\-current Linux version, see [Requirements on Older Linux 
 Agents automatically download and apply updates as they become available\. We recommend using this default configuration\. However, if you don't want agents to download and apply updates automatically, include the `-u false` parameter when running the installation script\.
 
 1. If outbound connections from your network are restricted, you'll need to update your firewall settings\. Agents require access to `arsenal` over TCP port 443\. They don't require any inbound ports to be open\.
-   + For example, if your home region is `us-west-2`, you'd use `https://arsenal.us-west-2.amazonaws.com:443`
-   + Alternatively, if `eu-central-1` is your home region, use `https://arsenal-discovery.eu-central-1.amazonaws.com:443`
+   + For example, if your home region is `eu-central-1`, you'd use `https://arsenal-discovery.eu-central-1.amazonaws.com:443`
+   + Or substitute your home region as needed for all other regions except us\-west\-2\.
+   + If `us-west-2` is your home region, use `https://arsenal.us-west-2.amazonaws.com:443`
 **Note**  
 Agents also work with transparent web proxies\. However, if you need to **configure a non\-transparent proxy**, proceed to the next step\.
 

@@ -1,26 +1,39 @@
 # Configure the AWS Discovery Connector<a name="configure-connector"></a>
 
-To finish the setup process, open a web browser and complete the following procedure and optional tasks within this section\. Be sure you have first selected a home region in Migration Hub\. 
+To finish the setup process,  complete the following procedure and the optional connector configuration tasks as needed\. 
+
+**Reminder**  
+Before starting the procedure select a [Migration Hub home region](https://docs.aws.amazon.com/migrationhub/latest/ug/home-region.html), if you haven't already done so\. 
 
 **To configure the connector using it's console**
 
 1. In a web browser, type the following URL in the address bar:  **https://***<ip\_address>***/**, where *ip\_address* is the IP address of the connector console that you saved earlier\. 
 
-1. Choose **Get started now** and follow the wizard steps\.
+1. Choose **Get started now** and then follow the directions to complete the following setup pages: **License Agreement**, **Create a Password**, and **Network Info\.** 
 
-1. In **Step 5: Discovery Connector Set Up** of the wizard steps, choose **Configure vCenter credentials**:
+1. On the **Log Uploads and Upgrades** page, select **Upload logs automatically** if you want to automatically upload your logs to make them available to AWS for troubleshooting connector issues\. 
 
-   1. For **vCenter Host**, type the hostname or IP address of your VMware vCenter Server host\.
+   The **AWS Agentless Discovery Connector auto\-upgrade** feature is enabled by default\. Running the latest version of the connector ensures that the latest security patches are installed\. You can disable auto\-upgrades at any time, see [Disabling Auto\-Upgrades on AWS Discovery Connector](#connector_auto_upgrade)\.
 
-   1. For **vCenter Username**, type the name of a local or domain user that the connector uses to communicate with vCenter\. For domain users, use the form *domain*\\*username* or *username*@*domain*\.
+1. On the ** Discovery Connector Set Up** page, perform the following:
 
-   1. For **vCenter Password**, type the local or domain user password\.
+   1. Under **Configure vCenter credentials**:
 
-   1. Choose **Ignore security certificate** to bypass SSL certificate validation with vCenter\.
+      1. For **vCenter Host**, enter the hostname or IP address of your VMware vCenter Server host\.
 
-1. Choose **Configure AWS credentials** and type the credentials for the IAM user who is assigned the `AWSAgentlessDiscoveryService` IAM policy that you created in [Step 3: Provide Application Discovery Service Access to Non\-Administrator Users by Attaching Policies](setting-up.md#setting-up-user-policy), and then choose **Next**\.
+      1. For **vCenter Username**, enter the name of a local or domain user that the connector uses to communicate with vCenter\. For domain users, use the form *domain*\\*username* or *username*@*domain*\.
 
-1. Choose **Configure where to publish data** and select suitable publishing options\. Choose **Next** and you should see the AWS Agentless Discovery Connector console\.
+      1. For **vCenter Password**, enter the local or domain user password\.
+
+      1. Choose **Ignore security certificate** to bypass SSL certificate validation with vCenter\.
+
+   1. Under **Configure AWS credentials**, enter the credentials for the IAM user who is assigned the `AWSAgentlessDiscoveryService` IAM policy that you created in [ Provide Application Discovery Service Access to Non\-Administrator Users by Attaching Policies](setting-up.md#setting-up-user-policy), and then choose **Next**\.
+
+   1. Under **Configure where to publish data**, select to publish to a local file or a region endpoint\. If publishing to an endpoint, you must choose your home region for **AWS Region**\. 
+
+      Then choose **Next** to go back to the AWS Agentless Discovery Connector console\.
+
+The following topics describe optional connector configuration tasks\.
 
 **Topics**
 + [Configure a static IP address for the connector](#connector_static_ip)

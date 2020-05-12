@@ -6,8 +6,9 @@ The AWS Discovery Agent is AWS software that you install on on\-premises servers
 Before you deploy the Discovery Agent, you must choose a [Migration Hub home region](https://docs.aws.amazon.com/migrationhub/latest/ug/home-region.html)\. You must register your agent in your home region\.
 
 The Discovery Agent runs in your local environment and requires root privileges\. When you start the Discovery Agent, it connects securely with your home region and registers with Discovery Agent\.
-+ For example, if `us-west-2` is your home region, it registers `arsenal.us-west-2.amazonaws.com` with Application Discovery Service\. 
-+ Alternatively, if `eu-central-1` is your home region, it registers `arsenal-discovery.eu-central-1.amazonaws.com` with Application Discovery Service\.
++ For example, if `eu-central-1` is your home region, it registers `arsenal-discovery.eu-central-1.amazonaws.com` with Application Discovery Service\.
++ Or substitute your home region as needed for all other regions except us\-west\-2\.
++ If `us-west-2` is your home region, it registers `arsenal.us-west-2.amazonaws.com` with Application Discovery Service\. 
 
 **How it works**
 
