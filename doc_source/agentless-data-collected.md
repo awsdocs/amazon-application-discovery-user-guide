@@ -1,6 +1,6 @@
 # Data Collected by the Discovery Connector<a name="agentless-data-collected"></a>
 
-The Discovery Connector collects information about your VMware vCenter Server hosts and VMs\. However, you can capture this data only if VMware vCenter Server tools are installed\. See [Step 3: Provide Application Discovery Service Access to Non\-Administrator Users by Attaching Policies](setting-up.md#setting-up-user-policy) for Discovery Connector installation prerequisites\.
+The Discovery Connector collects information about your VMware vCenter Server hosts and VMs\. However, you can capture this data only if VMware vCenter Server tools are installed\. To make sure the AWS account you are using has the required permission for this task, see [AWS Managed \(Predefined\) Policies for Application Discovery Service](security-iam-managed-policies.md)\. 
 
 Following, you can find an inventory of the information collected by the Discovery Connector\.
 

@@ -1,6 +1,6 @@
 # Configure the AWS Discovery Connector<a name="configure-connector"></a>
 
-To finish the setup process,  complete the following procedure and the optional connector configuration tasks as needed\. 
+To finish the setup process, complete the following procedure and the optional connector configuration tasks as needed\. 
 
 **Reminder**  
 Before starting the procedure select a [Migration Hub home region](https://docs.aws.amazon.com/migrationhub/latest/ug/home-region.html), if you haven't already done so\. 
@@ -27,7 +27,9 @@ Before starting the procedure select a [Migration Hub home region](https://docs.
 
       1. Choose **Ignore security certificate** to bypass SSL certificate validation with vCenter\.
 
-   1. Under **Configure AWS credentials**, enter the credentials for the IAM user who is assigned the `AWSAgentlessDiscoveryService` IAM policy that you created in [ Provide Application Discovery Service Access to Non\-Administrator Users by Attaching Policies](setting-up.md#setting-up-user-policy), and then choose **Next**\.
+   1. Under **Configure AWS credentials**, enter the credentials for the IAM user who is assigned the `AWSAgentlessDiscoveryService` IAM managed policy\. For more information about managed policies, see [AWS Managed \(Predefined\) Policies for Application Discovery Service](security-iam-managed-policies.md)\. 
+
+      Then choose **Next**\.
 
    1. Under **Configure where to publish data**, select to publish to a local file or a region endpoint\. If publishing to an endpoint, you must choose your home region for **AWS Region**\. 
 

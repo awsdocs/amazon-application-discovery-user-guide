@@ -1,6 +1,10 @@
 # Enabling Data Exploration in Amazon Athena<a name="ce-prep-agents"></a>
 
-Before you can actually see and start exploring your discovered data in Amazon Athena, Data Exploration in Amazon Athena must first be enabled by Continuous Export implicitly being turned on when you choose "Start data collection", or click the toggle labeled, "Data exploration in Amazon Athena" on the **Data Collectors** page of the Migration Hub console\. Data Exploration in Amazon Athena can also be enabled by Continuous Export explicitly being turned on through an API call from the AWS CLI\. Instructions are provided below for both ways by expanding your method of choice:
+Data Exploration in Amazon Athena is enabled by turning on Continuous Export using the Migration Hub console or an API call from the AWS CLI\. You must turn on data exploration before you can see and start exploring your discovered data in Amazon Athena, 
+
+When you turn on Continuous Export the service\-linked role `AWSServiceRoleForApplicationDiscoveryServiceContinuousExport` is automatically used by your account\. For more information about this service\-linked role, see [Service\-Linked Role Permissions for Application Discovery Service](service-linked-role-permissions.md)\. 
+
+The following instructions show how to enable Data Exploration in Amazon Athena by using the console and the AWS CLI\.
 
 ------
 #### [ Enable with the console ]
