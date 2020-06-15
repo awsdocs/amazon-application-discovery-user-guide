@@ -54,6 +54,7 @@ Amazon's trademarks and trade dress may not be used in
          + [Deleting a Service-Linked Role for Application Discovery Service](delete-service-linked-role.md)
       + [Troubleshooting AWS Application Discovery Service Identity and Access](security_iam_troubleshoot.md)
    + [Logging and monitoring in AWS Application Discovery Service](logging-monitoring.md)
+      + [Logging Application Discovery Service API Calls with AWS CloudTrail](logging-using-cloudtrail.md)
 + [AWS Application Discovery Service Limits](ads_service_limits.md)
 + [Troubleshooting Data Exploration in Amazon Athena](troubleshooting.md)
 + [Document History for AWS Application Discovery Service](doc-history.md)
