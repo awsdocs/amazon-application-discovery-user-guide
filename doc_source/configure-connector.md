@@ -13,7 +13,7 @@ Before starting the procedure select a [Migration Hub home region](https://docs.
 
 1. On the **Log Uploads and Upgrades** page, select **Upload logs automatically** if you want to automatically upload your logs to make them available to AWS for troubleshooting connector issues\. 
 
-   The **AWS Agentless Discovery Connector auto\-upgrade** feature is enabled by default\. Running the latest version of the connector ensures that the latest security patches are installed\. You can disable auto\-upgrades at any time, see [Disabling Auto\-Upgrades on AWS Discovery Connector](#connector_auto_upgrade)\.
+   The **AWS Agentless Discovery Connector auto\-upgrade** feature is enabled by default\. Running the latest version of the connector ensures that the latest security patches are installed\. You can disable auto\-upgrades at any time, see [Disabling auto\-upgrades on AWS Discovery Connector](#connector_auto_upgrade)\.
 
 1. On the ** Discovery Connector Set Up** page, perform the following:
 
@@ -31,7 +31,7 @@ Before starting the procedure select a [Migration Hub home region](https://docs.
 
       Then choose **Next**\.
 
-   1. Under **Configure where to publish data**, select to publish to a local file or a region endpoint\. If publishing to an endpoint, you must choose your home region for **AWS Region**\. 
+   1. Under **Configure where to publish data**, select to publish to a local file or to a specific AWS Regional endpoint\. If you select to publish to a local file, your Discovery Connector will not send data about your on\-premise servers to AWS\. However, the Discovery Connector will continue to send data about the connector itself to AWS\. 
 
       Then choose **Next** to go back to the AWS Agentless Discovery Connector console\.
 
@@ -39,8 +39,8 @@ The following topics describe optional connector configuration tasks\.
 
 **Topics**
 + [Configure a static IP address for the connector](#connector_static_ip)
-+ [Control the Scope of Data Collection](#data-collection-scope)
-+ [Disabling Auto\-Upgrades on AWS Discovery Connector](#connector_auto_upgrade)
++ [Control the scope of data collection](#data-collection-scope)
++ [Disabling auto\-upgrades on AWS Discovery Connector](#connector_auto_upgrade)
 
 ## Configure a static IP address for the connector<a name="connector_static_ip"></a>
 
@@ -69,7 +69,7 @@ Follow this procedure if your environment requires that you use a static IP addr
      Static IP address configured.
      ```
 
-## Control the Scope of Data Collection<a name="data-collection-scope"></a>
+## Control the scope of data collection<a name="data-collection-scope"></a>
 
 The vCenter user requires read\-only permissions on each ESX host or VM to inventory using Application Discovery Service\. Using the permission settings, you can control which hosts and VMs are included in the data collection\. You can either allow all hosts and VMs under the current vCenter to be inventoried, or grant permissions on a case\-by\-case basis\.
 
@@ -119,7 +119,7 @@ The following procedures describe configuration scenarios ordered from least gra
 **Note**  
 If you chose **Propagate to children**, you can still remove the read\-only permission from ESX hosts and VMs on a case\-by\-case basis\. This option has no effect on inherited permissions applying to other ESX hosts and VMs\. 
 
-## Disabling Auto\-Upgrades on AWS Discovery Connector<a name="connector_auto_upgrade"></a>
+## Disabling auto\-upgrades on AWS Discovery Connector<a name="connector_auto_upgrade"></a>
 
 To ensure that you are running the latest version of AWS Discovery Connector, the auto\-upgrade feature is enabled by default upon installation\. However, you may disable the auto\-upgrade feature as shown below\.
 

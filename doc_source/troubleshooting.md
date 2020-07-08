@@ -3,12 +3,12 @@
 In this section, you can find information about how to fix common issues with your AWS Application Discovery Service\.
 
 **Topics**
-+ [Stop Data Collection by Data Exploration](#stop-data-collection)
++ [Stop data collection by Data Exploration](#stop-data-collection)
 + [Remove data collected by Data Exploration](#remove-collected-data)
-+ [Fix Common Issues with Data Exploration in Amazon Athena](#troubleshoot-data-exploration)
++ [Fix Common issues with Data Exploration in Amazon Athena](#troubleshoot-data-exploration)
 + [Troubleshooting Failed Import Records](#troubleshooting-import-failed-records)
 
-## Stop Data Collection by Data Exploration<a name="stop-data-collection"></a>
+## Stop data collection by Data Exploration<a name="stop-data-collection"></a>
 
 To stop Data Exploration, you can either switch off the toggle switch in the Migration Hub console under Discover > Data Collectors > Agents tab, or invoke the `StopContinuousExport` API\. It can take up to 30 minutes to stop the data collection, and during this stage, the toggle switch on the console and the `DescribeContinuousExport` API invocation will show the Data Exploration state as "Stop In Progress"\.
 
@@ -70,7 +70,7 @@ Deleting the Amazon S3 bucket or any of the objects in it while Data Exploration
 **Removing your data from AWS Application Discovery Service**  
 To have all your data removed from Application Discovery Service, contact [AWS Support](https://aws.amazon.com/contact-us/) and request full data deletion\.
 
-## Fix Common Issues with Data Exploration in Amazon Athena<a name="troubleshoot-data-exploration"></a>
+## Fix Common issues with Data Exploration in Amazon Athena<a name="troubleshoot-data-exploration"></a>
 
 In this section, you can find information about how to fix common issues with Data Exploration in Amazon Athena\. 
 

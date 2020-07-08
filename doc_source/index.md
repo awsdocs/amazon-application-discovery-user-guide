@@ -29,7 +29,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Download the Discovery Connector](setting-up-agentless.md)
    + [Deploy the Discovery Connector](deploy-connector-appliance.md)
    + [Configure the AWS Discovery Connector](configure-connector.md)
-   + [Start Discovery Connector Data Collection](start-connector-data-collection.md)
+   + [Start Discovery Connector data collection](start-connector-data-collection.md)
    + [Troubleshooting the Discovery Connector](agentless-troubleshooting.md)
 + [Migration Hub Import](discovery-import.md)
 + [View, Export, and Explore Discovered Data](view-and-export.md)

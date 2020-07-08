@@ -1,6 +1,6 @@
-# Start Discovery Connector Data Collection<a name="start-connector-data-collection"></a>
+# Start Discovery Connector data collection<a name="start-connector-data-collection"></a>
 
-After you have deployed and configured the Discovery Connector in your VMware environment, you must complete the final step of actually turning on its data collection process\.You can turn on data collection through the console or by making API calls through the AWS CLI\. Instructions are provided below for both methods\.
+After you have deployed and configured the Discovery Connector in your VMware environment, you must complete the final step of actually turning on its data collection process\. You can turn on data collection through the console or by making API calls through the AWS CLI\. Instructions are provided below for both methods\.
 
 ------
 #### [ Using the Migration HubConsole ]
