@@ -45,46 +45,13 @@ If you are using a non\-current Linux version, see [Requirements on Older Linux 
    tar -xzf aws-discovery-agent.tar.gz
    ```
 
-1. Run the command to install the agent in your home region\. In this example, we use the string `Your_Home_Region`to show where to insert your home region\.
-
-   ```
-   sudo bash install -r Your_Home_Region -k <aws key id> -s <aws key secret>
-   ```
-**Note**  
-Agents automatically download and apply updates as they become available\. We recommend using this default configuration\. However, if you don't want agents to download and apply updates automatically, include the `-u false` parameter when running the installation script\.
+1. To install the agent, choose one of the following installation methods\.    
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/application-discovery/latest/userguide/install_on_linux.html)
 
 1. If outbound connections from your network are restricted, you'll need to update your firewall settings\. Agents require access to `arsenal` over TCP port 443\. They don't require any inbound ports to be open\.
    + For example, if your home region is `eu-central-1`, you'd use `https://arsenal-discovery.eu-central-1.amazonaws.com:443`
    + Or substitute your home region as needed for all other regions except us\-west\-2\.
    + If `us-west-2` is your home region, use `https://arsenal.us-west-2.amazonaws.com:443`
-**Note**  
-Agents also work with transparent web proxies\. However, if you need to **configure a non\-transparent proxy**, proceed to the next step\.
-
-1. Optional: To Configure a Non\-Transparent Proxy:
-
-   1. Find the configuration file as described in [Agent Troubleshooting on Linux](#linux_troubleshooting) and edit the file by adding the required configuration data as follows:
-
-      ```
-      "proxyHost" : "<myproxy.mycompany.com>",
-      "proxyPort" : <1234>,
-      "proxyUser" : "<myusername>",
-      "proxyPassword" : "<mypassword>",
-      ```
-
-   1. Save the edited configuration file ensuring that you still have valid json \(taking care with the quotes and the commas\)\. If your proxy doesn't require authentication, then leave out *proxyUser* and *proxyPassword*\. While most proxies use HTTP, if your proxy uses HTTPS, specify the following in the configuration file:
-
-      ```
-      "proxyScheme" : "https"
-      ```
-
-   1. Restart the agent\. 
-**Note**  
-If you encounter problems, add the following to the configuration file:  
-
-      ```
-      "enableAWSSDKLogging" : true
-      ```
-Then, restart the agent again, let it run for at least 15 minutes, and contact [AWS Support](https://aws.amazon.com/contact-us/)\. They will help you troubleshoot and may ask you to send them the generated log files which can be found as described in [Agent Troubleshooting on Linux](#linux_troubleshooting)\.
 
 **Topics**
 + [Requirements on Older Linux Platforms](#old_linux)
@@ -107,7 +74,7 @@ Older Linux systems might have an out\-of\-date Certificate Authority \(CA\) bun
 These three installation script options can be used in any combination\. In the following example command, all three have been passed to the installation script: 
 
 ```
-sudo bash install -r Your_Home_Region -k <aws key id> -s <aws key secret> -p false -c true -b true
+sudo bash install -r your-home_region -k aws-access-key-id -s aws-secret-access-key -p false -c true -b true
 ```
 
  

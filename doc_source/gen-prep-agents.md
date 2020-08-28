@@ -5,10 +5,10 @@
   + **Linux**
     + Amazon Linux 2012\.03, 2015\.03
     + Amazon Linux 2 \(9/25/2018 update and later\)
-    + Ubuntu 12\.04, 14\.04, 16\.04, 18\.04
-    + Red Hat Enterprise Linux 5\.11, 6\.10, 7\.7, 8\.1
+    + Ubuntu 12\.04, 14\.04, 16\.04, 18\.04, 20\.04
+    + Red Hat Enterprise Linux 5\.11, 6\.10, 7\.3, 7\.7, 8\.1
     + CentOS 5\.11, 6\.9, 7\.3
-    + SUSE 11 SP4, 12 SP2
+    + SUSE 11 SP4, 12 SP5
   + **Windows**
     + Windows Server 2003 R2 SP2
     + Windows Server 2008 R1 SP2, 2008 R2 SP1

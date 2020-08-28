@@ -11,7 +11,7 @@ Before starting the procedure select a [Migration Hub home region](https://docs.
 
 1. Choose **Get started now** and then follow the directions to complete the following setup pages: **License Agreement**, **Create a Password**, and **Network Info\.** 
 
-1. On the **Log Uploads and Upgrades** page, select **Upload logs automatically** if you want to automatically upload your logs to make them available to AWS for troubleshooting connector issues\. 
+1. On the **Log Uploads and Upgrades** page, we recommend that you select **Upload logs automatically**\. When your logs are made available through automatic uploads, AWS can better help you troubleshoot connector issues\. 
 
    The **AWS Agentless Discovery Connector auto\-upgrade** feature is enabled by default\. Running the latest version of the connector ensures that the latest security patches are installed\. You can disable auto\-upgrades at any time, see [Disabling auto\-upgrades on AWS Discovery Connector](#connector_auto_upgrade)\.
 
