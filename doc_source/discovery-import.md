@@ -13,7 +13,7 @@ After an import request is complete, you can view the details of individual impo
 
 **Handling errors:** A link is provided to download the error log and failed records files as CSV files in a compressed archive\. Use these files to resubmit your import request after correcting the errors\.
 
-Limits apply to the number of imported records, imported servers, and deleted records you can keep\. For more information see [AWS Application Discovery Service Limits](ads_service_limits.md)\.
+Limits apply to the number of imported records, imported servers, and deleted records you can keep\. For more information, see [AWS Application Discovery Service Limits](ads_service_limits.md)\.
 
 ## Supported Import File Fields<a name="import-supported-fields"></a>
 
@@ -36,7 +36,7 @@ If you're using either VMware\.MoRefId or VMWare\.VCenterId, to identify a recor
 | VMware\.VCenterId\* | Virtual machine unique identifier\. Must be provided with a VMware\.MoRefId\. |  | 
 | CPU\.NumberOfProcessors | The number of CPUs\. | 4 | 
 | CPU\.NumberOfCores | The total number of physical cores\. | 8 | 
-| CPU\.NumberOfLogicalCores | The total number of threads that can execute concurrently on all CPUs in a server\. Some CPUs support multiple threads to run concurrently on a single CPU core\. In those cases, this number will be larger than the number of physical \(or virtual\) cores\. | 16 | 
+| CPU\.NumberOfLogicalCores | The total number of threads that can run concurrently on all CPUs in a server\. Some CPUs support multiple threads to run concurrently on a single CPU core\. In those cases, this number will be larger than the number of physical \(or virtual\) cores\. | 16 | 
 | OS\.Name | The name of the operating system\. | LinuxWindows\.Hat | 
 | OS\.Version | The version of the operating system\. | 16\.04\.3NT 6\.2\.8 | 
 | VMware\.VMName | The name of the virtual machine\. | Corp1 | 
@@ -223,7 +223,7 @@ Next, you must upload your CSV formatted import file into Amazon S3 so it can be
 
 ## Importing Data<a name="start-data-import"></a>
 
-After you have downloaded the import template from the Migration Hub console and have populated it with your existing on\-premises server data, you are ready to start importing the data into Migration Hub\.There are two ways to do this: Through the console or by making API calls through the AWS CLI\. Instructions are provided below for both ways\.
+After you have downloaded the import template from the Migration Hub console and have populated it with your existing on\-premises server data, you are ready to start importing the data into Migration Hub\. There are two ways to do this: Through the console or by making API calls through the AWS CLI\. Instructions are provided below for both ways\.
 
 ------
 #### [ Console Import ]

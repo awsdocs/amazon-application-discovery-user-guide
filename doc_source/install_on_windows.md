@@ -6,9 +6,9 @@ Complete the following procedure to install an agent on Windows\. Be sure that y
 
 1. Navigate to the [Microsoft Download Center](https://www.microsoft.com/en-us/download/details.aspx?id=48145) and choose **Download** to be taken to the download selection page, then on this page, select only **`vc_redist.x86.exe`** *\(do not select the "x64" version\)* regardless of the architecture of the machine you are installing on, then choose **Next**\. Your download begins immediately\.
 
-1. Download the [Windows agent installer](https://s3.us-west-2.amazonaws.com/aws-discovery-agent.us-west-2/windows/latest/AWSDiscoveryAgentInstaller.msi) *but do not double\-click and execute the installer within Windows*\.
+1. Download the [Windows agent installer](https://s3.us-west-2.amazonaws.com/aws-discovery-agent.us-west-2/windows/latest/AWSDiscoveryAgentInstaller.msi) *but do not double\-click to run the installer within Windows*\.
 **Important**  
-Do not double\-click and execute the installer within Windows as it will fail to install\. *Agent installation only works from the command prompt*\. \(If you already double\-clicked on the installer, you must go to **Add/Remove Programs** and uninstall the agent before continuing on with the remaining installation steps\.\)
+Do not double\-click to run the installer within Windows as it will fail to install\. *Agent installation only works from the command prompt*\. \(If you already double\-clicked on the installer, you must go to **Add/Remove Programs** and uninstall the agent before continuing on with the remaining installation steps\.\)
 
 1. Open a command prompt as an administrator and navigate to the location where you saved the installation package\.
 

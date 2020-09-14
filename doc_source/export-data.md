@@ -40,7 +40,7 @@ Collected data from all the Discovery Connectors and Discovery Agents running on
 
 ## Export Agent Collected Data Using the Console<a name="export-data-console"></a>
 
-Exporting agent collected data from the console is limited to one agent when you are on the detail page for a specific server\. There, you can find the server's export jobs listed at the bottom of the screen, underneath **Exports**\. If no export jobs yet exist, the table is empty\. You can execute up to five exports of server data at a time\.
+Exporting agent collected data from the console is limited to one agent when you are on the detail page for a specific server\. There, you can find the server's export jobs listed at the bottom of the screen, underneath **Exports**\. If no export jobs yet exist, the table is empty\. You can run up to five exports of server data at a time\.
 
 **To export collected data about a discovered server**
 
