@@ -7,7 +7,7 @@ If you are using a non\-current Linux version, see [Requirements on Older Linux 
 
 **To install AWS Application Discovery Agent in your data center**
 
-1. Log in to your Linux\-based server or VM and create a new directory to contain your agent components\.
+1. Sign in to your Linux\-based server or VM and create a new directory to contain your agent components\.
 
 1. Switch to the new directory and download the installation script from either the command line or the console\.
 
@@ -49,32 +49,31 @@ If you are using a non\-current Linux version, see [Requirements on Older Linux 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/application-discovery/latest/userguide/install_on_linux.html)
 
 1. If outbound connections from your network are restricted, you'll need to update your firewall settings\. Agents require access to `arsenal` over TCP port 443\. They don't require any inbound ports to be open\.
-   + For example, if your home region is `eu-central-1`, you'd use `https://arsenal-discovery.eu-central-1.amazonaws.com:443`
-   + Or substitute your home region as needed for all other regions except us\-west\-2\.
-   + If `us-west-2` is your home region, use `https://arsenal.us-west-2.amazonaws.com:443`
+
+   For example, if your home region is `eu-central-1`, you'd use `https://arsenal-discovery.eu-central-1.amazonaws.com:443`
 
 **Topics**
 + [Requirements on Older Linux Platforms](#old_linux)
 + [Manage the Discovery Agent Process on Linux](#using_on_linux)
++ [Uninstall Discovery Agent on Linux](#using_on_linux-uninstall)
 + [Agent Troubleshooting on Linux](#linux_troubleshooting)
 
 ## Requirements on Older Linux Platforms<a name="old_linux"></a>
 
-Some older Linux platforms such as SUSE 10, CentOS 5, and RHEL 5 are either at end of life or only minimally supported\. These platforms can suffer from out\-of\-date cipher suites that prevent the agent installation script from downloading installation packages\. They might also have a limited ability to find and download the platform libraries required by the agent from deprecated Linux repositories\. 
-
-**32\-bit `libc`**  
-One of the dependencies needed for the Application Discovery agent is 32\-bit `libc`\. This library must be installed on 64\-bit systems that run the agent\. If the installation script exits because it fails to find a suitable repository or otherwise fails to install 32\-bit `libc`, you must manually find and install 32\-bit `libc` before you can complete agent installation\. Because 32\-bit `libc` is a core Linux library, you must take great care in identifying a package that is compatible with your system\. We recommend contacting AWS Support for assistance\. After 32\-bit `libc` is installed, run the installation script with the `-p false` parameter to skip the automated search of Linux repositories for prerequisites\.
+Some older Linux platforms such as SUSE 10, CentOS 5, and RHEL 5 are either at end of life or only minimally supported\. These platforms can suffer from out\-of\-date cipher suites that prevent the agent update script from downloading installation packages\. 
 
 **Curl**  
-The Application Discovery agent requires `curl` for secure communications with the AWS server\. Some old versions of `curl` are not able to communicate securely with a modern web service\. To use the version of `curl` included with the Application Discovery agent for all operations, run the installation script with the `-c true` parameter\. 
+The Application Discovery agent requires `curl` for secure communications with the AWS server\. Some old versions of `curl` are not able to communicate securely with a modern web service\.   
+To use the version of `curl` included with the Application Discovery agent for all operations, run the installation script with the `-c true` parameter\. 
 
 **Certificate Authority Bundle**  
-Older Linux systems might have an out\-of\-date Certificate Authority \(CA\) bundle, which is critical to secure internet communication\. To use the CA bundle included with the Application Discovery agent for all operations, run the installation script with the `-b true` parameter\.
+Older Linux systems might have an out\-of\-date Certificate Authority \(CA\) bundle, which is critical to secure internet communication\.   
+To use the CA bundle included with the Application Discovery agent for all operations, run the installation script with the `-b true` parameter\.
 
-These three installation script options can be used in any combination\. In the following example command, all three have been passed to the installation script: 
+These installation script options can be used together\. In the following example command, both of the script parameters are passed to the installation script: 
 
 ```
-sudo bash install -r your-home_region -k aws-access-key-id -s aws-secret-access-key -p false -c true -b true
+sudo bash install -r your-home_region -k aws-access-key-id -s aws-secret-access-key -c true -b true
 ```
 
  
@@ -95,7 +94,6 @@ You can manage the behavior of the Discovery Agent at the system level using the
 | Start an agent |  `sudo systemctl start aws-discovery-daemon.service`   | 
 | Stop an agent |  `sudo systemctl stop aws-discovery-daemon.service`   | 
 | Restart an agent |  `sudo systemctl restart aws-discovery-daemon.service`   | 
-| Uninstall an agent |  `yum remove aws-discovery-agent`   | 
 
 ------
 #### [ Upstart ]
@@ -109,7 +107,6 @@ You can manage the behavior of the Discovery Agent at the system level using the
 | Start an agent |  `sudo initctl start aws-discovery-daemon`   | 
 | Stop an agent |  `sudo initctl stop aws-discovery-daemon`   | 
 | Restart an agent |  `sudo initctl restart aws-discovery-daemon`   | 
-| Uninstall an agent |  `apt-get remove aws-discovery-agent`   | 
 
 ------
 #### [ System V init ]
@@ -123,29 +120,59 @@ You can manage the behavior of the Discovery Agent at the system level using the
 | Start an agent |  `sudo /etc/init.d/aws-discovery-daemon start`   | 
 | Stop an agent |  `sudo /etc/init.d/aws-discovery-daemon stop`   | 
 | Restart an agent |  `sudo /etc/init.d/aws-discovery-daemon restart`   | 
-| Uninstall an agent |  `zypper remove aws-discovery-agent`   | 
 
 ------
 
+## Uninstall Discovery Agent on Linux<a name="using_on_linux-uninstall"></a>
+
+This section describes how to uninstall Discovery Agent on Linux\.
+
+**To uninstall an agent if you're using the yum package manager**
++ Use the following command to uninstall an agent if using yum\.
+
+  ```
+  rpm -e --nodeps aws-discovery-agent
+  ```
+
+**To uninstall an agent if you're using the apt\-get package manager**
++ Use the following command to uninstall an agent if using apt\-get\.
+
+  ```
+  apt-get remove aws-discovery-agent:i386
+  ```
+
+**To uninstall an agent if you're using the zypper package manager**
++ Use the following command to uninstall an agent if using zypper\.
+
+  ```
+  zypper remove aws-discovery-agent
+  ```
+
 ## Agent Troubleshooting on Linux<a name="linux_troubleshooting"></a>
 
-If you encounter problems while installing or using the Application Discovery Agent on Linux, consult the following guidance about logging and configuration\. When helping to troubleshoot potential issues with the agent or its connection to the Application Discovery Service, AWS Support often requests these files\. 
+If you encounter problems while installing or using the Discovery Agent on Linux, consult the following guidance about logging and configuration\. When helping to troubleshoot potential issues with the agent or its connection to the Application Discovery Service, AWS Support often requests these files\. 
 + **Log files**
 
-  Agent log files can be found under the following directory\. 
+  Log files for Discovery Agent are located in the following directory\. 
 
   ```
   /var/log/aws/discovery/
   ```
 
-  Log files are named to indicate whether they are generated by the main daemon, the automatic upgrader, or installer\.
+  Log files are named to indicate whether they are generated by the main daemon, the automatic upgrader, or the installer\.
 
    
 + **Configuration files**
 
-  Agent configuration files can be found under the following directory\.
+  Configuration files for Discovery Agent version 2\.0\.1617\.0 or newer are located in the following directory\.
+
+  ```
+  /etc/opt/aws/discovery/
+  ```
+
+  Configuration files for versions of Discovery Agent before 2\.0\.1617\.0 are located in the following directory\.
 
   ```
   /var/opt/aws/discovery/
   ```
-+ For instructions on how to remove older versions of the Discovery Agent, see [Prerequisites for Agent Installation](gen-prep-agents.md)\.
++ For instructions on how to remove older versions of the Discovery Agent, see [Installation Prerequisites for Discovery Agent](gen-prep-agents.md)\.

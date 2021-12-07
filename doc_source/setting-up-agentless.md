@@ -4,7 +4,7 @@
 To set up agentless discovery, you must download and deploy the Discovery Connector, which is a virtual appliance, on a VMware vCenter Server host in your on\-premises environment\. The Discovery Connector is an Open Virtualization Archive \(OVA\) file that you must install in your on\-premises VMware environment\.
 
 **Reminder**  
-Discovery Connector supports VMware vCenter versions V5\.5, V6, and V6\.5\.
+Discovery Connector supports VMware vCenter versions V5\.5, V6\.0, V6\.5, V6\.7, and 7\.0\.
 
 Beginning with this section and those that follow on this page, you will be instructed how to download, deploy, configure, and start collecting data using the Discovery Connector\.
 

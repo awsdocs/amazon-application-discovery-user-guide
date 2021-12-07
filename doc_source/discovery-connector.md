@@ -9,12 +9,12 @@ Before you deploy the Discovery Connector, you must choose a [Migration Hub home
 
 **How it works**
 
-When you start the connector's data collecting process, it connects to VMware vCenter Server where it collects information about all the VMs and hosts managed by this specific vCenter\. The collected data is sent to the Application Discovery Service using Secure Sockets Layer \(SSL\) encryption\. The connector is configured to upgrade automatically when new versions of the connector become available\. You can change this configuration setting at any time\. 
+After registration, the connector connects to VMware vCenter Server, where it collects data about all the VMs and hosts managed by this specific vCenter\. The collected data is sent to the Application Discovery Service using Secure Sockets Layer \(SSL\) encryption\. The connector is configured to upgrade automatically when new versions of the connector become available\. You can change this configuration setting at any time\. 
 
 **Topics**
 + [Data Collected by the Discovery Connector](agentless-data-collected.md)
 + [Download the Discovery Connector](setting-up-agentless.md)
 + [Deploy the Discovery Connector](deploy-connector-appliance.md)
 + [Configure the AWS Discovery Connector](configure-connector.md)
-+ [Start Discovery Connector data collection](start-connector-data-collection.md)
++ [Discovery Connector Data Collection](start-connector-data-collection.md)
 + [Troubleshooting the Discovery Connector](agentless-troubleshooting.md)

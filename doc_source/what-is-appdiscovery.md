@@ -33,13 +33,13 @@ The following table provides a quick comparison of two primary Application Disco
 | [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/application-discovery/latest/userguide/what-is-appdiscovery.html) | [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/application-discovery/latest/userguide/what-is-appdiscovery.html) |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/application-discovery/latest/userguide/what-is-appdiscovery.html)  | 
 | [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/application-discovery/latest/userguide/what-is-appdiscovery.html) | [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/application-discovery/latest/userguide/what-is-appdiscovery.html) |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/application-discovery/latest/userguide/what-is-appdiscovery.html)  | 
 | [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/application-discovery/latest/userguide/what-is-appdiscovery.html) | [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/application-discovery/latest/userguide/what-is-appdiscovery.html) |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/application-discovery/latest/userguide/what-is-appdiscovery.html)  | 
-| [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/application-discovery/latest/userguide/what-is-appdiscovery.html) | Any OS running in VMware vCenter \(V5\.5, V6, & V6\.5\) |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/application-discovery/latest/userguide/what-is-appdiscovery.html)  | 
+| [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/application-discovery/latest/userguide/what-is-appdiscovery.html)  | Any OS running in VMware vCenter \(V5\.5, V6, & V6\.5\) |  For the list of supported Linux and Windows operating systems, see [Installation Prerequisites for Discovery Agent](gen-prep-agents.md)\.  | 
 
 ## Assumptions<a name="assumptions"></a>
 
-To use Application Discovery Service, the following is assumed\.
-+ You have signed up for AWS\. For more information, see [Setting Up AWS Application Discovery Service](setting-up.md)
-+ You have selected a Migration Hub home region\. For more information, see [the documentation regarding home regions\.](https://docs.aws.amazon.com/migrationhub/latest/ug/home-region.html)
+To use Application Discovery Service, the following is assumed:
++ You have signed up for AWS\. For more information, see [Setting Up AWS Application Discovery Service](setting-up.md)\.
++ You have selected a Migration Hub home region\. For more information, see [the documentation regarding home regions](https://docs.aws.amazon.com/migrationhub/latest/ug/home-region.html)\.
 
 Here's what to expect:
 + The Migration Hub home region is the only region where Application Discovery Service stores your discovery and planning data\.

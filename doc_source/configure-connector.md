@@ -5,7 +5,7 @@ To finish the setup process, complete the following procedure and the optional c
 **Reminder**  
 Before starting the procedure select a [Migration Hub home region](https://docs.aws.amazon.com/migrationhub/latest/ug/home-region.html), if you haven't already done so\. 
 
-**To configure the connector using it's console**
+**To configure the connector using the console**
 
 1. In a web browser, type the following URL in the address bar:  **https://***<ip\_address>***/**, where *ip\_address* is the IP address of the connector console that you saved earlier\. 
 

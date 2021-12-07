@@ -178,56 +178,56 @@ After the `iana_service_ports_import` table is created, create two view helper f
 
 1. Open the Athena console at [https://console\.aws\.amazon\.com/athena/](https://console.aws.amazon.com/athena/home)\.
 
-1. Create the `valid_outbound_ips_helper` view, using the following helper function that lists all distinct outbound source IP addresses\.
+1. Create the `valid_outbound_ips_helper` view, using the following helper function that lists all distinct outbound destination IP addresses\.
 
    ```
    CREATE OR REPLACE VIEW valid_outbound_ips_helper AS 
-   SELECT DISTINCT "source_ip"
-   FROM
-     outbound_connection_agent;
+   SELECT DISTINCT "destination_ip"
+   FROM outbound_connection_agent;
    ```
 
 1. Create the `outbound_query_helper` view, using the following helper function that determines the frequency of communication for outbound traffic\.
 
    ```
-   CREATE OR REPLACE VIEW outbound_query_helper AS 
-   SELECT
-     "agent_id"
-   , "source_ip"
-   , "destination_ip"
-   , "destination_port"
-   , "agent_assigned_process_id"
-   , "count"(*) "frequency"
-   FROM
-     outbound_connection_agent
-   WHERE (("ip_version" = 'IPv4') AND ("destination_ip" IN (SELECT *
-   FROM
-     valid_outbound_ips_helper
-   )))
-   GROUP BY "agent_id", "source_ip", "destination_ip", "destination_port", "agent_assigned_process_id";
+   CREATE OR REPLACE VIEW outbound_query_helper AS
+   SELECT "agent_id" ,
+            "source_ip" ,
+            "destination_ip" ,
+            "destination_port" ,
+            "agent_assigned_process_id" ,
+            "count"(*) "frequency"
+   FROM outbound_connection_agent
+   WHERE (("ip_version" = 'IPv4')
+           AND ("destination_ip" IN 
+       (SELECT *
+       FROM valid_outbound_ips_helper )))
+   GROUP BY  "agent_id", "source_ip", "destination_ip", "destination_port", "agent_assigned_process_id";
    ```
 
 1. After you create the `iana_service_ports_import` table and your two helper functions, you can run the following query to get the details on the outbound traffic for each service, along with the port number and process details\.
 
    ```
-   SELECT DISTINCT
-     "hin1"."host_name" "Source Host Name"
-   , "hin2"."host_name" "Destination Host Name"
-   , "o"."source_ip" "Source IP Address"
-   , "o"."destination_ip" "Destination IP Address"
-   , "o"."frequency" "Connection Frequency"
-   , "o"."destination_port" "Destination Communication Port"
-   , "p"."name" "Process Name"
-   , "ianap"."servicename" "Process Service Name"
-   , "ianap"."description" "Process Service Description"
-   FROM
-     outbound_query_helper o
-   , hostname_ip_helper hin1
-   , hostname_ip_helper hin2
-   , processes_agent p
-   , iana_service_ports_import ianap
-   WHERE ((((("o"."source_ip" = "hin1"."ip_address") AND ("o"."destination_ip" = "hin2"."ip_address")) AND ("p"."agent_assigned_process_id" = "o"."agent_assigned_process_id")) AND ("hin1"."host_name" <> "hin2"."host_name")) AND (("o"."destination_port" = TRY_CAST("ianap"."portnumber" AS integer)) AND ("ianap"."transportprotocol" = 'tcp')))
-   ORDER BY "hin1"."host_name" ASC, "o"."frequency" DESC;
+   SELECT hip1.host_name "Source Host Name",
+            outbound_connections_results0.source_ip "Source IP Address",
+            hip2.host_name "Destination Host Name",
+            outbound_connections_results0.destination_ip "Destination IP Address",
+            outbound_connections_results0.frequency "Connection Frequency",
+            outbound_connections_results0.destination_port "Destination Communication Port",
+            outbound_connections_results0.servicename "Process Service Name",
+            outbound_connections_results0.description "Process Service Description"
+   FROM 
+       (SELECT DISTINCT o.source_ip,
+            o.destination_ip,
+            o.frequency,
+            o.destination_port,
+            ianap.servicename,
+            ianap.description
+       FROM outbound_query_helper o, iana_service_ports_import ianap
+       WHERE o.destination_port = TRY_CAST(ianap.portnumber AS integer)) AS outbound_connections_results0 LEFT OUTER
+   JOIN hostname_ip_helper hip1
+       ON outbound_connections_results0.source_ip = hip1.ip_address LEFT OUTER
+   JOIN hostname_ip_helper hip2
+       ON outbound_connections_results0.destination_ip = hip2.ip_address
    ```
 
 #### Track Inbound Communication Between Servers Based On Port Number and Process Details<a name="pq-analyze-inbound-connections"></a>
@@ -247,51 +247,51 @@ After the `iana_service_ports_import` table is created, create two view helper f
    ```
    CREATE OR REPLACE VIEW valid_inbound_ips_helper AS 
    SELECT DISTINCT "source_ip"
-   FROM
-     inbound_connection_agent;
+   FROM inbound_connection_agent;
    ```
 
 1. Create the `inbound_query_helper` view, using the following helper function that determines the frequency of communication for inbound traffic\.
 
    ```
    CREATE OR REPLACE VIEW inbound_query_helper AS 
-   SELECT
-     "agent_id"
-   , "source_ip"
-   , "destination_ip"
-   , "destination_port"
-   , "agent_assigned_process_id"
-   , "count"(*) "frequency"
-   FROM
-     inbound_connection_agent
-   WHERE (("ip_version" = 'IPv4') AND ("source_ip" IN (SELECT *
-   FROM
-     valid_inbound_ips_helper
-   )))
-   GROUP BY "agent_id", "source_ip", "destination_ip", "destination_port", "agent_assigned_process_id";
+   SELECT "agent_id" ,
+            "source_ip" ,
+            "destination_ip" ,
+            "destination_port" ,
+            "agent_assigned_process_id" ,
+            "count"(*) "frequency"
+   FROM inbound_connection_agent
+   WHERE (("ip_version" = 'IPv4')
+           AND ("source_ip" IN 
+       (SELECT *
+       FROM valid_inbound_ips_helper )))
+   GROUP BY  "agent_id", "source_ip", "destination_ip", "destination_port", "agent_assigned_process_id";
    ```
 
 1. After you create the `iana_service_ports_import` table and your two helper functions, you can run the following query to get the details on the inbound traffic for each service, along with the port number and process details\.
 
    ```
-   SELECT DISTINCT
-     "hin1"."host_name" "Source Host Name"
-   , "hin2"."host_name" "Destination Host Name"
-   , "i"."source_ip" "Source IP Address"
-   , "i"."destination_ip" "Destination IP Address"
-   , "i"."frequency" "Connection Frequency"
-   , "i"."destination_port" "Destination Communication Port"
-   , "p"."name" "Process Name"
-   , "ianap"."servicename" "Process Service Name"
-   , "ianap"."description" "Process Service Description"
-   FROM
-     inbound_query_helper i
-   , hostname_ip_helper hin1
-   , hostname_ip_helper hin2
-   , processes_agent p
-   , iana_service_ports_import ianap
-   WHERE ((((("i"."source_ip" = "hin1"."ip_address") AND ("i"."destination_ip" = "hin2"."ip_address")) AND ("p"."agent_assigned_process_id" = "i"."agent_assigned_process_id")) AND ("hin1"."host_name" <> "hin2"."host_name")) AND (("i"."destination_port" = TRY_CAST("ianap"."portnumber" AS integer)) AND ("ianap"."transportprotocol" = 'tcp')))
-   ORDER BY "hin1"."host_name" ASC, "i"."frequency" DESC;
+   SELECT hip1.host_name "Source Host Name",
+            inbound_connections_results0.source_ip "Source IP Address",
+            hip2.host_name "Destination Host Name",
+            inbound_connections_results0.destination_ip "Destination IP Address",
+            inbound_connections_results0.frequency "Connection Frequency",
+            inbound_connections_results0.destination_port "Destination Communication Port",
+            inbound_connections_results0.servicename "Process Service Name",
+            inbound_connections_results0.description "Process Service Description"
+   FROM 
+       (SELECT DISTINCT i.source_ip,
+            i.destination_ip,
+            i.frequency,
+            i.destination_port,
+            ianap.servicename,
+            ianap.description
+       FROM inbound_query_helper i, iana_service_ports_import ianap
+       WHERE i.destination_port = TRY_CAST(ianap.portnumber AS integer)) AS inbound_connections_results0 LEFT OUTER
+   JOIN hostname_ip_helper hip1
+       ON inbound_connections_results0.source_ip = hip1.ip_address LEFT OUTER
+   JOIN hostname_ip_helper hip2
+       ON inbound_connections_results0.destination_ip = hip2.ip_address
    ```
 
 #### Identify Running Software From Port Number<a name="pq-identify-software"></a>
@@ -333,18 +333,19 @@ Some of the predefined queries require a table named `iana_service_ports_import`
 
    ```
    CREATE EXTERNAL TABLE IF NOT EXISTS iana_service_ports_import (
-   ServiceName STRING,
-   PortNumber INT,
-   TransportProtocol STRING,
-   Description STRING,
-   Assignee STRING,
-   Contact STRING,
-   RegistrationDate STRING,
-   ModificationDate STRING,
-   Reference STRING,
-   ServiceCode STRING,
-   UnauthorizedUseReported STRING,
-   AssignmentNotes STRING)
+            ServiceName STRING,
+            PortNumber INT,
+            TransportProtocol STRING,
+            Description STRING,
+            Assignee STRING,
+            Contact STRING,
+            RegistrationDate STRING,
+            ModificationDate STRING,
+            Reference STRING,
+            ServiceCode STRING,
+            UnauthorizedUseReported STRING,
+            AssignmentNotes STRING
+   )
    ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe'
    WITH SERDEPROPERTIES (
      'serialization.format' = ',',

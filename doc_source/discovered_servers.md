@@ -82,7 +82,7 @@ You can add or remove multiple tags for one or more servers from the main **Serv
 To export network dependencies and process information for one server at a time, you can use a server's detail screen\. You can find the export jobs for a server in a table located in the **Exports** section of the server's detail screen\. If no export jobs yet exist, the table is empty\. You can simultaneously export up to five collections of data\.
 
 **Note**  
-Exporting server data from the console is only available for data collected by an agent running on that server\. If you want to download data collected by a connector, see [Export System Performance Data for All Servers](export-data.md#export-data-api)\. Or, if you want to bulk export data for all servers where agents have been installed, see [Data Exploration in Amazon Athena](explore-data.md)\.<a name="export"></a>
+Exporting server data from the console is only available for data collected by an agent running on that server\. If you want to download data collected by a connector, see [Export data collected for all servers](export-data.md#export-data-api)\. Or, if you want to bulk export data for all servers where agents have been installed, see [Data Exploration in Amazon Athena](explore-data.md)\.<a name="export"></a>
 
 **To export detailed server data**
 

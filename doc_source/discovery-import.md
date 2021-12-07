@@ -13,7 +13,7 @@ After an import request is complete, you can view the details of individual impo
 
 **Handling errors:** A link is provided to download the error log and failed records files as CSV files in a compressed archive\. Use these files to resubmit your import request after correcting the errors\.
 
-Limits apply to the number of imported records, imported servers, and deleted records you can keep\. For more information, see [AWS Application Discovery Service Limits](ads_service_limits.md)\.
+Limits apply to the number of imported records, imported servers, and deleted records you can keep\. For more information, see [AWS Application Discovery Service Quotas](ads_service_limits.md)\.
 
 ## Supported Import File Fields<a name="import-supported-fields"></a>
 

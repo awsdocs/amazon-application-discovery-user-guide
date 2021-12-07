@@ -6,5 +6,5 @@ In this section you'll find instructions on how to view and work with data disco
 
 **Topics**
 + [View Collected Data Using the Console](view-data.md)
-+ [Export Collected Data](export-data.md)
++ [Export collected data](export-data.md)
 + [Data Exploration in Amazon Athena](explore-data.md)

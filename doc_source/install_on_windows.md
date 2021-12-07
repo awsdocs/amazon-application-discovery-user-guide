@@ -4,25 +4,42 @@ Complete the following procedure to install an agent on Windows\. Be sure that y
 
 **To install AWS Application Discovery Agent in your data center**
 
-1. Navigate to the [Microsoft Download Center](https://www.microsoft.com/en-us/download/details.aspx?id=48145) and choose **Download** to be taken to the download selection page, then on this page, select only **`vc_redist.x86.exe`** *\(do not select the "x64" version\)* regardless of the architecture of the machine you are installing on, then choose **Next**\. Your download begins immediately\.
-
-1. Download the [Windows agent installer](https://s3.us-west-2.amazonaws.com/aws-discovery-agent.us-west-2/windows/latest/AWSDiscoveryAgentInstaller.msi) *but do not double\-click to run the installer within Windows*\.
+1. Download the [Windows agent installer](https://s3.us-west-2.amazonaws.com/aws-discovery-agent.us-west-2/windows/latest/AWSDiscoveryAgentInstaller.exe) *but do not double\-click to run the installer within Windows*\.
 **Important**  
-Do not double\-click to run the installer within Windows as it will fail to install\. *Agent installation only works from the command prompt*\. \(If you already double\-clicked on the installer, you must go to **Add/Remove Programs** and uninstall the agent before continuing on with the remaining installation steps\.\)
+Do not double\-click to run the installer within Windows as it will fail to install\. *Agent installation only works from the command prompt*\. \(If you already double\-clicked on the installer, you must go to **Add/Remove Programs** and uninstall the agent before continuing on with the remaining installation steps\.\)   
+If the Windows agent installer doesn't detect any version of the Visual C\+\+ x86 runtime on the host, it automatically installs the Visual C\+\+ x86 2015–2019 runtime before installing the agent software\.
 
 1. Open a command prompt as an administrator and navigate to the location where you saved the installation package\.
 
 1. To install the agent, choose one of the following installation methods\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/application-discovery/latest/userguide/install_on_windows.html)
 
-1. If outbound connections from your network are restricted, you'll need to update your firewall settings\. Agents require access to `arsenal` over TCP port 443\. They don't require any inbound ports to be open\.
-   + For example, if your home region is `eu-central-1`, you'd use `https://arsenal-discovery.eu-central-1.amazonaws.com:443`
-   + Or substitute your home region as needed for all other regions except us\-west\-2\.
-   + If `us-west-2` is your home region, use `https://arsenal.us-west-2.amazonaws.com:443`
+1. If outbound connections from your network are restricted, you must update your firewall settings\. Agents require access to `arsenal` over TCP port 443\. They don't require any inbound ports to be open\.
 
-## Package Signing on Windows 2003<a name="win2003"></a>
+   For example, if your home region is `eu-central-1`, you'd use the following: `https://arsenal-discovery.eu-central-1.amazonaws.com:443`
 
-For Windows Server 2008 and later, Amazon cryptographically signs the Application Discovery Service agent installation package with an SHA256 certificate\. However, because the SHA2 certificate family is not supported by Windows Server 2003, the installation package for that platform is signed with an SHA1 certificate\. Microsoft has published [hotfixes](https://blogs.technet.microsoft.com/pki/2010/09/30/sha2-and-windows/) that might allow your Windows 2003 systems to read an SHA256 certificate\. If you require SHA256 in your Windows 2003 environment, contact AWS Support for assistance\. 
+## Package Signing and Automatic Upgrades<a name="win2003"></a>
+
+For Windows Server 2008 and later, Amazon cryptographically signs the Application Discovery Service agent installation package with an SHA256 certificate\. For SHA2\-signed autoupdates on Windows Server 2008 SP2, ensure that hosts have a hotfix installed to support SHA2 signature authentication\. Microsoft's latest support [hotfix](https://support.microsoft.com/en-us/topic/update-to-add-sha-2-code-signing-support-for-windows-server-2008-sp2-f120e4d0-da06-6860-3610-59c5cd0b7cd2) helps support SHA2 authentication on Windows Server 2008 SP2\. 
+
+
+
+**Note**  
+The hotfixes for SHA256 support for Windows 2003 are no longer publicly available from Microsoft\. If these fixes are not already installed in your Windows 2003 host, manual upgrades are necessary\.
+
+**To perform upgrades manually**
+
+1. Download the [Windows Agent Updater](https://s3.us-west-2.amazonaws.com/aws-discovery-agent.us-west-2/windows/latest/AWSDiscoveryAgentUpdater.exe)\.
+
+1. Open command prompt as an administrator\.
+
+1. Navigate to the location where the updater was saved\.
+
+1. Run the following command\.
+
+   ```
+   AWSDiscoveryAgentUpdater.exe /Q
+   ```
 
 ## Manage the Discovery Agent Process on Windows<a name="using_on_windows"></a>
 
@@ -38,7 +55,7 @@ You can manage the behavior of the Discovery Agent at the system level through t
 
 **To uninstall a discovery agent on Windows**
 
-1. Open Control Panel in Windows\.
+1. Open the Control Panel in Windows\.
 
 1. Choose **Programs**\.
 
@@ -48,14 +65,34 @@ You can manage the behavior of the Discovery Agent at the system level through t
 
 1. Choose **Uninstall**\.
 
+   
+**Note**  
+If you choose to reinstall the agent after uninstalling it, run the following command with the `/repair` and `/norestart` options\.  
+
+   ```
+   .\AWSDiscoveryAgentInstaller.exe REGION="your-home-region" KEY_ID="aws-access-key-id" KEY_SECRET="aws-secret-access-key" /quiet /repair /norestart
+   ```
+
+   
+
+**To uninstall a discovery agent on Windows using the command line**
+
+1. Right\-click **Start**\.
+
+1. Choose **Command Prompt**\.
+
+1. Use the following command to uninstall a discovery agent on Windows\. 
+
+   ```
+   wmic product where name='AWS Discovery Agent' call uninstall
+   ```
+
 ## Agent Troubleshooting on Windows<a name="windows_troubleshooting"></a>
 
-If you encounter problems while installing or using the Application Discovery Agent on Windows, consult the following guidance about logging and configuration\. When helping to troubleshoot potential issues with the agent or its connection to the Application Discovery Service, AWS Support often requests these files\. 
+If you encounter problems while installing or using the AWS Application Discovery Agent on Windows, consult the following guidance about logging and configuration\. AWS Supportoften requests these files when helping to troubleshoot potential issues with the agent or its connection to the Application Discovery Service\.
 + **Installation logging** 
 
-  In some cases, the msiexec command described preceding appears to fail\. For example, a failure can appear with the Windows Services Manager showing that the discovery services are not being created\. In this case, add /L\*V install\.log to the command to generate a verbose installation log\.
-
-   
+  In some cases, the agent install command appears to fail\. For example, a failure can appear with the Windows Services Manager showing that the discovery services are not being created\. In this case, add /log install\.log to the command to generate a verbose installation log\.
 +  **Operational logging** 
 
   On Windows Server 2008 and later, agent log files can be found under the following directory\.
@@ -70,7 +107,7 @@ If you encounter problems while installing or using the Application Discovery Ag
   C:\Documents and Settings\All Users\Application Data\AWS\AWSDiscovery\Logs
   ```
 
-  Logs files are named to indicate whether generated by the main service, automatic upgrader, or installer\.
+  Log files are named to indicate whether generated by the main service, automatic upgrades, or the installer\.
 
    
 + **Configuration file**
@@ -86,4 +123,4 @@ If you encounter problems while installing or using the Application Discovery Ag
   ```
   C:\Documents and Settings\All Users\Application Data\AWS\AWS Discovery\config
   ```
-+ For instructions on how to remove older versions of the Discovery Agent, see [Prerequisites for Agent Installation](gen-prep-agents.md)\.
++ For instructions on how to remove earlier versions of the Discovery Agent, see [Installation Prerequisites for Discovery Agent](gen-prep-agents.md)\.

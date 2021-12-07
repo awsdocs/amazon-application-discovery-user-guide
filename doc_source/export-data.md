@@ -1,14 +1,14 @@
-# Export Collected Data<a name="export-data"></a>
+# Export collected data<a name="export-data"></a>
 
-After starting the data collection process of your Discovery Connector or Discovery Agent, you can export their collected data  about your servers and VMs\. This data can be exported either by interacting with the console or by making API calls through the AWS CLI depending on which discovery tool you used to collect data\.
-+ **Discovery Agent**, you can export the collected data either from the console or from the AWS CLI\.
-+ **Discovery Connector**, you can only export the collected data from the AWS CLI\.
+For both the Discovery Connector and Discovery Agent, after the data collection process starts, you can export their collected data about your servers and VMs\. This data can be exported either by interacting with the console or by making API calls through the AWS CLI, depending on which discovery tool you used to collect data\.
++ **Discovery Agent**, you can export the collected data by using the console or the AWS CLI\.
++ **Discovery Connector**, you can only export the collected data by using the AWS CLI\.
 
 Instructions are provided below for both ways by expanding your method of choice:
 
-## Export System Performance Data for All Servers<a name="export-data-api"></a>
+## Export data collected for all servers<a name="export-data-api"></a>
 
-Collected data from all the Discovery Connectors and Discovery Agents running on your hosts and VMs can be bulk exported from the AWS CLI\. If not already installed, the AWS CLI must first be installed in your environment\.
+The data collected from all the Discovery Connectors and Discovery Agents running on your hosts and VMs can be bulk exported using the AWS CLI\. If not already installed, the AWS CLI must first be installed in your environment\.
 
 **To install the AWS CLI and export collected data**
 
@@ -38,9 +38,9 @@ Collected data from all the Discovery Connectors and Discovery Agents running on
 
 1. Copy the URL generated in the previous step and paste it in a browser to download the zip file with collected data of the discovered servers\.
 
-## Export Agent Collected Data Using the Console<a name="export-data-console"></a>
+## Export agent collected data using the console<a name="export-data-console"></a>
 
-Exporting agent collected data from the console is limited to one agent when you are on the detail page for a specific server\. There, you can find the server's export jobs listed at the bottom of the screen, underneath **Exports**\. If no export jobs yet exist, the table is empty\. You can run up to five exports of server data at a time\.
+Exporting agent collected data from the console is limited to one agent, when you are on the detail page for a specific server\. On the detail page, you can find the server's export jobs listed at the bottom of the screen, underneath **Exports**\. If no export jobs exist, the table is empty\. You can run up to five exports of server data at a time\.
 
 **To export collected data about a discovered server**
 
@@ -50,7 +50,7 @@ Exporting agent collected data from the console is limited to one agent when you
 
 1. In the **Exports** section at the bottom of the screen, choose **Export server details**\.
 
-1. For **Export server details**, fill in **Start date** and **Time**\.   
+1. For **Export server details**, fill in **Start date** and **Time**\. 
 **Note**  
 The start time can't be more than 72 hours prior from the current time\.
 
@@ -58,13 +58,7 @@ The start time can't be more than 72 hours prior from the current time\.
 
 1. When the export job is complete, choose **Download** and save the \.zip file\.
 
-1. Unzip the saved file\. A set of \.csv files contains the export data, similar to the following:
-   + *<AWS account ID>*\_destinationProcessConnection\.csv
-   + *<AWS account ID>*\_networkInterface\.csv
-   + *<AWS account ID>*\_osInfo\.csv
-   + *<AWS account ID>*\_process\.csv
-   + *<AWS account ID>*\_sourceProcessConnection\.csv
-   + *<AWS account ID>*\_systemPerformance\.csv
+1. Unzip the saved file\. A set of \.csv files contains the export data\.
 
    You can open the \.csv files in Microsoft Excel and review the exported server data\. 
 

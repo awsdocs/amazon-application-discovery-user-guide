@@ -8,7 +8,8 @@ If your account is a non\-administrative account, to access Application Discover
 
 **AWSApplicationDiscoveryServiceFullAccess**  
 The `AWSApplicationDiscoveryServiceFullAccess` policy grants an IAM user account access to the Application Discovery Service and Migration Hub APIs\.   
-An IAM user account with this policy attached can configure Application Discovery Service, start and stop agents, start and stop agentless discovery, and query data from the AWS Discovery Service database\. For an example of this policy, see [Granting Full Access to Application Discovery Service](security_iam_id-based-policy-examples.md#security_iam_id-based-policy-examples-ads-fullaccess)\.
+An IAM user account with this policy attached can configure Application Discovery Service, start and stop agents, start and stop agentless discovery, and query data from the AWS Discovery Service database\. For an example of this policy, see [Granting Full Access to Application Discovery Service](security_iam_id-based-policy-examples.md#security_iam_id-based-policy-examples-ads-fullaccess)\.  
+
 
 **AWSApplicationDiscoveryAgentAccess**  
 The `AWSApplicationDiscoveryAgentAccess` policy grants the Application Discovery Agent access to register and communicate with Application Discovery Service\.  

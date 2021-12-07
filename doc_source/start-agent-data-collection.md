@@ -1,30 +1,30 @@
-# Start Discovery Agent Data Collection<a name="start-agent-data-collection"></a>
+# Agent Data Collection<a name="start-agent-data-collection"></a>
 
-Now that you have deployed and configured the Discovery Agent, you must complete the final step of actually turning on its data collection process\. You can turn on data collection through the console or by making API calls through the AWS CLI\. Instructions are provided below for both ways, by expanding your method of choice:
+ After you have deployed and configured the Discovery Agent, if data collections stops you can restart it\. You can start or stop data collection through the console or by making API calls through the AWS CLI\. Both of these methods are described in the following procedures\. 
 
 ------
 #### [ Using the Migration Hub Console ]
 
-Start the Discovery Agent data collection process on the **Data Collectors** page of the Migration Hub console\. Be sure you've selected a [Migration Hub home region](https://docs.aws.amazon.com/migrationhub/latest/ug/home-region.html) before you start data collection\. All of your data is stored in your home region\.
+The following procedure shows how to start or stop the Discovery Agent data collection process, on the **Data Collectors** page of the Migration Hub console\. 
 
-**To start data collection**
+**To start or stop data collection**
 
 1. In the navigation pane, choose **Data Collectors**\.
 
 1. Choose the **Agents** tab\.
 
-1. Select the check box of the agent you want to start\.
+1. Select the check box of the agent you want to start or stop\.
 **Tip**  
-If you installed multiple agents but only want to start data collection on certain hosts, the **Hostname** column in the agent's row identifies the host the agent is installed on\.
+If you installed multiple agents but only want to start or stop data collection on certain hosts, the **Hostname** column in the agent's row identifies the host the agent is installed on\.
 
-1. Choose **Start data collection**\.
+1. Choose **Start data collection** or **Stop data collection**\.
 
 ------
 #### [ Using the AWS CLI ]
 
-To start the Discovery Agent data collection process from the AWS CLI the AWS CLI must first be installed in your environment, and you must set the CLI to use your selected [Migration Hub home region](https://docs.aws.amazon.com/migrationhub/latest/ug/home-region.html)\.
+To start or stop the Discovery Agent data collection process from the AWS CLI, you must first install the AWS CLI in your environment, and then you must set the CLI to use your selected [Migration Hub home region](https://docs.aws.amazon.com/migrationhub/latest/ug/home-region.html)\.
 
-**To install the AWS CLI and start data collection**
+**To install the AWS CLI and start or stop data collection**
 
 1. If you have not already done so, install the AWS CLI appropriate to your OS type \(Windows or Mac/Linux\)\. See the [AWS Command Line Interface User Guide](https://docs.aws.amazon.com/cli/latest/userguide/) for instructions\.
 
@@ -38,16 +38,24 @@ To start the Discovery Agent data collection process from the AWS CLI the AWS CL
 
    1. Enter `text` for Default Output Format\.
 
-1. Type the following command:
+1. To find the ID of the agent you want to stop or start data collection for, type the following command:
+
+   ```
+   aws discovery describe-agents
+   ```
+
+1. To start data collection by the agent, type the following command:
 
    ```
    aws discovery start-data-collection-by-agent-ids --agent-ids <agent ID>
    ```
 
-   1. If you don't know the ID of the agent you want to start, enter the following command to see the agent's ID:
+   To stop data collection by the agent, type the following command:
 
-     ```
-     aws discovery describe-agents
-     ```
+   ```
+   aws discovery stop-data-collection-by-agent-ids --agent-ids <agent ID>
+   ```
+
+   
 
 ------

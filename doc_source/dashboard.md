@@ -12,7 +12,7 @@ The main dashboard gathers data from the **Discover** and **Migrate** dashboards
 
 To reach the main dashboard, choose **Dashboard** from the navigation pane, which is on the left side of the Migration Hub homepage\.
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/application-discovery/latest/userguide/images/DashboardWithData.png)
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/application-discovery/latest/userguide/images/DashboardWithData-new-800.png)
 
 ## Navigating from the Dashboard and the Navigation Pane<a name="navigation-tracking-wt"></a>
 

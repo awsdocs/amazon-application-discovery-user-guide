@@ -1,21 +1,21 @@
-# Start Discovery Connector data collection<a name="start-connector-data-collection"></a>
+# Discovery Connector Data Collection<a name="start-connector-data-collection"></a>
 
-After you have deployed and configured the Discovery Connector in your VMware environment, you must complete the final step of actually turning on its data collection process\. You can turn on data collection through the console or by making API calls through the AWS CLI\. Instructions are provided below for both methods\.
+After you have deployed and configured the Discovery Connector in your VMware environment, if data collections stops you can restart it\. You can start or stop data collection through the console or by making API calls through the AWS CLI\. Both of these methods are described in the following procedures\.
 
 ------
-#### [ Using the Migration HubConsole ]
+#### [ Using the Migration Hub Console ]
 
-You start the Discovery Connector data collection process on the **Data Collectors** page of the Migration Hub console\.
+The following procedure shows how to start or stop the Discovery Connector data collection process, on the **Data Collectors** page of the Migration Hub console\.
 
-**To start data collection**
+**To start or stop data collection**
 
 1. In the navigation pane, choose **Data Collectors**\.
 
 1. Choose the **Connectors** tab\.
 
-1. Select the check box of the connector you want to start\.
+1. Select the check box of the connector you want to start or stop\.
 
-1. Choose **Start data collection**\.
+1. Choose **Start data collection** or **Stop data collection**\.
 
 **Note**  
 If you don’t see inventory information after starting data collection with the connector, confirm that you have registered the connector with your vCenter Server\.
@@ -23,7 +23,7 @@ If you don’t see inventory information after starting data collection with the
 ------
 #### [ Using the AWS CLI ]
 
-To start the Discovery Connector data collection process from the AWS CLI, the AWS CLI must first be installed in your environment\.
+To start the Discovery Connector data collection process from the AWS CLI, the AWS CLI must first be installed in your environment, and then you must set the CLI to use your selected [Migration Hub home region](https://docs.aws.amazon.com/migrationhub/latest/ug/home-region.html)\.
 
 **To install the AWS CLI and start data collection**
 
@@ -39,19 +39,24 @@ To start the Discovery Connector data collection process from the AWS CLI, the A
 
    1. Enter `text` for Default Output Format\.
 
-1. Type the following command:
+1. To find the ID of the connector you want to start or stop data collection for, type the following command to see the connector's ID:
+
+   ```
+   aws discovery describe-agents --filters condition=EQUALS,name=hostName,values=connector
+   ```
+
+1. To start data collection by the connector, type the following command:
 
    ```
    aws discovery start-data-collection-by-agent-ids --agent-ids <connector ID>
    ```
-
-   1. If you don't know the ID of the connector you want to start, enter the following command exactly as shown to see the connector's ID:
-
-     ```
-     aws discovery describe-agents --filters condition=EQUALS,name=hostName,values=connector
-     ```
-
 **Note**  
 If you don’t see inventory information after starting data collection with the connector, confirm that you have registered the connector with your vCenter Server\.
+
+   To stop data collection by the connector, type the following command:
+
+   ```
+   aws discovery stop-data-collection-by-agent-ids --agent-ids <connector ID>
+   ```
 
 ------

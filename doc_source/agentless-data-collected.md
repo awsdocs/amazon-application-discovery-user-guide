@@ -57,8 +57,6 @@ Following, you can find an inventory of the information collected by the Discove
 | serverId | Application Discovery Service assigned ID to the discovered VM | 
 | smBiosId\* | ID/version of the system management BIOS | 
 | state\* | Status of the Discovery Connector virtual appliance | 
-| tagKey | User\-defined key to store custom data or metadata about servers | 
-| tagValue | User\-defined value to further define a key's custom data or metadata about servers | 
 | toolsStatus | Operational state of VMware tools \(See [Viewing and Sorting Data Collectors](data_collection.md#sort-data-collectors) for a complete list\.\) | 
 | totalDiskSize | Total capacity of disk expressed in MB | 
 | totalRAM | Total amount of RAM available on VM in MB | 
