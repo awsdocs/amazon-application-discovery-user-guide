@@ -1,4 +1,4 @@
-# Step 2: Create IAM Users<a name="setting-up-iam"></a>
+# Create IAM Users<a name="setting-up-iam"></a>
 
 When you create an AWS account, you get a single sign\-in identity that has complete access to all of the AWS services and resources in the account\. This identity is called the AWS account *root user*\. Signing in to the AWS Management Console using the email address and password that you used to create the account gives you complete access to all of the AWS resources in your account\. 
 
@@ -21,7 +21,15 @@ By default, an administrator account inherits all the policies required for acce
 
 When creating non\-administrative IAM users, follow the security best practice [ Grant Least Privilege](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege), granting users minimum permissions\. 
 
-Use IAM managed policies to define the level of access to Application Discovery Service by non\-administrative IAM users\. For information about Application Discovery Service managed policies, see [AWS Managed \(Predefined\) Policies for Application Discovery Service](security-iam-managed-policies.md)\.
+Use IAM managed policies to define the level of access to Application Discovery Service by non\-administrative IAM users\. For information about Application Discovery Service managed policies, see [AWS managed policies for AWS Application Discovery Service](security-iam-awsmanpol.md)\.
 
-**To create a non\-administrator user**
-+ Create an administrator user in your AWS account\. For instructions, see [ Creating Your First IAM Delegated User and Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-delegated-user.html) in the *IAM User Guide*\.
+**To create a non\-administrator IAM user**
+
+1. In AWS Management Console, navigate to the IAM console\.
+
+1. Create a non\-administrator IAM user by following the instructions for creating a user with the console as described in [Creating an IAM user in your AWS account](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html) in the *IAM User Guide*\. 
+
+   While following the instructions in the *IAM User Guide*:
+   + When on the step about selecting the type of access, select **Programmatic access**\. Note, while not recommended, only select **AWS Management Console access** if you plan to use the same IAM user credentials for accessing the AWS console\. 
+   + When on the step about the **Set permission** page, choose the option to **Attach existing policies to user directly**\. Then select a managed IAM policy for Application Discovery Service from the list of policies\. For information about Application Discovery Service managed policies, see [AWS managed policies for AWS Application Discovery Service](security-iam-awsmanpol.md)\.
+   + When on the step about viewing the user's access keys \(access key IDs and secret access keys\), follow the guidance in the **Important** note about saving the user's new access key ID and secret access key in a safe and secure place\. 

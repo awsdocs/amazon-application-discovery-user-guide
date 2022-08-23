@@ -1,9 +1,9 @@
-# Agent Data Collection<a name="start-agent-data-collection"></a>
+# Start or stop Discovery Agent data collection<a name="start-agent-data-collection"></a>
 
- After you have deployed and configured the Discovery Agent, if data collections stops you can restart it\. You can start or stop data collection through the console or by making API calls through the AWS CLI\. Both of these methods are described in the following procedures\. 
+After you have deployed and configured the Discovery Agent, if data collections stops you can restart it\. You can start or stop data collection through the console or by making API calls through the AWS CLI\. Both of these methods are described in the following procedures\. 
 
 ------
-#### [ Using the Migration Hub Console ]
+#### [ Using the Migration Hub console ]
 
 The following procedure shows how to start or stop the Discovery Agent data collection process, on the **Data Collectors** page of the Migration Hub console\. 
 

@@ -1,18 +1,16 @@
 # Export collected data<a name="export-data"></a>
 
-For both the Discovery Connector and Discovery Agent, after the data collection process starts, you can export their collected data about your servers and VMs\. This data can be exported either by interacting with the console or by making API calls through the AWS CLI, depending on which discovery tool you used to collect data\.
-+ **Discovery Agent**, you can export the collected data by using the console or the AWS CLI\.
-+ **Discovery Connector**, you can only export the collected data by using the AWS CLI\.
+For both the Application Discovery Service Agentless Collector \(Agentless Collector\) and AWS Application Discovery Agent \(Discovery Agent\), after the data collection process starts, you can export their collected data about your servers and VMs\. This data can be exported either by interacting with the console or by making API calls through the AWS CLI, depending on which discovery tool you used to collect data\.
 
 Instructions are provided below for both ways by expanding your method of choice:
 
-## Export data collected for all servers<a name="export-data-api"></a>
+## Export data collected for all servers using the AWS CLI<a name="export-data-api"></a>
 
-The data collected from all the Discovery Connectors and Discovery Agents running on your hosts and VMs can be bulk exported using the AWS CLI\. If not already installed, the AWS CLI must first be installed in your environment\.
+The data collected from all the agentless collectors and discovery agents running on your hosts and VMs can be bulk exported using the AWS Command Line Interface \(AWS CLI\)\. The AWS CLI must be installed in your environment before exporting data\. 
 
 **To install the AWS CLI and export collected data**
 
-1. If you have not already done so, install the AWS CLI appropriate to your OS type \(Windows or Mac/Linux\)\. See the [AWS Command Line Interface User Guide](https://docs.aws.amazon.com/cli/latest/userguide/) for instructions\.
+1. If you have not already done so, install the AWS CLI appropriate to your OS type \(Windows or Mac/Linux\)\. For installation instructions, see the [AWS Command Line Interface User Guide](https://docs.aws.amazon.com/cli/latest/userguide/)\.
 
 1. Open the Command prompt \(Windows\) or Terminal \(MAC/Linux\)\.
 
@@ -65,4 +63,4 @@ The start time can't be more than 72 hours prior from the current time\.
    Among the files, you can find a JSON file containing data about the export task and its results\.
 
 **Note**  
-For information on generating and exporting Amazon EC2 instance recommendations in the AWS Migration Hub console, see [Amazon EC2 Instance Recommendations](https://docs.aws.amazon.com/migrationhub/latest/ug/ec2-recommendations.html) in the *AWS Migration Hub User Guide*\.
+For information on generating and exporting Amazon Elastic Compute Cloud \(Amazon EC2\) instance recommendations in the AWS Migration Hub console, see [Amazon EC2 instance recommendations](https://docs.aws.amazon.com/migrationhub/latest/ugec2-recommendations.html) in the *AWS Migration Hub User Guide*\.

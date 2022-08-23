@@ -1,6 +1,6 @@
-# Data Collected by the Discovery Agent<a name="agent-data-collected"></a>
+# Data collected by Discovery Agent<a name="agent-data-collected"></a>
 
-AWS Application Discovery Agent is software that you install on on\-premises servers and VMs\. The Discovery Agent collects system configuration, times series utilization or performance data, process data, and Transmission Control Protocol \(TCP\) network connections\. This section describes the data collected\. 
+AWS Application Discovery Agent \(Discovery Agent\) is software that you install on on\-premises servers and VMs\. Discovery Agent collects system configuration, times series utilization or performance data, process data, and Transmission Control Protocol \(TCP\) network connections\. This section describes the data collected\.
 
 **Table legend for Discovery Agent collected data:**
 + The term host refers to either a physical server or a VM\.
@@ -37,8 +37,8 @@ AWS Application Discovery Agent is software that you install on on\-premises ser
 | sourcePort\* | Port number from which the data/request originates from | 
 | timestamp\* | Date and time of reported attribute logged by agent | 
 | totalCpuUsagePct  | Percentage of CPU usage on host during polling period | 
-| totalDiskBytesReadPerSecond \(Kbps\) | Total amount of disk free space on host | 
-| totalDiskBytesWrittenPerSecond \(Kbps\) | Total size of disk on host  | 
+| totalDiskBytesReadPerSecond \(Kbps\) | Total kilobits read per second across all disks | 
+| totalDiskBytesWrittenPerSecond \(Kbps\) | Total kilobits written per second across all disks  | 
 | totalDiskFreeSize \(GB\) | Free disk space expressed in GB | 
 | totalDiskReadOpsPerSecond | Total number of read I/O operations per second | 
 | totalDiskSize \(GB\) | Total capacity of disk expressed in GB | 

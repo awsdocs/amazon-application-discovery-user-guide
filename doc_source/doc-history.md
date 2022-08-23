@@ -1,15 +1,17 @@
 # Document History for AWS Application Discovery Service<a name="doc-history"></a>
-+ **API version**: 2015\-11\-01
-+ **Latest User Guide documentation update**: November 14, 2019
 
-The following table describes important changes to the *AWS Migration Hub User Guide* after January 18 2019\. For notifications about documentation updates, you can subscribe to the RSS feed\.
+**Latest User Guide documentation update**: August 16, 2022
+
+The following table describes important changes to the *Application Discovery Service User Guide* after January 18, 2019\. For notifications about documentation updates, you can subscribe to the RSS feed\.
 
 | Change | Description | Date | 
 | --- |--- |--- |
-| [Introducing the Home Region](#doc-history) | The Migration Hub home region provides a single repository of discovery and migration planning information for your entire portfolio, and a single view of migrations into multiple AWS Regions\. | November 20, 2019 | 
+| [Introducing Application Discovery Service Agentless Collector](#doc-history) | Application Discovery Service Agentless Collector \(Agentless Collector\) is the new AWS Application Discovery Service on\-premises application that collects information through agentless methods about your on\-premises environment to help you effectively plan your migration to the AWS Cloud\. For more information, see [Agentless Collector](https://docs.aws.amazon.com/application-discovery/latest/userguide/agentless-collector.html)\.  | August 16, 2022 | 
+| [IAM update](#doc-history) | The AWS Identity and Access Management \(IAM\) `discovery:GetNetworkConnectionGraph` action is now available for granting access to the AWS Migration Hub console network diagram when creating an identity\-based policy\. For more information, see [Granting permissions to use the network diagram](https://docs.aws.amazon.com/application-discovery/latest/userguide/security_iam_id-based-policy-examples.html#security_iam_id-based-policy-examples-network-connection-graph)\.  | May 24, 2022 | 
+| [Introducing the home Region](#doc-history) | The Migration Hub home Region provides a single repository of discovery and migration planning information for your entire portfolio, and a single view of migrations into multiple AWS Regions\. | November 20, 2019 | 
 | [Introducing the Migration Hub import feature](#doc-history) | Migration Hub import allows you to import information about your on\-premises servers and applications into Migration Hub, including server specifications and utilization data\. You can also use this data to track the status of application migrations\. For more information, see [Migration Hub Import](https://docs.aws.amazon.com/application-discovery/latest/userguide/discovery-import.html)\. | January 18, 2019 | 
 
-The following table describes documentation releases for the *AWS Migration Hub User Guide* before January 18, 2019:
+The following table describes documentation releases for the *Application Discovery Service User Guide* before January 18, 2019:
 
 
 ****  

@@ -1,13 +1,13 @@
-# Data Collected by the Discovery Connector<a name="agentless-data-collected"></a>
+# Data collected by the Agentless Collector VMware vCenter data collection module<a name="agentless-collector-data-collected-vmware"></a>
 
-The Discovery Connector collects information about your VMware vCenter Server hosts and VMs\. However, you can capture this data only if VMware vCenter Server tools are installed\. To make sure the AWS account you are using has the required permission for this task, see [AWS managed policies for AWS Application Discovery Service](security-iam-awsmanpol.md)\. 
+The following information describes the data collected by the Application Discovery Service Agentless Collector \(Agentless Collector\) VMware vCenter data collection module\. For information about setting up data collection, see [How to set up the Agentless Collector data collection module for VMware vCenter](agentless-collector-gs-data-collection-vcenter.md#agentless-collector-gs-vcenter)\.
 
-Following, you can find an inventory of the information collected by the Discovery Connector\.
-
-**Table legend for Discovery Connector collected data:**
+**Table legend for Agentless Collector VMware vCenter collected data:**
 + Collected data is in measurements of kilobytes \(KB\) unless stated otherwise\.
 + Equivalent data in the Migration Hub console is reported in megabytes \(MB\)\.
-+ Data fields denoted with an asterisk \(\*\) are only available in the \.csv files produced from the connector's API export function\.
++ Data fields denoted with an asterisk \(\*\) are available only in the \.csv files produced from the Application Discovery Service API export function\. 
+
+  The Agentless Collector supports data export using the AWS CLI\. To export collected data using the AWS CLI, follow the instructions described under **Export System Performance Data for All Servers** on the page [ Export Collected Data](https://docs.aws.amazon.com/application-discovery/latest/userguide/export-data.html) in the *Application Discovery Service User Guide*\. 
 + The polling period is in intervals of approximately 60 minutes\.
 + Data fields denoted with a double asterisk \(\*\*\) currently return a *null* value\.
 
@@ -23,9 +23,9 @@ Following, you can find an inventory of the information collected by the Discove
 | avgFreeRAM | Average free RAM expressed in MB | 
 | avgNetworkBytesReadPerSecond | Average amount of throughput of bytes read per second | 
 | avgNetworkBytesWrittenPerSecond | Average amount of throughput of bytes written per second | 
-| configId | Application Discovery Service assigned ID to the discovered VM | 
+| configId | ID assigned by Application Discovery Service to the discovered VM | 
 | configType | Type of resource discovered | 
-| connectorId | ID of the Discovery Connector virtual appliance | 
+| connectorId | ID of the virtual appliance | 
 | cpuType | vCPU for a VM, actual model for a host | 
 | datacenterId | ID of the vCenter | 
 | hostId\* | ID of the VM host | 
@@ -56,8 +56,8 @@ Following, you can find an inventory of the information collected by the Discove
 | powerState\* | Status of power | 
 | serverId | Application Discovery Service assigned ID to the discovered VM | 
 | smBiosId\* | ID/version of the system management BIOS | 
-| state\* | Status of the Discovery Connector virtual appliance | 
-| toolsStatus | Operational state of VMware tools \(See [Viewing and sorting data collectors](data_collection.md#sort-data-collectors) for a complete list\.\) | 
+| state\* | Status of the virtual appliance | 
+| toolsStatus | Operational state of VMware tools  | 
 | totalDiskSize | Total capacity of disk expressed in MB | 
 | totalRAM | Total amount of RAM available on VM in MB | 
 | type | Type of host | 

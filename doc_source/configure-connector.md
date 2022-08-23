@@ -3,7 +3,7 @@
 To finish the setup process, complete the following procedure and the optional connector configuration tasks as needed\. 
 
 **Reminder**  
-Before starting the procedure select a [Migration Hub home region](https://docs.aws.amazon.com/migrationhub/latest/ug/home-region.html), if you haven't already done so\. 
+Before starting the procedure select a [Migration Hub home Region](https://docs.aws.amazon.com/migrationhub/latest/ug/home-region.html), if you haven't already done so\. 
 
 **To configure the connector using the console**
 
@@ -27,7 +27,7 @@ Before starting the procedure select a [Migration Hub home region](https://docs.
 
       1. Choose **Ignore security certificate** to bypass SSL certificate validation with vCenter\.
 
-   1. Under **Configure AWS credentials**, enter the credentials for the IAM user who is assigned the `AWSAgentlessDiscoveryService` IAM managed policy\. For more information about managed policies, see [AWS Managed \(Predefined\) Policies for Application Discovery Service](security-iam-managed-policies.md)\. 
+   1. Under **Configure AWS credentials**, enter the credentials for the IAM user who is assigned the `AWSAgentlessDiscoveryService` IAM managed policy\. For more information about managed policies, see [AWS managed policies for AWS Application Discovery Service](security-iam-awsmanpol.md)\. 
 
       Then choose **Next**\.
 
@@ -78,7 +78,7 @@ As a security best practice, we recommend against granting additional, unneeded 
 
 The following procedures describe configuration scenarios ordered from least granular to most granular\.
 
-**To discover data about *all* ESX hosts and VMs under the current vCenter**
+**To discover data about all ESX hosts and VMs under the current vCenter**
 
 1. In your VMware vSphere client, choose **vCenter** and then choose either **Hosts and Clusters** or **VMs and Templates**\. 
 
@@ -88,9 +88,9 @@ The following procedures describe configuration scenarios ordered from least gra
 
 1. In the **Assigned Role** pane, choose **Read\-only**\.
 
-1.  Choose **Propagate to children**, **OK**\.
+1.  Choose **Propagate to children**, and then choose **OK**\.
 
-**To discover data about a *specific* ESX host and *all* of its child objects**
+**To discover data about a specific ESX host and all of its child objects**
 
 1. In your VMware vSphere client, choose **vCenter** and then choose either **Hosts and Clusters** or **VMs and Templates**\. 
 
@@ -100,9 +100,9 @@ The following procedures describe configuration scenarios ordered from least gra
 
 1. Under **Add Permission**, add the vCenter user to the host\. For **Assigned Role**, choose **Read\-only**\. 
 
-1. Choose **Propagate to children**, **OK**\.
+1. Choose **Propagate to children**, and then choose **OK**\.
 
-**Discover data about a *specific* ESX host or child VM**
+**Discover data about a specific ESX host or child VM**
 
 1. In your VMware vSphere client, choose **vCenter** and then choose either **Hosts and Clusters** or **VMs and Templates**\. 
 

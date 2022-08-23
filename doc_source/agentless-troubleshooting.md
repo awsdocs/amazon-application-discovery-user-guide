@@ -1,6 +1,6 @@
 # Troubleshooting the Discovery Connector<a name="agentless-troubleshooting"></a>
 
-This section contains topics that can help you troubleshoot known issues with Application Discovery Service\.
+This section contains topics that can help you troubleshoot known issues with Application Discovery Service Discovery Connector\.
 
 ## Fixing Discovery Connector cannot reach AWS during setup<a name="fix-connector-cannot-reach-aws"></a>
 
@@ -9,16 +9,26 @@ When configuring the AWS Agentless Discovery Connector in the console you can ge
 **Could Not Reach AWS**  
 AWS cannot be reached \(connection reset\)\. Please verify network and proxy settings\.
 
-This error occurs because of a failed attempt by the Discovery Connector to establish an HTTPS connection to `ec2.amazonaws.com` during the setup process\. The Discovery Connector configuration fails if a connection can't be established\.
+This error occurs because of a failed attempt by the Discovery Connector to establish an HTTPS connection to an AWS domain that the connector needs to communicate with during the setup process\. The Discovery Connector configuration fails if a connection can't be established\.
 
 **To fix the connection to AWS**
 
-1. Check if your firewall is blocking egress traffic to `ec2.amazonaws.com`\. If it is, unblock it\. After you update the firewall, reconfigure the Discovery Connector\.
+1. Check with your IT admin to see if your company firewall is blocking egress traffic on port 443 to any of the AWS domains that need outbound access\. 
 
-1. If updating the firewall does not resolve the connection issue, check to make sure that the connector virtual machine has outbound network connectivity\. If the virtual machine has outbound connectivity, test the connection to `aws.amazon.com` and `ec2.amazonaws.com` by running **telnet** on ports 80 and 443 as shown in the following example\.
+   The following AWS domains need outbound access:
+   + `awsconnector.Migration Hub home Region.amazonaws.com`
+   + `sns.Migration Hub home Region.amazonaws.com`
+   + `arsenal-discovery.Migration Hub home Region.amazonaws.com`
+   + `iam.amazonaws.com`
+   + `aws.amazon.com`
+   + `ec2.amazonaws.com`
+
+   If your firewall is blocking egress traffic, unblock it\. After you update the firewall, reconfigure the connector\.
+
+1. If updating the firewall does not resolve the connection issue, check to make sure that the connector virtual machine has outbound network connectivity to the listed domains\. If the virtual machine has outbound connectivity, test the connection to listed domains by running **telnet** on ports 443 as shown in the following example\.
 
    ```
-   telnet ec2.amazonaws.com 80
+   telnet ec2.amazonaws.com 443
    ```
 
 1. If outbound connectivity from the virtual machine is enabled, you must contact [AWS Support](https://aws.amazon.com/contact-us/) for further troubleshooting\.

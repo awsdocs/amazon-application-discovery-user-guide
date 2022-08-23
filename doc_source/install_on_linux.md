@@ -1,9 +1,9 @@
-# Agent Installation on Linux<a name="install_on_linux"></a>
+# Install Discovery Agent on Linux<a name="install_on_linux"></a>
 
 Complete the following procedure on Linux\. Be sure that your [Migration Hub home region](https://docs.aws.amazon.com/migrationhub/latest/ug/home-region.html) has been set before you begin this procedure\.
 
 **Note**  
-If you are using a non\-current Linux version, see [Requirements on Older Linux Platforms](#old_linux)\.<a name="linux_steps"></a>
+If you are using a non\-current Linux version, see [Requirements on older Linux platforms](#old_linux)\.<a name="linux_steps"></a>
 
 **To install AWS Application Discovery Agent in your data center**
 
@@ -53,12 +53,12 @@ If you are using a non\-current Linux version, see [Requirements on Older Linux 
    For example, if your home region is `eu-central-1`, you'd use `https://arsenal-discovery.eu-central-1.amazonaws.com:443`
 
 **Topics**
-+ [Requirements on Older Linux Platforms](#old_linux)
++ [Requirements on older Linux platforms](#old_linux)
 + [Manage the Discovery Agent Process on Linux](#using_on_linux)
 + [Uninstall Discovery Agent on Linux](#using_on_linux-uninstall)
-+ [Agent Troubleshooting on Linux](#linux_troubleshooting)
++ [Troubleshooting Linux Discovery Agent](#linux_troubleshooting)
 
-## Requirements on Older Linux Platforms<a name="old_linux"></a>
+## Requirements on older Linux platforms<a name="old_linux"></a>
 
 Some older Linux platforms such as SUSE 10, CentOS 5, and RHEL 5 are either at end of life or only minimally supported\. These platforms can suffer from out\-of\-date cipher suites that prevent the agent update script from downloading installation packages\. 
 
@@ -99,7 +99,7 @@ You can manage the behavior of the Discovery Agent at the system level using the
 #### [ Upstart ]
 
 
-**Management Commands for the Application Discovery Agent**  
+**Management commands for the Application Discovery Agent**  
 
 | Task | Command | 
 | --- | --- | 
@@ -112,7 +112,7 @@ You can manage the behavior of the Discovery Agent at the system level using the
 #### [ System V init ]
 
 
-**Management Commands for the Application Discovery Agent**  
+**Management commands for the Application Discovery Agent**  
 
 | Task | Command | 
 | --- | --- | 
@@ -148,9 +148,9 @@ This section describes how to uninstall Discovery Agent on Linux\.
   zypper remove aws-discovery-agent
   ```
 
-## Agent Troubleshooting on Linux<a name="linux_troubleshooting"></a>
+## Troubleshooting Linux Discovery Agent<a name="linux_troubleshooting"></a>
 
-If you encounter problems while installing or using the Discovery Agent on Linux, consult the following guidance about logging and configuration\. When helping to troubleshoot potential issues with the agent or its connection to the Application Discovery Service, AWS Support often requests these files\. 
+If you encounter problems while installing or using the Discovery Agent on Linux, consult the following guidance about logging and configuration\. When helping to troubleshoot potential issues with the agent or its connection to the Application Discovery Service, AWS Support often requests these files\.
 + **Log files**
 
   Log files for Discovery Agent are located in the following directory\. 
@@ -175,4 +175,4 @@ If you encounter problems while installing or using the Discovery Agent on Linux
   ```
   /var/opt/aws/discovery/
   ```
-+ For instructions on how to remove older versions of the Discovery Agent, see [Installation Prerequisites for Discovery Agent](gen-prep-agents.md)\.
++ For instructions on how to remove older versions of the Discovery Agent, see [Prerequisites for Discovery Agent](gen-prep-agents.md)\.

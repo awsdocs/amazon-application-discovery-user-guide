@@ -1,6 +1,6 @@
-# Querying Discovered Configuration Items<a name="discovery-api-queries"></a>
+# Using the Application Discovery Service API to query discovered configuration items<a name="discovery-api-queries"></a>
 
-A *configuration item* is an IT asset that was discovered in your data center by an agent or the connector\. When you use Application Discovery Service, you can specify filters and query specific configuration items for server, application, process, and connection assets\. 
+A *configuration item* is an IT asset that was discovered in your data center by an agent \. When you use AWS Application Discovery Service \(Application Discovery Service\), you use the Application Discovery Service\) to specify filters and query specific configuration items for server, application, process, and connection assets\. For informtiona about the API, see [AWS Application Discovery Service API Reference](https://docs.aws.amazon.com/application-discovery/latest/APIReference/Welcome.html)\.
 
 The tables in the following sections list the available input filters and output sorting options for two Application Discovery Service actions:
 +  `DescribeConfigurations`

@@ -1,6 +1,6 @@
 # Migration Hub Import<a name="discovery-import"></a>
 
-Migration Hub import allows you to import details of your on\-premises environment directly into Migration Hub without using the Discovery Connector or Discovery Agent, so you can perform migration assessment and planning directly from your imported data\. You also can group your devices as applications and track their migration status\.
+AWS Migration Hub \(Migration Hub\) import allows you to import details of your on\-premises environment directly into Migration Hub without using the Application Discovery Service Agentless Collector \(Agentless Collector\) or AWS Application Discovery Agent \(Discovery Agent\), so you can perform migration assessment and planning directly from your imported data\. You also can group your devices as applications and track their migration status\.
 
 **To initiate an import request**
 + Download the specially\-formatted, comma separated value \(CSV\) import template\.
@@ -60,14 +60,14 @@ If you're using either VMware\.MoRefId or VMWare\.VCenterId, to identify a recor
 | Applications | A comma\-delimited list of applications that include this server, in quotes\. This value can include existing applications and/or new applications that are created upon import\. | Application1"Application2, Application3" | 
 | Tags | A comma\-delimited list of tags formatted as name:value\.  Do not store sensitive information \(like personal data\) in tags\.  | "zone:1, critical:yes""zone:3, critical:no, zone:1" | 
 
-You can import data even if you don’t have data populated for all the fields defined in the import template, so long as each record has at least one of the required fields within it\. Duplicates are managed across multiple import requests by using either an external or internal matching key\. If you populate your own matching key, `External ID`, this field is used to uniquely identify and import the records\. If no matching key is specified, import uses an internally generated matching key that is derived from some of the columns in the import template\. For more information on this matching, see [Matching Logic for Discovered Servers and Applications](view-data.md#add-match-logic)\.
+You can import data even if you don’t have data populated for all the fields defined in the import template, so long as each record has at least one of the required fields within it\. Duplicates are managed across multiple import requests by using either an external or internal matching key\. If you populate your own matching key, `External ID`, this field is used to uniquely identify and import the records\. If no matching key is specified, import uses an internally generated matching key that is derived from some of the columns in the import template\. For more information on this matching, see [Matching logic for discovered servers and applications](view-data.md#add-match-logic)\.
 
 **Note**  
 Migration Hub import does not support any fields outside of those defined in the import template\. Any custom fields supplied will be ignored and will not be imported\.
 
 ## Setting Up Your Import Permissions<a name="import-perms"></a>
 
-Before you can import your data, ensure that your IAM user has the necessary Amazon S3 permissions to upload \(`s3:PutObject`\) your import file to Amazon S3, to read the object \(`s3:GetObject`\)\. You also must establish programmatic access \(for the AWS CLI\) or console access, by creating an IAM policy and attaching it to the IAM user that performs imports in your AWS account\.
+Before you can import your data, ensure that your IAM user has the necessary Amazon S3 permissions to upload \(`s3:PutObject`\) your import file to Amazon S3, and to read the object \(`s3:GetObject`\)\. You also must establish programmatic access \(for the AWS CLI\) or console access, by creating an IAM policy and attaching it to the IAM user that performs imports in your AWS account\.
 
 ------
 #### [ Console Permissions ]
@@ -132,12 +132,14 @@ Use the following procedure to edit the permissions policy for the IAM user that
 
 1. Choose **Add permissions**\.
 
+Now that you've added the policy to your IAM user, you're ready to start the import process\.
+
 ------
 #### [ AWS CLI Permissions ]
 
-Use the following procedure to edit the permissions policy for the IAM user that will make import requests in your AWS account using the AWS CLI\.
+Use the following procedure to create the managed policies necessary to give an IAM user the permissions to make import data requests using the AWS CLI\.
 
-**To edit a user's attached managed policies**
+**To create and attach the managed policies**
 
 1. Use the `aws iam create-policy` AWS CLI command to create an IAM policy with the following permissions\. Remember to replace the name of your bucket with the actual name of the bucket that the IAM user will upload the import files into\.
 
@@ -165,11 +167,38 @@ Use the following procedure to edit the permissions policy for the IAM user that
 
    For more information on using this command, see [create\-policy](https://docs.aws.amazon.com/cli/latest/reference/iam/create-policy.html) in the *AWS CLI Command Reference*\.
 
-1. Use the `aws iam attach-user-policy` AWS CLI command to attach the policy you created in the last step to the IAM user that will be performing import requests in your AWS account using the AWS CLI\. For more information on using this command, see [attach\-user\-policy](https://docs.aws.amazon.com/cli/latest/reference/iam/attach-user-policy.html) in the *AWS CLI Command Reference*\.
+1. Use the `aws iam create-policy` AWS CLI command to create an additional IAM policy with the following permissions\. 
+
+   ```
+   {
+       "Version": "2012-10-17",
+       "Statement": [
+           {
+               "Effect": "Allow",
+               "Action": [
+                   "discovery:ListConfigurations",
+                   "discovery:CreateApplication",
+                   "discovery:UpdateApplication",
+                   "discovery:AssociateConfigurationItemsToApplication",
+                   "discovery:DisassociateConfigurationItemsFromApplication",
+                   "discovery:GetDiscoverySummary",
+                   "discovery:StartImportTask",
+                   "discovery:DescribeImportTasks",
+                   "discovery:BatchDeleteImportData"
+               ],
+               "Resource": "*"
+           }
+       ]
+   }
+   ```
+
+1. Use the `aws iam attach-user-policy` AWS CLI command to attach the policies you created in the previous two steps to the IAM user that will be performing import requests in your AWS account using the AWS CLI\. For more information on using this command, see [attach\-user\-policy](https://docs.aws.amazon.com/cli/latest/reference/iam/attach-user-policy.html) in the *AWS CLI Command Reference*\.
+
+Now that you've added the policies to your IAM user, you're ready to start the import process\.
 
 ------
 
-Now that you've added the policy to your IAM user, you're ready to start the import process\. Remember that when your user uploads object to the Amazon S3 bucket that you specified, that they leave the default permissions for the objects set so that the user can read the object\.
+Remember that when the IAM user uploads objects to the Amazon S3 bucket that you specified, they must leave the default permissions for the objects set so that the user can read the object\.
 
 ## Uploading Your Import File to Amazon S3<a name="migration-hub-import-s3-upload"></a>
 
@@ -196,34 +225,34 @@ Next, you must upload your CSV formatted import file into Amazon S3 so it can be
 
 1. From the **Overview** tab of the object details page, copy the **Object URL**\. You'll need this when you create your import request\.
 
-1. Return to the and paste it in the **Data file link on S3** field on the **Start new import** page\.
+1. Go to the **Import** page in the Migration Hub console as described in [Importing Data](#start-data-import)\. Then, paste the object URL in the **Amazon S3 Object URL** field\.
 
 ------
 #### [ AWS CLI S3 Upload ]
 
 **To upload your import file to Amazon S3**
 
-1. Open a terminal window, and navigate to the directory that you've saved your import file to\.
+1. Open a terminal window and navigate to the directory that your import file is saved to\.
 
-1. Type the following command: 
+1. Enter the following command: 
 
    ```
    aws s3 cp ImportFile.csv s3://BucketName/ImportFile.csv
    ```
 
-1. This will return the following results:
+1. This returns the following results:
 
    ```
    upload: .\ImportFile.csv to s3://BucketName/ImportFile.csv
    ```
 
-1. Copy the full Amazon S3 object path that was returned\. You'll need this when you create your import request\.
+1. Copy the full Amazon S3 object path that was returned\. You will need this when you create your import request\.
 
 ------
 
 ## Importing Data<a name="start-data-import"></a>
 
-After you have downloaded the import template from the Migration Hub console and have populated it with your existing on\-premises server data, you are ready to start importing the data into Migration Hub\. There are two ways to do this: Through the console or by making API calls through the AWS CLI\. Instructions are provided below for both ways\.
+After you download the import template from the Migration Hub console and populate it with your existing on\-premises server data, you're ready to start importing the data into Migration Hub\. The following instructions describe two ways to do this, either by using the console or by making API calls through the AWS CLI\.
 
 ------
 #### [ Console Import ]
@@ -236,19 +265,17 @@ Start data import on the **Tools** page of the Migration Hub console\.
 
 1. If you don't already have an import template filled out, you can download the template by choosing **import template** in the **Import** box\. Open the downloaded template and populate it with your existing on\-premises server data\. You can also download the import template from our Amazon S3 bucket at [https://s3\.us\-west\-2\.amazonaws\.com/templates\-7cffcf56\-bd96\-4b1c\-b45b\-a5b42f282e46/import\_template\.csv](https://s3.us-west-2.amazonaws.com/templates-7cffcf56-bd96-4b1c-b45b-a5b42f282e46/import_template.csv)
 
-1. Choose the **Import** button in the **Import** box, which will take you to the **Import** page under **Tools**\. 
+1. To open the **Import** page, choose **Import** in the **Import** box\. 
 
-1. Choose **Start new import**\.
+1. Under **Import name**, specify a name for the import\.
 
-1. In the next screen, specify a name for the import in the **Import name** field\.
-
-1. Fill out the **Data file link on S3** field\. To do this step, you'll need to upload your import data file to Amazon S3\. For more information, see [Uploading Your Import File to Amazon S3](#migration-hub-import-s3-upload)\.
+1. Fill out the **Amazon S3 Object URL** field\. To do this step, you'll need to upload your import data file to Amazon S3\. For more information, see [Uploading Your Import File to Amazon S3](#migration-hub-import-s3-upload)\.
 
 1. Choose **Import** in the lower\-right area\. This will open the **Imports** page where you can see your import and its status listed in the table\.
 
 After following the preceding procedure to start your data import, the **Imports** page will show details of each import request including its progress status, completion time, and the number of successful or failed records with the ability to download those records\. From this screen, you can also navigate to the **Servers** page under **Discover** to see the actual imported data\.
 
-On the **Servers** page, you can see a list of all the servers \(devices\) that are discovered along with the import name\. When you navigate from the **Imports** \(import history\) page by selecting the name of the import listed in the **Name** column , you are taken to the **Servers** page where a filter is applied based on the selected import's data set and only see data belonging to that particular import\.
+On the **Servers** page, you can see a list of all the servers \(devices\) that are discovered along with the import name\. When you navigate from the **Imports** \(import history\) page by selecting the name of the import listed in the **Name** column, you are taken to the **Servers** page where a filter is applied based on the selected import's data set\. Then, you only see data belonging to that particular import\.
 
 The archive is in a \.zip format, and contains two files; `errors-file` and `failed-entries-file`\. The errors file contains a list of error messages associated with each failed line and associated column name from your data file that failed the import\. You can use this file to quickly identify where problems occurred\. The failed entries file includes each line and all the provided columns that failed\. You can make the changes called out in the errors file in this file and attempt to import the file again with the corrected information\.
 

@@ -23,7 +23,7 @@ If you don’t see inventory information after starting data collection with the
 ------
 #### [ Using the AWS CLI ]
 
-To start the Discovery Connector data collection process from the AWS CLI, the AWS CLI must first be installed in your environment, and then you must set the CLI to use your selected [Migration Hub home region](https://docs.aws.amazon.com/migrationhub/latest/ug/home-region.html)\.
+To start the Discovery Connector data collection process from the AWS CLI, the AWS CLI must first be installed in your environment, and then you must set the CLI to use your selected [Migration Hub home Region](https://docs.aws.amazon.com/migrationhub/latest/ug/home-region.html)\.
 
 **To install the AWS CLI and start data collection**
 
@@ -35,7 +35,7 @@ To start the Discovery Connector data collection process from the AWS CLI, the A
 
    1. Enter your AWS Access Key ID and AWS Secret Access Key\.
 
-   1. Enter your home region, for example `us-west-2`, for the Default Region Name\.
+   1. Enter your home Region, for example `us-west-2`, for the Default Region Name\.
 
    1. Enter `text` for Default Output Format\.
 

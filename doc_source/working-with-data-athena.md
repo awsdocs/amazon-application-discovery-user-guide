@@ -11,7 +11,7 @@ The topics in this section describe the ways that you can work with your data in
 
 ## Exploring Data Directly in Amazon Athena<a name="explore-direct-in-ate"></a>
 
-These instructions guide you to all your agent data directly in the Athena console\. If you don’t have any data in Athena or have not enabled Data Exploration in Amazon Athena, you will be prompted by a dialog box to enable Data Exploration in Amazon Athena, as explained in [Enabling Data Exploration in Amazon Athena](ce-prep-agents.md)\.
+The following instructions explain how to explore your agent data directly in the Athena console\. If you don’t have any data in Athena or have not enabled Data Exploration in Amazon Athena, you will be prompted by a dialog box to enable Data Exploration in Amazon Athena, as explained in [Enabling Data Exploration in Amazon Athena](ce-prep-agents.md)\.
 
 **To explore agent\-discovered data directly in Athena**
 
@@ -303,20 +303,31 @@ Before running this query, if you have not already done so, you must create the 
 Run the following query to identify the running software based on port numbers\.
 
 ```
-SELECT DISTINCT
-  "o"."host_name" "Host Name"
-, "ianap"."servicename" "Service"
-, "ianap"."description" "Description"
-, "con"."destination_port"
-, "count"("con"."destination_port") "Destination Port Count"
-FROM
-  inbound_connection_agent con
-, os_info_agent o
-, iana_service_ports_import ianap
-, network_interface_agent ni
-WHERE ((((("con"."destination_ip" = "ni"."ip_address") AND (NOT ("con"."destination_ip" LIKE '172%'))) AND (("con"."destination_port" = "ianap"."portnumber") AND ("ianap"."transportprotocol" = 'tcp'))) AND ("con"."agent_id" = "o"."agent_id")) AND ("o"."agent_id" = "ni"."agent_id"))
-GROUP BY "o"."host_name", "ianap"."servicename", "ianap"."description", "con"."destination_port"
-ORDER BY "Destination Port Count" DESC;
+SELECT o.host_name "Host Name",
+       ianap.servicename "Service",
+       ianap.description "Description",
+       con.destination_port,
+       con.cnt_dest_port "Destination Port Count"
+FROM   (SELECT agent_id,
+               destination_ip,
+               destination_port,
+               Count(destination_port) cnt_dest_port
+        FROM   inbound_connection_agent
+        GROUP  BY agent_id,
+                  destination_ip,
+                  destination_port) con,
+       (SELECT agent_id,
+               host_name,
+               Max("timestamp")
+        FROM   os_info_agent
+        GROUP  BY agent_id,
+                  host_name) o,
+       iana_service_ports_import ianap
+WHERE  ianap.transportprotocol = 'tcp'
+       AND con.destination_ip NOT LIKE '172%'
+       AND con.destination_port = ianap.portnumber
+       AND con.agent_id = o.agent_id
+ORDER BY cnt_dest_port DESC;
 ```
 
 ### Creating the IANA Port Registry Import Table<a name="pq-create-iana-import-table"></a>

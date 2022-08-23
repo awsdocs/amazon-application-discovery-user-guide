@@ -1,37 +1,41 @@
-# View, Export, and Explore Server Data<a name="discovered_servers"></a>
+# View, export, and explore server data<a name="discovered_servers"></a>
 
 The **Servers** page provides system configuration and performance data about each server instance known to the data collection tools\. You can view server information, sort servers with filters, tag servers with key\-value pairs, and export detailed server and system information\. 
 
 **Topics**
-+ [Viewing and Sorting Servers](#sort-view-servers)
-+ [Tagging Servers](#tag-servers)
-+ [Exporting Server Data](#export-server-data)
++ [Viewing and sorting servers](#sort-view-servers)
++ [Tagging servers](#tag-servers)
++ [Exporting server data](#export-server-data)
 + [Data Exploration in Athena](#explore-data-console)
 + [Applications](#applications)
 
-## Viewing and Sorting Servers<a name="sort-view-servers"></a>
+## Viewing and sorting servers<a name="sort-view-servers"></a>
 
 You can view information about the servers discovered by the data collection tools, and you can sort through the servers using filters\.
 
-### Viewing Servers<a name="view-servers"></a>
+### Viewing servers<a name="view-servers"></a>
 
 You can get a general view and a detailed view of the servers discovered by the data collection tools\. 
 
 **To view discovered servers**
 
-1. In the navigation pane, choose **Servers**\. The discovered servers appear in the servers list\. 
+1. Using your AWS account, sign in to the AWS Management Console and open the Migration Hub console at [https://console\.aws\.amazon\.com/migrationhub/](https://console.aws.amazon.com/migrationhub/)\.
+
+1. In the Migration Hub console navigation pane under **Discover**, choose **Servers**\. The discovered servers appear in the servers list\. 
 
 1. For more detail about a server, choose its server link in the **Server info** column\. Doing so displays a screen that describes the server\.
 
-The server's detail screen displays system information and performance metrics\. You can also find a button to export network dependencies and processes information\. To export detailed server information, see [Exporting Server Data](#export-server-data)\.
+The server's detail screen displays system information and performance metrics\. You can also find a button to export network dependencies and processes information\. To export detailed server information, see [Exporting server data](#export-server-data)\.
 
-### Sorting Servers with Search Filters<a name="sort-servers"></a>
+### Sorting servers with search filters<a name="sort-servers"></a>
 
 To easily find specific servers, apply search filters to sort through all the servers discovered by the collection tools\. You can search and filter on numerous criteria\.
 
 **To sort servers by applying search filters**
 
-1. In the navigation pane, choose **Servers**\.
+1. Using your AWS account, sign in to the AWS Management Console and open the Migration Hub console at [https://console\.aws\.amazon\.com/migrationhub/](https://console.aws.amazon.com/migrationhub/)\.
+
+1. In the Migration Hub console navigation pane under **Discover**, choose **Servers**\.
 
 1. Click inside the search bar, and choose a search criterion from the list\.
 
@@ -41,52 +45,54 @@ To easily find specific servers, apply search filters to sort through all the se
 
 1. Multiple filters can be applied by repeating steps 2 \- 4\.
 
-## Tagging Servers<a name="tag-servers"></a>
+## Tagging servers<a name="tag-servers"></a>
 
-To assist migration planning and help stay organized, you can create multiple tags for each server\. *Tags *are user\-defined key\-value pairs that can store any custom data or metadata about servers\. You can tag an individual server or multiple servers in a single operation\. Application Discovery Service tags are similar to AWS tags, but the two types of tag cannot be used interchangeably\. 
+To assist migration planning and help stay organized, you can create multiple tags for each server\. *Tags* are user\-defined key\-value pairs that can store any custom data or metadata about servers\. You can tag an individual server or multiple servers in a single operation\. AWS Application Discovery Service \(Application Discovery Service\) tags are similar to AWS tags, but the two types of tag cannot be used interchangeably\. 
 
 You can add or remove multiple tags for one or more servers from the main **Servers** page\. On a server's detail page, you can add or remove one or more tags for the selected server\. You can do any type of tagging task involving multiple servers or tags in a single operation\. You can also remove tags\.<a name="add-tags"></a>
 
 **To add tags to one or more servers**
 
-1. In the navigation pane, choose **Servers**\.
+1. Using your AWS account, sign in to the AWS Management Console and open the Migration Hub console at [https://console\.aws\.amazon\.com/migrationhub/](https://console.aws.amazon.com/migrationhub/)\.
+
+1. In the Migration Hub console navigation pane under **Discover**, choose **Servers**\.
 
 1. In the **Server info** column, choose the server link for the server that you want to add tags for\. To add tags to more than one server at a time, click inside the check boxes of multiple servers\.
 
-1. Choose **Add tag**\.
+1. Choose **Add tags**, and then choose **Add new tag**\.
 
-1. In the dialog box, type a value in the **Key** field, and optionally a value in the **Value** field\.
+1. In the dialog box, type a key in the **Key** field, and optionally a value in the **Value** field\.
 
-   Add more tags by choosing **Additional tag ** and adding more information\.
+   Add more tags by choosing **Add new tag** and adding more information\.
 
-1. Choose **Add Tags**\. A green confirmation message will be displayed at the top of the screen\.
-
-1. Optionally, tags can be added for an individual server from its detail page by choosing **Actions**, and then **Add tag** and repeating the above steps\.<a name="remove-tags"></a>
+1. Choose **Save**\.<a name="remove-tags"></a>
 
 **To remove tags from one or more servers**
 
-1. In the navigation pane, choose **Servers**\.
+1. Using your AWS account, sign in to the AWS Management Console and open the Migration Hub console at [https://console\.aws\.amazon\.com/migrationhub/](https://console.aws.amazon.com/migrationhub/)\.
 
-1. In the **Server info** column, choose the server link for the server that you want to remove tags from\. Click inside the check boxes of multiple servers to remove tags from more than one server at a time\.
+1. In the Migration Hub console navigation pane under **Discover**, choose **Servers**\.
 
-1. For **Actions**, choose **Remove tag**\.
+1. In the **Server info** column, choose the server link for the server that you want to remove tags from\. Select the check boxes of multiple servers to remove tags from more than one server at a time\.
 
-1. Select each tag you want to remove, or choose **select all**\.
+1. Choose **Remove tags**\.
 
-1. Choose **Remove**\. A green confirmation message appears at the top of the screen\.
+1. Select each tag that you want to remove\.
 
-1. Optionally, tags can be removed for an individual server from its detail page by choosing **Actions**, and then **Remove tag** and repeating the above steps\.
+1. Choose **Confirm**\.
 
-## Exporting Server Data<a name="export-server-data"></a>
+## Exporting server data<a name="export-server-data"></a>
 
 To export network dependencies and process information for one server at a time, you can use a server's detail screen\. You can find the export jobs for a server in a table located in the **Exports** section of the server's detail screen\. If no export jobs yet exist, the table is empty\. You can simultaneously export up to five collections of data\.
 
 **Note**  
-Exporting server data from the console is only available for data collected by an agent running on that server\. If you want to download data collected by a connector, see [Export data collected for all servers](export-data.md#export-data-api)\. Or, if you want to bulk export data for all servers where agents have been installed, see [Data Exploration in Amazon Athena](explore-data.md)\.<a name="export"></a>
+Exporting server data from the console is only available for data collected by an agent running on that server\. If you want to bulk export data for all servers where agents have been installed, see [Data Exploration in Amazon Athena](explore-data.md)\.<a name="export"></a>
 
 **To export detailed server data**
 
-1. In the navigation pane, choose **Servers**\.
+1. Using your AWS account, sign in to the AWS Management Console and open the Migration Hub console at [https://console\.aws\.amazon\.com/migrationhub/](https://console.aws.amazon.com/migrationhub/)\.
+
+1. In the Migration Hub console navigation pane under **Discover**, choose **Servers**\.
 
 1. In the **Server info** column, choose the ID of the server for which you want to export data\. 
 
@@ -114,7 +120,7 @@ The start time can't be more than 72 hours before the current time\.
 
 ## Data Exploration in Athena<a name="explore-data-console"></a>
 
-Data Exploration in Amazon Athena allows you to analyze the data collected from all the discovered on\-premises servers by Discovery Agents in one place\. Once Data Exploration in Amazon Athena is enabled from the Migration Hub console \(or by using the StartContinousExport API\) and the data collection for agents is turned on, data collected by agents will automatically get stored in your S3 bucket at regular intervals\. For more information, see [Data Exploration in Amazon Athena](explore-data.md)\.
+Data Exploration in Amazon Athena allows you to analyze the data collected from all the discovered on\-premises servers by Discovery Agent in one place\. Once Data Exploration in Amazon Athena is enabled from the Migration Hub console \(or by using the StartContinousExport API\) and the data collection for agents is turned on, data collected by agents will automatically get stored in your S3 bucket at regular intervals\. For more information, see [Data Exploration in Amazon Athena](explore-data.md)\.
 
 ## Applications<a name="applications"></a>
 
@@ -124,7 +130,9 @@ As part of the grouping process, you can search, filter, and add tags\.
 
 **To group servers into a new or existing application**
 
-1. In the navigation pane, choose **Servers**\.
+1. Using your AWS account, sign in to the AWS Management Console and open the Migration Hub console at [https://console\.aws\.amazon\.com/migrationhub/](https://console.aws.amazon.com/migrationhub/)\.
+
+1. In the Migration Hub console navigation pane under **Discover**, choose **Servers**\.
 
 1. In the servers list, select each server that you want to group into a new or existing application\.
 

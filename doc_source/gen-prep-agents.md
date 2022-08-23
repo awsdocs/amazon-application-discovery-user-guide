@@ -1,4 +1,4 @@
-# Installation Prerequisites for Discovery Agent<a name="gen-prep-agents"></a>
+# Prerequisites for Discovery Agent<a name="gen-prep-agents"></a>
 
 The following are the prerequisites and the tasks that you must perform before you can successfully install the AWS Application Discovery Agent \(Discovery Agent\)\. 
 + You must set an [AWS Migration Hub home region](https://docs.aws.amazon.com/migrationhub/latest/ug/home-region.html) before you begin installing Discovery Agent\. 
@@ -22,7 +22,7 @@ The following are the prerequisites and the tasks that you must perform before y
 
   For example, if your home region is `eu-central-1`, you'd use `https://arsenal-discovery.eu-central-1.amazonaws.com:443`
 + Access to Amazon S3 in your home region is required for auto\-upgrade to function\.
-+ Create an AWS Identity and Access Management \(IAM\) user in the console and attach the existing `AWSApplicationDiscoveryAgentAccess` IAM managed policy\. This policy allows the user to perform necessary agent actions on your behalf\. For more information about managed policies, see [AWS Managed \(Predefined\) Policies for Application Discovery Service](security-iam-managed-policies.md)\. 
++ Create an AWS Identity and Access Management \(IAM\) user in the console and attach the existing `AWSApplicationDiscoveryAgentAccess` IAM managed policy\. This policy allows the user to perform necessary agent actions on your behalf\. For more information about managed policies, see [AWS managed policies for AWS Application Discovery Service](security-iam-awsmanpol.md)\. 
 + Check the time skew from your Network Time Protocol \(NTP\) servers and correct if necessary\. Incorrect time synchronization causes the agent registration call to fail\.
 
 **Note**  

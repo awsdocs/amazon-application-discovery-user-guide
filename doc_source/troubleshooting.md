@@ -1,6 +1,6 @@
-# Troubleshooting Data Exploration in Amazon Athena<a name="troubleshooting"></a>
+# Troubleshooting AWS Application Discovery Service<a name="troubleshooting"></a>
 
-In this section, you can find information about how to fix common issues with your AWS Application Discovery Service\.
+In this section, you can find information about how to fix common issues with AWS Application Discovery Service\.
 
 **Topics**
 + [Stop data collection by Data Exploration](#stop-data-collection)
@@ -81,7 +81,7 @@ In this section, you can find information about how to fix common issues with Da
 
 ### Data Exploration in Amazon Athena Fails to Initiate Because Service\-Linked Roles and Required AWS Resources Can't be Created<a name="slr-failed-initialize"></a>
 
- When you turn on Data Exploration in Amazon Athena, it creates a service\-linked\-role, `AWSServiceRoleForApplicationDiscoveryServiceContinuousExport`, in your account that allows it to create the required AWS resources for making the agent collected data accessible in Amazon Athena including an Amazon S3 bucket, Amazon Kinesis streams, and AWS Glue Data Catalog\. If your account does not have the right permissions for Data Exploration in Amazon Athena to create this role, it will fail to initialize\. Refer to [AWS Managed \(Predefined\) Policies for Application Discovery Service](security-iam-managed-policies.md)\. 
+ When you turn on Data Exploration in Amazon Athena, it creates a service\-linked\-role, `AWSServiceRoleForApplicationDiscoveryServiceContinuousExport`, in your account that allows it to create the required AWS resources for making the agent collected data accessible in Amazon Athena including an Amazon S3 bucket, Amazon Kinesis streams, and AWS Glue Data Catalog\. If your account does not have the right permissions for Data Exploration in Amazon Athena to create this role, it will fail to initialize\. Refer to [AWS managed policies for AWS Application Discovery Service](security-iam-awsmanpol.md)\. 
 
 ### New Agent Data Doesn't show Up in Amazon Athena<a name="new-agent-data-not-showing"></a>
 
@@ -123,7 +123,7 @@ If new data does not flow into Athena, it has been more than 30 minutes since an
 
 If you are using AWS Organizations, and initialization for Data Exploration in Amazon Athena fails, it can be because you don’t have permissions to access Amazon S3, Amazon Kinesis Data Firehose, Athena or AWS Glue\.
 
-You will need an IAM user with administrator permissions to grant you access to these services\. An administrator can use their account to grant this access\. See [AWS Managed \(Predefined\) Policies for Application Discovery Service](security-iam-managed-policies.md)\.
+You will need an IAM user with administrator permissions to grant you access to these services\. An administrator can use their account to grant this access\. See [AWS managed policies for AWS Application Discovery Service](security-iam-awsmanpol.md)\.
 
 To ensure that Data Exploration in Amazon Athena works correctly, do not modify or delete the AWS resources created by Data Exploration in Amazon Athena including the Amazon S3 bucket, Amazon Kinesis Data Firehose Streams, and AWS Glue Data Catalog\. If you accidentally delete or modify these resources, please stop and start Data Exploration and it will automatically create these resources again\. If you delete the Amazon S3 bucket created by Data Exploration, you may lose the data that was collected in the bucket\.
 
@@ -132,7 +132,7 @@ To ensure that Data Exploration in Amazon Athena works correctly, do not modify 
 Migration Hub import allows you to import details of your on\-premises environment directly into Migration Hub without using the Discovery Connector or Discovery Agent\. This gives you the option to perform migration assessment and planning directly from your imported data\. You can also group your devices as applications and track their migration status\.
 
 When importing data, it's possible that you'll encounter errors\. Typically, these errors occur for one of the following reasons:
-+ **An import\-related quota was reached** – There is a quota associated with import tasks\. If you make an import task request that would exceeds the quotas, then the request will fail and return an error\. For more information, see [ AWS Application Discovery Service QuotasQuotas  Find the quota affecting AWS Application Discovery Service\.   The Service Quotas console provides information about AWS Application Discovery Service quotas\. You can use the Service Quotas console to view the default service quotas or to [request quota increases](https://console.aws.amazon.com/servicequotas/home?region=us-east-1#!/services/discovery/quotas) for adjustable quotas\.  Currently, the only quota that can be increased is **imported servers per account**\. Application Discovery Service has the following default quotas:   1,000 applications per account\. If you reach this quota, and want to import new applications, you can delete existing applications with the `DeleteApplications` API action\. For more information, see [DeleteApplications](https://docs.aws.amazon.com/application-discovery/latest/APIReference/API_DeleteApplications.html) in the *Application Discovery Service API Reference*\.   Each import file can have a maximum file size of 10 MB\.   25,000 imported server records per account\.   25,000 deletions of import records per day\.   10,000 imported servers per account \(you can request to increase this quota\)\.   1,000 active agents, which are collecting and sending data to Application Discovery Service\.   10,000 inactive agents, which are responsive but not collecting data\.   400 servers per application\.   30 tags per server\.    ](ads_service_limits.md)\.
++ **An import\-related quota was reached** – There is a quota associated with import tasks\. If you make an import task request that would exceeds the quotas, then the request will fail and return an error\. For more information, see [AWS Application Discovery Service Quotas](ads_service_limits.md)\.
 + **An extra comma \(,\) was inserted into the import file** – Commas in \.CSV files are used to differentiate one field from the next\. Having a comma appear within a field is unsupported, because it will always split a field\. This can cause a cascade of formatting errors\. Be sure that commas are only used between fields, and are not otherwise used in your import files\.
 + **A field has a value outside of its supported range** – Some fields, like `CPU.NumberOfCores` must have a range of values they support\. If you have more or less than this supported range, then the record will fail to be imported\.
 

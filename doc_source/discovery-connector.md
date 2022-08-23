@@ -1,11 +1,14 @@
-# AWS Agentless Discovery Connector<a name="discovery-connector"></a>
+# Appendix: AWS Agentless Discovery Connector<a name="discovery-connector"></a>
 
-Agentless discovery uses the AWS Discovery Connector\. The AWS Discovery Connector is a VMware appliance that can collect information only about VMware virtual machines \(VMs\)\. You install the Discovery Connector as a VM in your VMware vCenter Server environment using an Open Virtualization Archive \(OVA\) file\. Because the Discovery Connector relies on VMware metadata to gather server information regardless of operating system, it minimizes the time required for initial on\-premises infrastructure assessment\.
+**Important**  
+We recommended that all customers currently using Discovery Connector transition to the new Agentless Collector\. Customer's currently using Discovery Connector can continue to do so until Aug 31, 2023\. After this date, data sent to AWS Application Discovery Service by Discovery Connector will not be processed\. Going forward, Application Discovery Service Agentless Collector is the supported discovery tool for agentless data collection by AWS Application Discovery Service\. For more information, see [Appendix: Transition from Discovery Connector to Agentless Collector](discovery-collector-transition.md)\.
 
-Before you deploy the Discovery Connector, you must choose a [Migration Hub home Region](https://docs.aws.amazon.com/migrationhub/latest/ug/home-region.html)\. You must register your connector in your home region\. After you deploy and configure the Discovery Connector, it registers with the Application Discovery Service endpoint, and pings the service at regular intervals, approximately every 60 minutes, for configuration information\.
-+ For example, if `eu-central-1` is your home region, it registers `arsenal-discovery.eu-central-1.amazonaws.com` with Application Discovery Service\.
-+ Or substitute your home region as needed for all other regions except us\-west\-2\.
-+ If `us-west-2` is your home region, it registers `arsenal.us-west-2.amazonaws.com` with Application Discovery Service\. 
+The AWS Agentless Discovery Connector \(Discovery Connector\) is a VMware appliance that can collect information only about VMware virtual machines \(VMs\)\. You install the Discovery Connector as a VM in your VMware vCenter Server environment using an Open Virtualization Archive \(OVA\) file\. Because the Discovery Connector relies on VMware metadata to gather server information regardless of operating system, it minimizes the time required for initial on\-premises infrastructure assessment\.
+
+Before you deploy the Discovery Connector, you must choose a [Migration Hub home Region](https://docs.aws.amazon.com/migrationhub/latest/ug/home-region.html)\. You must register your connector in your home Region\. After you deploy and configure the Discovery Connector, it registers with the AWS Application Discovery Service \(Application Discovery Service\) endpoint, and pings the service at regular intervals, approximately every 60 minutes, for configuration information\.
++ For example, if `eu-central-1` is your home Region, it registers `arsenal-discovery.eu-central-1.amazonaws.com` with Application Discovery Service\.
++ Or substitute your home Region as needed for all other Regions except us\-west\-2\.
++ If `us-west-2` is your home Region, it registers `arsenal.us-west-2.amazonaws.com` with Application Discovery Service\. 
 
 **How it works**
 
