@@ -8,41 +8,27 @@ The following are the prerequisites for using Application Discovery Service Agen
 **Note**  
 The Agentless Collector supports all of these versions of VMware, but we currently test against version 6\.7 and 7\.0\. 
 + For VMware vCenter Server setup, make sure that you can provide vCenter credentials with Read and View permissions set for the System group\.
-+ If outbound connections from your network are restricted, you'll need to update your firewall settings\. Agentless Collector requires only outbound \(egress\) access over TCP port 443\. Depending on your Migration Hub home Region, you will need to allow outbound access to one or two AWS endpoints\. 
-  + If your home Region is us\-west\-2, you need to allow access to https://arsenal\-discovery\.us\-west\-2\.amazonaws\.com\. 
-  + For other home Regions, you need to allow access to the regional arsenal\-discovery endpoints\. For example, https://arsenal\-discovery\.eu\-central\-1\.amazonaws\.com and the https://migrationhub\-config\.us\-west\-2\.amazonaws\.com\. 
++ Agentless Collector requires outbound access over TCP port 443 to several AWS domains\. For a list of these domains, see [Configure firewall for outbound access to AWS domains](#agentless-collector-gs-prerequisites-firewall)\.
 
-    For more information, see [Network firewall configuration](#agentless-collector-gs-prerequisites-firewall)\.
+## Configure firewall for outbound access to AWS domains<a name="agentless-collector-gs-prerequisites-firewall"></a>
 
-## Network firewall configuration<a name="agentless-collector-gs-prerequisites-firewall"></a>
+If outbound connections from your network are restricted, you must update your firewall settings to allow outbound access to the AWS domains that Agentless Collector requires\. Which AWS domains require outbound access depend on if your Migration Hub home Region is US West \(Oregon\) Region, us\-west\-2, or some other Region\.
 
-**Setup failed**  
-Check your credentials and try again\.
+**The following domains require outbound access if your AWS account home Region is us\-west\-2:**
++ `arsenal-discovery.us-west-2.amazonaws.com` – The collector uses this domain to validate that it is configured with the required IAM user credentials\. The collector also uses it for sending and storing collected data since the home Region is us\-west\-2\.
++ `migrationhub-config.us-west-2.amazonaws.com` – The collector uses this domain to determine which home Region the collector sends data to based on the provided IAM user credentials\.
++ `api.ecr-public.us-east-1.amazonaws.com` – The collector uses this domain to discover available updates\.
++ `public.ecr.aws` – The collector uses this domain for downloading the updates\.
 
-In addition to bad credentials, this error can happen due to a failed attempt by the Agentless Collector to establish an HTTPS connection to the Application discovery Service endpoint\. If a connection to AWS cannot be established, the Agentless Collector fails to collect data from your on\-premises environment\. For this reason, the collector needs the following access:
+**The following domains require outbound access if your AWS account home Region is not `us-west-2`:**
++ `arsenal-discovery.us-west-2.amazonaws.com` – The collector uses this domain to validate that it is configured with the required IAM user credentials\.
++ `arsenal-discovery.your-migrationhub-home-region.amazonaws.com` – The collector uses this domain for sending and storing collected data\.
++ `migrationhub-config.us-west-2.amazonaws.com` – The collector uses this domain to determine which home Region the collector should send data to based on the provided IAM user credentials\.
++ `api.ecr-public.us-east-1.amazonaws.com` – The collector uses this domain to discover available updates\.
++ `public.ecr.aws` – The collector uses this domain for downloading the updates\.
+
+When setting up Agentless Collector, you might receive errors such as **Setup failed – Check your credentials and try again** or **AWS cannot be reached \(connection reset\)\. Please verify network settings**\. These errors can be caused by a failed attempt by the Agentless Collector to establish an HTTPS connection to one of the AWS domains that it needs outbound access to\.
 
 
 
-For the AWS us\-west\-2 Region, the Agentless Collector requires an egress access to the arsenal\-discovery\.us\-west\-2\.amazonaws\.com endpoint on port 443\. The collector uses this endpoint to send collected data and validate it is configured with the IAM user credentials for the us\-west\-2 home Region\.
-
-
-
-For other Regions, the Agentless Collector requires egress access to the following endpoints on port 443: 
-
-
-+ The migrationhub\-config\.us\-west\-2\.amazonaws\.com is required to determine which home Region the collector should send data to based on the provided IAM user credentials\.
-+ The regional arsenal\-discovery endpoint to send the collected data\. For example, if us\-east\-1 is your home region, then the endpoint will be arsenal\-discovery\.us\-east\-1\.amazonaws\.com
-
-  
-
-**To fix the connection to AWS**
-
-1. Check with your IT admin to see if your company firewall is blocking egress traffic on port 443 to the endpoints listed earlier and request to unblock these ports\. After you update the firewall, reconfigure the Discovery Collector\.
-
-1. If updating the firewall does not resolve the connection issue, check to make sure that the collector virtual machine has outbound network connectivity\. If the virtual machine has outbound connectivity, you can install the telnet utility and use it to check the outbound connections as in the following example:
-
-   ```
-   telnet arsenal-discovery.us-west-2.amazonaws.com 443
-   ```
-
-1. If the virtual machine has all required outbound connections, you must contact [AWS Support](https://aws.amazon.com/contact-us/) for further troubleshooting\.
+If a connection to AWS cannot be established, Agentless Collector cannot collect data from your on\-premises environment\. For information about how to fix the connection to AWS, see [Fixing Agentless Collector cannot reach AWS during setup](agentless-collector-troubleshooting.md#agentless-collector-fix-connector-cannot-reach-aws)\.

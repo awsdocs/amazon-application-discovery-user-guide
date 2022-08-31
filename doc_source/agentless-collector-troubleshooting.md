@@ -12,29 +12,36 @@ This section contains topics that can help you troubleshoot known issues with Ap
 
 ## Fixing Agentless Collector cannot reach AWS during setup<a name="agentless-collector-fix-connector-cannot-reach-aws"></a>
 
-When configuring Agentless Collector in the console you can get the following error message: 
+Agentless Collector requires outbound access over TCP port 443 to several AWS domains\. When configuring Agentless Collector in the console you can get the following error message\.
 
 **Could Not Reach AWS**  
 AWS cannot be reached \(connection reset\)\. Please verify network settings\.
 
-This error occurs because of a failed attempt by Agentless Collector to establish an HTTPS connection to an AWS domain that the collector needs to communicate with to during the setup process\. The Agentless Collector configuration fails if a connection can't be established\.
+This error occurs because of a failed attempt by Agentless Collector to establish an HTTPS connection to an AWS domain that the collector needs to communicate with during the setup process\. The Agentless Collector configuration fails if a connection can't be established\. 
 
 **To fix the connection to AWS**
 
-1. Check with your IT admin to see if your company firewall is blocking egress traffic on port 443 to any of the AWS domains that need outbound access\.
+1. Check with your IT admin to see if your company firewall is blocking outbound traffic on port 443 to any of the AWS domains that require outbound access\. Which AWS domains require outbound access depend on if your home Region is US West \(Oregon\) Region, us\-west\-2, or some other Region\.
 
-   The following AWS domains need outbound access\.
-   + `arsenal-discovery.Migration Hub home Region.amazonaws.com`
-   + `iam.amazonaws.com`
-   + `aws.amazon.com`
-   + `ec2.amazonaws.com`
+**The following domains require outbound access if your AWS account home Region is us\-west\-2:**
+   + `arsenal-discovery.us-west-2.amazonaws.com`
+   + `migrationhub-config.us-west-2.amazonaws.com`
+   + `api.ecr-public.us-east-1.amazonaws.com`
+   + `public.ecr.aws`
 
-   If your firewall is blocking egress traffic, unblock it\. After you update the firewall, reconfigure Agentless Collector\.
+**The following domains require outbound access if your AWS account home Region is not `us-west-2`:**
+   + `arsenal-discovery.us-west-2.amazonaws.com`
+   + `arsenal-discovery.your-home-region.amazonaws.com`
+   + `migrationhub-config.us-west-2.amazonaws.com`
+   + `api.ecr-public.us-east-1.amazonaws.com`
+   + `public.ecr.aws`
 
-1. If updating the firewall does not resolve the connection issue, check to make sure that the collector virtual machine has outbound network connectivity to the listed domains\. If the virtual machine has outbound connectivity, test the connection to listed domains by running **telnet** on ports 443 as shown in the following example\.
+   If your firewall is blocking outbound access to the AWS domains that Agentless Collector needs to communicate with, unblock it\. After you update the firewall, reconfigure Agentless Collector\.
+
+1. If updating the firewall does not resolve the connection issue, check to make sure that the collector virtual machine has outbound network connectivity to the domains listed in the previous step\. If the virtual machine has outbound connectivity, test the connection to the listed domains by running **telnet** on ports 443 as shown in the following example\.
 
    ```
-   telnet ec2.amazonaws.com 443
+   telnet migrationhub-config.us-west-2.amazonaws.com 443
    ```
 
 1. If outbound connectivity from the virtual machine is enabled, for further support, see [Contacting AWS Support for Agentless Collector issues](#agentless-collector-support)\.
