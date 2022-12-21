@@ -3,17 +3,17 @@
 In this section, you can find information about how to fix common issues with AWS Application Discovery Service\.
 
 **Topics**
-+ [Stop data collection by Data Exploration](#stop-data-collection)
-+ [Remove data collected by Data Exploration](#remove-collected-data)
-+ [Fix Common issues with Data Exploration in Amazon Athena](#troubleshoot-data-exploration)
-+ [Troubleshooting Failed Import Records](#troubleshooting-import-failed-records)
++ [Stop data collection by data exploration](#stop-data-collection)
++ [Remove the data collected by data exploration](#remove-collected-data)
++ [Fix common issues with data exploration in Amazon Athena](#troubleshoot-data-exploration)
++ [Troubleshooting failed import records](#troubleshooting-import-failed-records)
 
-## Stop data collection by Data Exploration<a name="stop-data-collection"></a>
+## Stop data collection by data exploration<a name="stop-data-collection"></a>
 
-To stop Data Exploration, you can either switch off the toggle switch in the Migration Hub console under Discover > Data Collectors > Agents tab, or invoke the `StopContinuousExport` API\. It can take up to 30 minutes to stop the data collection, and during this stage, the toggle switch on the console and the `DescribeContinuousExport` API invocation will show the Data Exploration state as "Stop In Progress"\.
+To stop data exploration, you can either switch off the toggle switch in the Migration Hub console under Discover > Data Collectors > Agents tab, or invoke the `StopContinuousExport` API\. It can take up to 30 minutes to stop the data collection, and during this stage, the toggle switch on the console and the `DescribeContinuousExport` API invocation will show the data exploration state as "Stop In Progress"\.
 
 **Note**  
-If after refreshing the console page, the toggle does not switch off and an error message is thrown or the `DescribeContinuousExport` API returns "Stop\_Failed" state, you can try again by switching the toggle switch off or calling the `StopContinuousExport` API\. If the "Data Exploration" still shows error and fails to successfully stop, please reach out to AWS support\.
+If after refreshing the console page, the toggle does not switch off and an error message is thrown or the `DescribeContinuousExport` API returns "Stop\_Failed" state, you can try again by switching the toggle switch off or calling the `StopContinuousExport` API\. If the "data exploration" still shows error and fails to successfully stop, please reach out to AWS support\.
 
 Alternatively, you can manually stop data collection as described in the following steps\.
 
@@ -27,13 +27,13 @@ If you have already completed your discovery using ADS agents and no longer want
 
    This will ensure that no new data is being collected by the agents in both the ADS data repository and your S3 bucket\. Your existing data remains accessible\.
 
-**Option 2: Delete Data Exploration's Amazon Kinesis Data Streams**
+**Option 2: Delete data exploration's Amazon Kinesis Data Streams**
 
-If you want to continue collecting data by agents in ADS data repository, but don't want to collect data in your Amazon S3 bucket using Data Exploration, you can manually delete the Amazon Kinesis Data Firehose streams created by Data Exploration:
+If you want to continue collecting data by agents in ADS data repository, but don't want to collect data in your Amazon S3 bucket using data exploration, you can manually delete the Amazon Kinesis Data Firehose streams created by data exploration:
 
 1. Log in to Amazon Kinesis from the AWS console and choose **Data Firehose** from the navigation pane\.
 
-1. Delete the following streams created by the Data Exploration feature:
+1. Delete the following streams created by the data exploration feature:
    + `aws-application-discovery-service-id_mapping_agent`
    + `aws-application-discovery-service-inbound_connection_agent`
    + `aws-application-discovery-service-network_interface_agent`
@@ -42,23 +42,23 @@ If you want to continue collecting data by agents in ADS data repository, but do
    + `aws-application-discovery-service-processes_agent`
    + `aws-application-discovery-service-sys_performance_agent`
 
-## Remove data collected by Data Exploration<a name="remove-collected-data"></a>
+## Remove the data collected by data exploration<a name="remove-collected-data"></a>
 
-**To remove data collected by Data Exploration**
+**To remove data that's collected by data exploration**
 
 1. Remove the discovery agent data stored in Amazon S3\.
 
-   Data collected by Application Discovery Service \(ADS\) will be stored in an S3 bucket named `aws-application-discover-discovery-service-uniqueid`\. 
+   Data that's collected by AWS Application Discovery Service \(ADS\) is stored in an S3 bucket named `aws-application-discover-discovery-service-uniqueid`\. 
 **Note**  
-Deleting the Amazon S3 bucket or any of the objects in it while Data Exploration in Amazon Athena is enabled will cause an error\. It will continuing to send new discovery agent data to S3\. The deleted data will no longer be accessible in Athena as well\.
+Deleting the Amazon S3 bucket or any of the objects in it while data exploration in Amazon Athena is enabled causes an error\. It continues to send new discovery agent data to S3\. The deleted data will no longer be accessible in Athena as well\.
 
 1. Remove AWS Glue Data Catalog\.
 
-   When Data Exploration in Amazon Athena is turned on, it creates an Amazon S3 bucket in your account to store the data collected by ADS agents at regular time intervals\. In addition, it also creates an AWS Glue Data Catalog to allow you to query the data stored in a Amazon S3 bucket from Amazon Athena\. When you turn off Data Exploration in Amazon Athena, no new data is stored in your Amazon S3 bucket, but data that was collected previously will persist\. If you no longer need this data and want to return your account to the state before Data Exploration in Amazon Athena was turned on 
+   When data exploration in Amazon Athena is turned on, it creates an Amazon S3 bucket in your account to store the data that's collected by ADS agents at regular time intervals\. In addition, it also creates an AWS Glue Data Catalog to allow you to query the data stored in a Amazon S3 bucket from Amazon Athena\. When you turn off data exploration in Amazon Athena, no new data is stored in your Amazon S3 bucket, but data that was collected previously will persist\. If you no longer need this data and want to return your account to the state before data exploration in Amazon Athena was turned on\.
 
    1. Visit Amazon S3 from the AWS console and manually delete the bucket with the name "aws\-application\-discover\-discovery\-service\-uniqueid"
 
-   1. You can manually remove the Data Exploration AWS Glue Data Catalog by deleting the *application\-discovery\-service\-database* database and all of these tables:
+   1. You can manually remove the data exploration AWS Glue Data Catalog by deleting the *application\-discovery\-service\-database* database and all of these tables:
       + `os_info_agent`
       + `network_interface_agent`
       + `sys_performance_agent`
@@ -70,22 +70,22 @@ Deleting the Amazon S3 bucket or any of the objects in it while Data Exploration
 **Removing your data from AWS Application Discovery Service**  
 To have all your data removed from Application Discovery Service, contact [AWS Support](https://aws.amazon.com/contact-us/) and request full data deletion\.
 
-## Fix Common issues with Data Exploration in Amazon Athena<a name="troubleshoot-data-exploration"></a>
+## Fix common issues with data exploration in Amazon Athena<a name="troubleshoot-data-exploration"></a>
 
-In this section, you can find information about how to fix common issues with Data Exploration in Amazon Athena\. 
+In this section, you can find information about how to fix common issues with data exploration in Amazon Athena\. 
 
 **Topics**
-+ [Data Exploration in Amazon Athena Fails to Initiate Because Service\-Linked Roles and Required AWS Resources Can't be Created](#slr-failed-initialize)
-+ [New Agent Data Doesn't show Up in Amazon Athena](#new-agent-data-not-showing)
-+ [You have Insufficient Permissions to Access Amazon S3, Amazon Kinesis Data Firehose, or AWS Glue](#insufficient-permissions)
++ [Data exploration in Amazon Athena fails to initiate because service\-linked roles and required AWS resources can't be created](#slr-failed-initialize)
++ [New Agent data doesn't show up in Amazon Athena](#new-agent-data-not-showing)
++ [You have insufficient permissions to access Amazon S3, Amazon Kinesis Data Firehose, or AWS Glue](#insufficient-permissions)
 
-### Data Exploration in Amazon Athena Fails to Initiate Because Service\-Linked Roles and Required AWS Resources Can't be Created<a name="slr-failed-initialize"></a>
+### Data exploration in Amazon Athena fails to initiate because service\-linked roles and required AWS resources can't be created<a name="slr-failed-initialize"></a>
 
- When you turn on Data Exploration in Amazon Athena, it creates a service\-linked\-role, `AWSServiceRoleForApplicationDiscoveryServiceContinuousExport`, in your account that allows it to create the required AWS resources for making the agent collected data accessible in Amazon Athena including an Amazon S3 bucket, Amazon Kinesis streams, and AWS Glue Data Catalog\. If your account does not have the right permissions for Data Exploration in Amazon Athena to create this role, it will fail to initialize\. Refer to [AWS managed policies for AWS Application Discovery Service](security-iam-awsmanpol.md)\. 
+ When you turn on data exploration in Amazon Athena, it creates the service\-linked role, `AWSServiceRoleForApplicationDiscoveryServiceContinuousExport`, in your account that allows it to create the required AWS resources for making the agent collected data accessible in Amazon Athena including an Amazon S3 bucket, Amazon Kinesis streams, and AWS Glue Data Catalog\. If your account does not have the right permissions for data exploration in Amazon Athena to create this role, it will fail to initialize\. Refer to [AWS managed policies for AWS Application Discovery Service](security-iam-awsmanpol.md)\. 
 
-### New Agent Data Doesn't show Up in Amazon Athena<a name="new-agent-data-not-showing"></a>
+### New Agent data doesn't show up in Amazon Athena<a name="new-agent-data-not-showing"></a>
 
-If new data does not flow into Athena, it has been more than 30 minutes since an agent started, and Data Exploration status is Active, check the solutions listed below:
+If new data does not flow into Athena, it has been more than 30 minutes since an agent started, and data exploration status is Active, check the solutions listed below:
 + AWS Discovery Agents
 
   Ensure that your agent's **Collection** status is marked as **Started** and the **Health** status is marked as **Running**\.
@@ -119,15 +119,15 @@ If new data does not flow into Athena, it has been more than 30 minutes since an
 
   Ensure that your servers are running so that your agents can collect and send data to AWS Application Discovery Service\.
 
-### You have Insufficient Permissions to Access Amazon S3, Amazon Kinesis Data Firehose, or AWS Glue<a name="insufficient-permissions"></a>
+### You have insufficient permissions to access Amazon S3, Amazon Kinesis Data Firehose, or AWS Glue<a name="insufficient-permissions"></a>
 
-If you are using AWS Organizations, and initialization for Data Exploration in Amazon Athena fails, it can be because you don’t have permissions to access Amazon S3, Amazon Kinesis Data Firehose, Athena or AWS Glue\.
+If you are using AWS Organizations, and initialization for data exploration in Amazon Athena fails, it can be because you don’t have permissions to access Amazon S3, Amazon Kinesis Data Firehose, Athena or AWS Glue\.
 
 You will need an IAM user with administrator permissions to grant you access to these services\. An administrator can use their account to grant this access\. See [AWS managed policies for AWS Application Discovery Service](security-iam-awsmanpol.md)\.
 
-To ensure that Data Exploration in Amazon Athena works correctly, do not modify or delete the AWS resources created by Data Exploration in Amazon Athena including the Amazon S3 bucket, Amazon Kinesis Data Firehose Streams, and AWS Glue Data Catalog\. If you accidentally delete or modify these resources, please stop and start Data Exploration and it will automatically create these resources again\. If you delete the Amazon S3 bucket created by Data Exploration, you may lose the data that was collected in the bucket\.
+To ensure that data exploration in Amazon Athena works correctly, do not modify or delete the AWS resources created by data exploration in Amazon Athena including the Amazon S3 bucket, Amazon Kinesis Data Firehose Streams, and AWS Glue Data Catalog\. If you accidentally delete or modify these resources, please stop and start Data Exploration and it will automatically create these resources again\. If you delete the Amazon S3 bucket created by data exploration, you may lose the data that was collected in the bucket\.
 
-## Troubleshooting Failed Import Records<a name="troubleshooting-import-failed-records"></a>
+## Troubleshooting failed import records<a name="troubleshooting-import-failed-records"></a>
 
 Migration Hub import allows you to import details of your on\-premises environment directly into Migration Hub without using the Discovery Connector or Discovery Agent\. This gives you the option to perform migration assessment and planning directly from your imported data\. You can also group your devices as applications and track their migration status\.
 

@@ -1,17 +1,17 @@
-# Enabling Data Exploration in Amazon Athena<a name="ce-prep-agents"></a>
+# Enabling data exploration in Amazon Athena<a name="ce-prep-agents"></a>
 
-Data Exploration in Amazon Athena is enabled by turning on Continuous Export using the Migration Hub console or an API call from the AWS CLI\. You must turn on data exploration before you can see and start exploring your discovered data in Amazon Athena, 
+Data exploration in Amazon Athena is enabled by turning on Continuous Export using the Migration Hub console or an API call from the AWS CLI\. You must turn on data exploration before you can see and start exploring your discovered data in Amazon Athena\. 
 
 When you turn on Continuous Export the service\-linked role `AWSServiceRoleForApplicationDiscoveryServiceContinuousExport` is automatically used by your account\. For more information about this service\-linked role, see [Service\-Linked Role Permissions for Application Discovery Service](service-linked-role-permissions.md)\. 
 
-The following instructions show how to enable Data Exploration in Amazon Athena by using the console and the AWS CLI\.
+The following instructions show how to enable data exploration in Amazon Athena by using the console and the AWS CLI\.
 
 ------
 #### [ Enable with the console ]
 
-Data Exploration in Amazon Athena is enabled by Continuous Export implicitly being turned on when you choose "Start data collection", or click the toggle labeled, "Data exploration in Amazon Athena" on the **Data Collectors** page of the Migration Hub console\.
+Data exploration in Amazon Athena is enabled by Continuous Export implicitly being turned on when you choose "Start data collection", or click the toggle labeled, "Data exploration in Amazon Athena" on the **Data Collectors** page of the Migration Hub console\.
 
-**To enable Data Exploration in Amazon Athena from the console**
+**To enable data exploration in Amazon Athena from the console**
 
 1. In the navigation pane, choose **Data Collectors**\.
 
@@ -27,9 +27,9 @@ Your agents are now running in "continuous export" mode which will enable you to
 ------
 #### [ Enable with the AWS CLI ]
 
-Data Exploration in Amazon Athena is enabled by Continuous Export explicitly being turned on through an API call from the AWS CLI\. To do this, the AWS CLI must first be installed in your environment\.
+Data exploration in Amazon Athena is enabled by Continuous Export explicitly being turned on through an API call from the AWS CLI\. To do this, the AWS CLI must first be installed in your environment\.
 
-**To install the AWS CLI and enable Data Exploration in Amazon Athena**
+**To install the AWS CLI and enable data exploration in Amazon Athena**
 
 1. Install the AWS CLI for your operating system \(Linux, macOS, or Windows\)\. See the [AWS Command Line Interface User Guide](https://docs.aws.amazon.com/cli/latest/userguide/) for instructions\.
 

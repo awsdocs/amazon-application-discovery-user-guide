@@ -6,7 +6,7 @@ The **Servers** page provides system configuration and performance data about ea
 + [Viewing and sorting servers](#sort-view-servers)
 + [Tagging servers](#tag-servers)
 + [Exporting server data](#export-server-data)
-+ [Data Exploration in Athena](#explore-data-console)
++ [Data exploration in Athena](#explore-data-console)
 + [Applications](#applications)
 
 ## Viewing and sorting servers<a name="sort-view-servers"></a>
@@ -86,7 +86,7 @@ You can add or remove multiple tags for one or more servers from the main **Serv
 To export network dependencies and process information for one server at a time, you can use a server's detail screen\. You can find the export jobs for a server in a table located in the **Exports** section of the server's detail screen\. If no export jobs yet exist, the table is empty\. You can simultaneously export up to five collections of data\.
 
 **Note**  
-Exporting server data from the console is only available for data collected by an agent running on that server\. If you want to bulk export data for all servers where agents have been installed, see [Data Exploration in Amazon Athena](explore-data.md)\.<a name="export"></a>
+Exporting server data from the console is only available for data that's collected by an agent running on that server\. If you want to bulk export data for all servers where agents have been installed, see [Data exploration in Amazon Athena](explore-data.md)\.<a name="export"></a>
 
 **To export detailed server data**
 
@@ -118,9 +118,9 @@ The start time can't be more than 72 hours before the current time\.
 
    Among the files, you can find a JSON file containing data about the export task and its results\. 
 
-## Data Exploration in Athena<a name="explore-data-console"></a>
+## Data exploration in Athena<a name="explore-data-console"></a>
 
-Data Exploration in Amazon Athena allows you to analyze the data collected from all the discovered on\-premises servers by Discovery Agent in one place\. Once Data Exploration in Amazon Athena is enabled from the Migration Hub console \(or by using the StartContinousExport API\) and the data collection for agents is turned on, data collected by agents will automatically get stored in your S3 bucket at regular intervals\. For more information, see [Data Exploration in Amazon Athena](explore-data.md)\.
+Data exploration in Amazon Athena allows you to analyze the data that's collected from all the discovered on\-premises servers by Discovery Agent in one place\. Once Data exploration in Amazon Athena is enabled from the Migration Hub console \(or by using the StartContinousExport API\) and the data collection for agents is turned on, data that's collected by agents is automatically get stored in your S3 bucket at regular intervals\. For more information, see [Data exploration in Amazon Athena](explore-data.md)\.
 
 ## Applications<a name="applications"></a>
 

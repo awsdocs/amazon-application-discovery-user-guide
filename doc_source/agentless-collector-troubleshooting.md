@@ -131,14 +131,13 @@ If you encounter issues with Application Discovery Service Agentless Collector \
 1. Zip the log files using the following command\.
 
    ```
-   sudo tar cvzf logs_$(date '+%d-%m-%Y_%H.%M.%S').tar.gz *
+   sudo tar cvzf logs_$(date '+%d-%m-%Y_%H.%M.%S').tar.gz * --exclude='db*'
    ```
 
 1. Copy the log file from the Agentless Collector VM\.
 
    ```
-   scp logs*.tar.gz 
-             targetuser@targetaddress
+   scp logs*.tar.gz targetuser@targetaddress
    ```
 
 1. Give the `tar.gz` file to AWS Enterprise Support\.

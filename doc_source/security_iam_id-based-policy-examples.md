@@ -81,9 +81,9 @@ This policy also grants the user access to Arsenal\. Arsenal is an agent service
 
 ## Granting permissions for agent data collection<a name="security_iam_id-based-policy-examples-ads-export-service"></a>
 
-The ApplicationDiscoveryServiceContinuousExportServiceRolePolicy managed policy allows AWS Application Discovery Service to create Amazon Kinesis Data Firehose streams to transform and deliver data collected by Application Discovery Service agents to an Amazon S3 bucket in your AWS account\.
+The ApplicationDiscoveryServiceContinuousExportServiceRolePolicy managed policy allows AWS Application Discovery Service to create Amazon Kinesis Data Firehose streams to transform and deliver data that's collected by Application Discovery Service agents to an Amazon S3 bucket in your AWS account\.
 
-In addition, this policy creates an AWS Glue Data Catalog with a new database called `application_discovery_service_database` and table schemas for mapping data collected by the agents\. 
+In addition, this policy creates an AWS Glue Data Catalog with a new database called `application_discovery_service_database` and table schemas for mapping data that's collected by the agents\. 
 
 For information about using this policy, see [AWS managed policies for AWS Application Discovery Service](security-iam-awsmanpol.md)\.
 
@@ -171,7 +171,7 @@ For information about using this policy, see [AWS managed policies for AWS Appli
 
 ## Granting permissions for data exploration<a name="security_iam_id-based-policy-examples-ads-export-firehose"></a>
 
-The AWSDiscoveryContinuousExportFirehosePolicy policy is required to use Data Exploration in Amazon Athena\. It allows Amazon Kinesis Data Firehose to write data collected from Application Discovery Service to Amazon S3\. For information about using this policy, see [Creating the AWSApplicationDiscoveryServiceFirehose Role](security-iam-awsmanpol.md#security-iam-awsmanpol-create-firehose-role)\. 
+The AWSDiscoveryContinuousExportFirehosePolicy policy is required to use data exploration in Amazon Athena\. It allows Amazon Kinesis Data Firehose to write data that's collected from Application Discovery Service to Amazon S3\. For information about using this policy, see [Creating the AWSApplicationDiscoveryServiceFirehose Role](security-iam-awsmanpol.md#security-iam-awsmanpol-create-firehose-role)\. 
 
 **Example AWSDiscoveryContinuousExportFirehosePolicy**  
 

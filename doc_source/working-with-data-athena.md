@@ -1,17 +1,17 @@
-# Working with Data Exploration in Amazon Athena<a name="working-with-data-athena"></a>
+# Working with data exploration in Amazon Athena<a name="working-with-data-athena"></a>
 
-After you enable Data Exploration in Amazon Athena, you can begin exploring and working with detailed current data that was discovered by your agents by querying the data directly in Athena\. You can use the data to generate spreadsheets, run a cost analysis, port the query to a visualization program to diagram network dependencies, and more\.
+After you enable data exploration in Amazon Athena, you can begin exploring and working with detailed current data that was discovered by your agents by querying the data directly in Athena\. You can use the data to generate spreadsheets, run a cost analysis, port the query to a visualization program to diagram network dependencies, and more\.
 
 The topics in this section describe the ways that you can work with your data in Athena to assess and plan for migrating your local environment to AWS\.
 
 **Topics**
-+ [Exploring Data Directly in Amazon Athena](#explore-direct-in-ate)
-+ [Visualizing Amazon Athena Data](#port-query-to-visualization)
-+ [Predefined Queries to use in Athena](#predefined-queries)
++ [Exploring data directly in Amazon Athena](#explore-direct-in-ate)
++ [Visualizing Amazon Athena data](#port-query-to-visualization)
++ [Predefined queries to use in Athena](#predefined-queries)
 
-## Exploring Data Directly in Amazon Athena<a name="explore-direct-in-ate"></a>
+## Exploring data directly in Amazon Athena<a name="explore-direct-in-ate"></a>
 
-The following instructions explain how to explore your agent data directly in the Athena console\. If you don’t have any data in Athena or have not enabled Data Exploration in Amazon Athena, you will be prompted by a dialog box to enable Data Exploration in Amazon Athena, as explained in [Enabling Data Exploration in Amazon Athena](ce-prep-agents.md)\.
+The following instructions explain how to explore your agent data directly in the Athena console\. If you don’t have any data in Athena or have not enabled data exploration in Amazon Athena, you will be prompted by a dialog box to enable data exploration in Amazon Athena , as explained in [Enabling data exploration in Amazon Athena](ce-prep-agents.md)\.
 
 **To explore agent\-discovered data directly in Athena**
 
@@ -36,9 +36,9 @@ Under **Tables** the following tables represent the datasets grouped by the agen
    SELECT * FROM network_interface_agent;
    ```
 
-   For more example queries, see [Predefined Queries to use in Athena](#predefined-queries)\.
+   For more example queries, see [Predefined queries to use in Athena](#predefined-queries)\.
 
-## Visualizing Amazon Athena Data<a name="port-query-to-visualization"></a>
+## Visualizing Amazon Athena data<a name="port-query-to-visualization"></a>
 
 To visualize your data, a query can be ported to a visualization program such as Amazon QuickSight or other open\-source visualization tools such as Cytoscape, yEd, or Gelphi\. Use these tools to render network diagrams, summary charts, and other graphical representations\. When this method is used, you connect to Athena through the visualization program so that it can access your collected data as a source to produce the visualization\.
 
@@ -60,7 +60,7 @@ To visualize your data, a query can be ported to a visualization program such as
 
    Your visualization is rendered\.
 
-## Predefined Queries to use in Athena<a name="predefined-queries"></a>
+## Predefined queries to use in Athena<a name="predefined-queries"></a>
 
 This section contains a set of predefined queries that perform typical use cases, such as TCO analysis and network visualization\. You can use these queries as is or modify them to suit your needs\.
 
@@ -74,17 +74,17 @@ This section contains a set of predefined queries that perform typical use cases
 
 1. Choose the plus \(**\+**\) sign in the Query Editor to create a tab for a new query\.
 
-1. Copy one of the queries from [Predefined Queries](#pq-query-examples)\.
+1. Copy one of the queries from [Predefined queries](#pq-query-examples)\.
 
 1. Paste the query into the query pane of the new query tab you just created\.
 
 1. Choose **Run Query**\.
 
-### Predefined Queries<a name="pq-query-examples"></a>
+### Predefined queries<a name="pq-query-examples"></a>
 
 Choose a title to see information about the query\.
 
-#### Obtain IP Addresses and Hostnames for Servers<a name="pq-helper-function"></a>
+#### Obtain IP addresses and hostnames for servers<a name="pq-helper-function"></a>
 
 This view helper function retrieves IP addresses and hostnames for a given server\. You can use this view in other queries\. For information about how to create a view, see [CREATE VIEW](https://docs.aws.amazon.com/athena/latest/ug/create-view.html) in the *Amazon Athena User Guide*\.
 
@@ -100,7 +100,7 @@ FROM
 WHERE ("os"."agent_id" = "nic"."agent_id");
 ```
 
-#### Identify Servers With or Without Agents<a name="pq-agents-installed-or-not"></a>
+#### Identify servers with or without agents<a name="pq-agents-installed-or-not"></a>
 
 This query can help you perform data validation\. If you've deployed agents on a number of servers in your network, you can use this query to understand if there are other servers in your network without agents deployed on them\. In this query, we look into the inbound and outbound network traffic, and filter the traffic for private IP addresses only\. That is, IP addresses starting with `192`, `10`, or `172`\.
 
@@ -140,7 +140,7 @@ WHERE ((("source_ip" LIKE '192.%')
         OR ("source_ip" LIKE '172.%'));
 ```
 
-#### Analyze System Performance Data for Servers With Agents<a name="pq-agents-server-performance"></a>
+#### Analyze system performance data for servers with agents<a name="pq-agents-server-performance"></a>
 
 You can use this query to analyze system performance and utilization pattern data for your on\-premises servers that have agents installed on them\. The query combines the `system_performance_agent` table with the `os_info_agent` table to identify the hostname for each server\. This query returns the time series utilization data \(in 15 minute intervals\) for all the servers where agents are running\.
 
@@ -166,11 +166,11 @@ FROM "sys_performance_agent" "SP" , "OS_INFO_agent" "OS"
 WHERE ("SP"."agent_id" = "OS"."agent_id") limit 10;
 ```
 
-#### Track Outbound Communication Between Servers Based On Port Number and Process Details<a name="pq-analyze-outbound-connections"></a>
+#### Track outbound communication between servers based on port number and process details<a name="pq-analyze-outbound-connections"></a>
 
 This query gets the details on the outbound traffic for each service, along with the port number and process details\. 
 
-Before running the query, if you have not already done so, you must create the `iana_service_ports_import` table that contains the IANA port registry database downloaded from IANA\. For information about how to create this table, see [Creating the IANA Port Registry Import Table](#pq-create-iana-import-table)\.
+Before running the query, if you have not already done so, you must create the `iana_service_ports_import` table that contains the IANA port registry database downloaded from IANA\. For information about how to create this table, see [Creating the IANA port registry import table](#pq-create-iana-import-table)\.
 
 After the `iana_service_ports_import` table is created, create two view helper functions for tracking outbound traffic\. For information about how to create a view, see [CREATE VIEW](https://docs.aws.amazon.com/athena/latest/ug/create-view.html) in the *Amazon Athena User Guide*\. 
 
@@ -230,11 +230,11 @@ After the `iana_service_ports_import` table is created, create two view helper f
        ON outbound_connections_results0.destination_ip = hip2.ip_address
    ```
 
-#### Track Inbound Communication Between Servers Based On Port Number and Process Details<a name="pq-analyze-inbound-connections"></a>
+#### Track inbound communication between servers based on port number and process details<a name="pq-analyze-inbound-connections"></a>
 
 This query gets information about inbound traffic for each service, along with the port number and process details\.
 
-Before running this query, if you have not already done so, you must create the `iana_service_ports_import` table that contains the IANA port registry database downloaded from IANA\. For information about how to create this table, see [Creating the IANA Port Registry Import Table](#pq-create-iana-import-table)\.
+Before running this query, if you have not already done so, you must create the `iana_service_ports_import` table that contains the IANA port registry database downloaded from IANA\. For information about how to create this table, see [Creating the IANA port registry import table](#pq-create-iana-import-table)\.
 
 After the `iana_service_ports_import` table is created, create two view helper functions for tracking inbound traffic\. For information about how to create a view, see [CREATE VIEW](https://docs.aws.amazon.com/athena/latest/ug/create-view.html) in the *Amazon Athena User Guide*\. 
 
@@ -294,11 +294,11 @@ After the `iana_service_ports_import` table is created, create two view helper f
        ON inbound_connections_results0.destination_ip = hip2.ip_address
    ```
 
-#### Identify Running Software From Port Number<a name="pq-identify-software"></a>
+#### Identify running software from port number<a name="pq-identify-software"></a>
 
 This query identifies the running software based on port numbers\.
 
-Before running this query, if you have not already done so, you must create the `iana_service_ports_import` table that contains the IANA port registry database downloaded from IANA\. For information about how to create this table, see [Creating the IANA Port Registry Import Table](#pq-create-iana-import-table)\.
+Before running this query, if you have not already done so, you must create the `iana_service_ports_import` table that contains the IANA port registry database downloaded from IANA\. For information about how to create this table, see [Creating the IANA port registry import table](#pq-create-iana-import-table)\.
 
 Run the following query to identify the running software based on port numbers\.
 
@@ -330,7 +330,7 @@ WHERE  ianap.transportprotocol = 'tcp'
 ORDER BY cnt_dest_port DESC;
 ```
 
-### Creating the IANA Port Registry Import Table<a name="pq-create-iana-import-table"></a>
+### Creating the IANA port registry import table<a name="pq-create-iana-import-table"></a>
 
 Some of the predefined queries require a table named `iana_service_ports_import` that contains information downloaded from Internet Assigned Numbers Authority \(IANA\)\.
 

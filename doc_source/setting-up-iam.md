@@ -12,7 +12,7 @@ In addition to creating an administrative user you'll also need to create non\-a
 
 ## Creating an IAM Administrative User<a name="setting-up-iam-admin"></a>
 
-By default, an administrator account inherits all the policies required for accessing Application Discovery Service\.
+By default, an administrator account inherits all of the policies required for accessing Application Discovery Service\.
 
 **To create an administrator user**
 + Create an administrator user in your AWS account\. For instructions, see [Creating Your First IAM User and Administrators Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) in the *IAM User Guide*\.

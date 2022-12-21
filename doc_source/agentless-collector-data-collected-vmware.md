@@ -1,11 +1,11 @@
 # Data collected by the Agentless Collector VMware vCenter data collection module<a name="agentless-collector-data-collected-vmware"></a>
 
-The following information describes the data collected by the Application Discovery Service Agentless Collector \(Agentless Collector\) VMware vCenter data collection module\. For information about setting up data collection, see [How to set up the Agentless Collector data collection module for VMware vCenter](agentless-collector-gs-data-collection-vcenter.md#agentless-collector-gs-vcenter)\.
+The following information describes the data that's collected by the Application Discovery Service Agentless Collector \(Agentless Collector\) VMware vCenter data collection module\. For information about setting up data collection, see [How to set up the Agentless Collector data collection module for VMware vCenter](agentless-collector-gs-data-collection-vcenter.md#agentless-collector-gs-vcenter)\.
 
 **Table legend for Agentless Collector VMware vCenter collected data:**
 + Collected data is in measurements of kilobytes \(KB\) unless stated otherwise\.
 + Equivalent data in the Migration Hub console is reported in megabytes \(MB\)\.
-+ Data fields denoted with an asterisk \(\*\) are available only in the \.csv files produced from the Application Discovery Service API export function\. 
++ Data fields denoted with an asterisk \(\*\) are available only in the \.csv files that are produced from the Application Discovery Service API export function\. 
 
   The Agentless Collector supports data export using the AWS CLI\. To export collected data using the AWS CLI, follow the instructions described under **Export System Performance Data for All Servers** on the page [ Export Collected Data](https://docs.aws.amazon.com/application-discovery/latest/userguide/export-data.html) in the *Application Discovery Service User Guide*\. 
 + The polling period is in intervals of approximately 60 minutes\.

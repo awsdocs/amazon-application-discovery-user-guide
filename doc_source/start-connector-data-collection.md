@@ -1,6 +1,6 @@
 # Discovery Connector Data Collection<a name="start-connector-data-collection"></a>
 
-After you have deployed and configured the Discovery Connector in your VMware environment, if data collections stops you can restart it\. You can start or stop data collection through the console or by making API calls through the AWS CLI\. Both of these methods are described in the following procedures\.
+After the Discovery Connector is deployed and configured in your VMware environment, if data collections stops you can restart it\. You can start or stop data collection through the console or by making API calls through the AWS CLI\. Both of these methods are described in the following procedures\.
 
 ------
 #### [ Using the Migration Hub Console ]
@@ -35,7 +35,7 @@ To start the Discovery Connector data collection process from the AWS CLI, the A
 
    1. Enter your AWS Access Key ID and AWS Secret Access Key\.
 
-   1. Enter your home Region, for example `us-west-2`, for the Default Region Name\.
+   1. Enter your home Region for the Default Region Name\. For example, `us-west-2`\.
 
    1. Enter `text` for Default Output Format\.
 

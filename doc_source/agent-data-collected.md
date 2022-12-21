@@ -1,13 +1,13 @@
 # Data collected by Discovery Agent<a name="agent-data-collected"></a>
 
-AWS Application Discovery Agent \(Discovery Agent\) is software that you install on on\-premises servers and VMs\. Discovery Agent collects system configuration, times series utilization or performance data, process data, and Transmission Control Protocol \(TCP\) network connections\. This section describes the data collected\.
+AWS Application Discovery Agent \(Discovery Agent\) is software that you install on on\-premises servers and VMs\. Discovery Agent collects system configuration, times series utilization or performance data, process data, and Transmission Control Protocol \(TCP\) network connections\. This section describes the data that's collected\.
 
 **Table legend for Discovery Agent collected data:**
 + The term host refers to either a physical server or a VM\.
 + Collected data is in measurements of kilobytes \(KB\) unless stated otherwise\.
 + Equivalent data in the Migration Hub console is reported in megabytes \(MB\)\.
 + The polling period is in intervals of approximately 15 minutes\.
-+ Data fields denoted with an asterisk \(\*\) are only available in the `.csv` files produced from the agent's API export function\.
++ Data fields denoted with an asterisk \(\*\) are only available in the `.csv` files that are produced from the agent's API export function\.
 
 
 | Data field | Description | 

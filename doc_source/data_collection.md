@@ -10,7 +10,7 @@ These data collection tools store their data in the Application Discovery Servic
 
 ## Starting and stopping data collectors<a name="start-stop-data_collection"></a>
 
-If you deployed AWS Application Discovery Agent \(Discovery Agent\), you can start or stop the data collection process on the **Data Collectors** page of the AWS Migration Hub \(Migration Hub\) console\.
+After the AWS Application Discovery Agent \(Discovery Agent\) is deployed, you can start or stop the data collection process on the **Data Collectors** page of the AWS Migration Hub \(Migration Hub\) console\.
 
 **To start or stop data collection tools**
 

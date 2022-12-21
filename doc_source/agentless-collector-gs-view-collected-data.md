@@ -1,6 +1,6 @@
 # Step 7: View collected data in the Migration Hub console<a name="agentless-collector-gs-view-collected-data"></a>
 
-To view the data collected by Application Discovery Service Agentless Collector \(Agentless Collector\), sign in to the Migration Hub console\.
+To view the data that's collected by Application Discovery Service Agentless Collector \(Agentless Collector\), sign in to the Migration Hub console\.
 
 **To view the data discovered by Agentless Collector**
 

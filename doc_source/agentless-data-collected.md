@@ -7,7 +7,7 @@ Following, you can find an inventory of the information collected by the Discove
 **Table legend for Discovery Connector collected data:**
 + Collected data is in measurements of kilobytes \(KB\) unless stated otherwise\.
 + Equivalent data in the Migration Hub console is reported in megabytes \(MB\)\.
-+ Data fields denoted with an asterisk \(\*\) are only available in the \.csv files produced from the connector's API export function\.
++ Data fields denoted with an asterisk \(\*\) are only available in the \.csv files that are produced from the connector's API export function\.
 + The polling period is in intervals of approximately 60 minutes\.
 + Data fields denoted with a double asterisk \(\*\*\) currently return a *null* value\.
 

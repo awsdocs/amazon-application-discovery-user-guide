@@ -352,4 +352,4 @@ When tracking your import tasks, you may find that the `serverImportFailure` val
 
 ------
 
-After creating your import task, you can perform additional actions to help manage and track your data migration\. For example, you can download an archive of failed records for a specific request\. For information on using the failed records archive to resolve import issues, see [Troubleshooting Failed Import Records](troubleshooting.md#troubleshooting-import-failed-records)\. 
+After creating your import task, you can perform additional actions to help manage and track your data migration\. For example, you can download an archive of failed records for a specific request\. For information on using the failed records archive to resolve import issues, see [Troubleshooting failed import records](troubleshooting.md#troubleshooting-import-failed-records)\. 

@@ -102,15 +102,15 @@ You attach this policy to any user whose credentials are used by the connector\.
 
 ## AWS managed policy: ApplicationDiscoveryServiceContinuousExportServiceRolePolicy<a name="security-iam-awsmanpol-ApplicationDiscoveryServiceContinuousExportServiceRolePolicy"></a>
 
-If your IAM account has the `AWSApplicationDiscoveryServiceFullAccess` policy attached, `ApplicationDiscoveryServiceContinuousExportServiceRolePolicy` is automatically attached to your account when you turn on Data Exploration in Amazon Athena\.
+If your IAM account has the `AWSApplicationDiscoveryServiceFullAccess` policy attached, `ApplicationDiscoveryServiceContinuousExportServiceRolePolicy` is automatically attached to your account when you turn on data exploration in Amazon Athena\.
 
-This policy allows AWS Application Discovery Service to create Amazon Kinesis Data Firehose streams to transform and deliver data collected by AWS Application Discovery Service agents to an Amazon S3 bucket in your AWS account\. 
+This policy allows AWS Application Discovery Service to create Amazon Kinesis Data Firehose streams to transform and deliver data that's collected by AWS Application Discovery Service agents to an Amazon S3 bucket in your AWS account\. 
 
-In addition, this policy creates an AWS Glue Data Catalog with a new database called *application\_discovery\_service\_database* and table schemas for mapping data collected by the agents\. For an example of this policy, see [ Granting permissions for agent data collection](security_iam_id-based-policy-examples.md#security_iam_id-based-policy-examples-ads-export-service)\.
+In addition, this policy creates an AWS Glue Data Catalog with a new database called *application\_discovery\_service\_database* and table schemas for mapping data that's collected by the agents\. For an example of this policy, see [ Granting permissions for agent data collection](security_iam_id-based-policy-examples.md#security_iam_id-based-policy-examples-ads-export-service)\.
 
 ## AWS managed policy: AWSDiscoveryContinuousExportFirehosePolicy<a name="security-iam-awsmanpol-AWSDiscoveryContinuousExportFirehosePolicy"></a>
 
-The `AWSDiscoveryContinuousExportFirehosePolicy` policy is required to use Data Exploration in Amazon Athena\. It allows Amazon Kinesis Data Firehose to write data collected from Application Discovery Service to Amazon S3\. For information about using this policy, see [Creating the AWSApplicationDiscoveryServiceFirehose Role](#security-iam-awsmanpol-create-firehose-role)\. For an example of this policy, see [Granting permissions for data exploration](security_iam_id-based-policy-examples.md#security_iam_id-based-policy-examples-ads-export-firehose)\.
+The `AWSDiscoveryContinuousExportFirehosePolicy` policy is required to use data exploration in Amazon Athena\. It allows Amazon Kinesis Data Firehose to write data that's collected from Application Discovery Service to Amazon S3\. For information about using this policy, see [Creating the AWSApplicationDiscoveryServiceFirehose Role](#security-iam-awsmanpol-create-firehose-role)\. For an example of this policy, see [Granting permissions for data exploration](security_iam_id-based-policy-examples.md#security_iam_id-based-policy-examples-ads-export-firehose)\.
 
 ## Creating the AWSApplicationDiscoveryServiceFirehose Role<a name="security-iam-awsmanpol-create-firehose-role"></a>
 

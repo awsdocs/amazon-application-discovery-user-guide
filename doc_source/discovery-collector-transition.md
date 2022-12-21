@@ -8,4 +8,4 @@ We recommended that all customers currently using Discovery Connector transition
 
 To learn how to start using Agentless Collector, see [Getting started with Agentless Collector](agentless-collector-gs.md)\. 
 
-After the Agentless Collector has been deployed, the Discovery Connector virtual machine can be deleted\. All data previously collected will continue to be available in AWS Migration Hub \(Migration Hub\)\.
+After the Agentless Collector is deployed, you can delete the Discovery Connector virtual machine\. All data previously collected will continue to be available in AWS Migration Hub \(Migration Hub\)\.

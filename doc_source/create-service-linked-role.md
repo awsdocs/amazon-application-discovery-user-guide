@@ -19,7 +19,7 @@ You can use the Migration Hub console to create the AWSServiceRoleForApplication
 
 1. In the dialog box generated from the previous step, click the checkbox agreeing to associated costs and choose **Continue** or **Enable**\.
 
-## Creating the Service\-Linked Role from the AWS CLI<a name="create-service-linked-role-service-cli"></a>
+## Creating the service\-linked role from the AWS CLI<a name="create-service-linked-role-service-cli"></a>
 
 You can use Application Discovery Service commands from the AWS Command Line Interface to create the AWSServiceRoleForApplicationDiscoveryServiceContinuousExport service\-linked role\.
 

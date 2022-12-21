@@ -4,9 +4,9 @@ For both the Application Discovery Service Agentless Collector \(Agentless Colle
 
 Instructions are provided below for both ways by expanding your method of choice:
 
-## Export data collected for all servers using the AWS CLI<a name="export-data-api"></a>
+## Export the data that's collected for all servers using the AWS CLI<a name="export-data-api"></a>
 
-The data collected from all the agentless collectors and discovery agents running on your hosts and VMs can be bulk exported using the AWS Command Line Interface \(AWS CLI\)\. The AWS CLI must be installed in your environment before exporting data\. 
+The data that;s collected from all the agentless collectors and discovery agents running on your hosts and VMs can be bulk exported using the AWS Command Line Interface \(AWS CLI\)\. The AWS CLI must be installed in your environment before exporting data\. 
 
 **To install the AWS CLI and export collected data**
 
